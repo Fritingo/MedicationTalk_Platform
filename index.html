@@ -74,6 +74,43 @@
 
             <br>
             <br>
+            <br>
+            <!-- barcode -->
+            
+            <!-- patient barcode -->
+            
+                
+                    <h2 align="center">請確認病人資訊</h2>
+                    <br>
+        
+                    <p align="center">掃病人條碼</p>
+                    <p align="center">點擊按鈕開始掃碼</p>
+                    <center>
+                        <img id = 'bar_odf' src="./pic/no.png" width="30" background-color: transparent/>
+                        
+                        <button onclick="check_bt('barcode')" >掃 barcode</button> 
+                        <!-- dan.push('patient_barcode',[true]) -->
+                    </center>
+                    <br>
+        
+                    <p align="center">確認掃碼結果</p>
+                    <center>
+                        <legend class='ODF_value' display:inline;>_____________</legend>
+                        
+                       
+                        <br>
+                        <div class="inputWithin">
+                            <img id = 'bar' src="./pic/no.png" width="30" background-color: transparent/>
+                            <!-- <input id = 'IDF_ID' value=""> -->
+                            <input type="radio" name = 'barcode' value="1">病人資料正確
+                            <input type="radio" name = 'barcode' value="2">病人資料錯誤
+                            <p class="bar_no"></p>
+                        </div>
+                    </center>
+                    <br>
+                    <br>
+                    <br>
+            
 
             <center>
                 <button onclick="check_page(2)">確認及下一頁</button>
@@ -83,46 +120,6 @@
         </div>
     </div>
   
-    <!-- patient barcode -->
-    <div class="mySlides fade">
-        <div class="card">
-            <h2 align="center">請確認病人資訊</h2>
-            <br>
-
-            <p align="center">掃病人條碼</p>
-            <p align="center">點擊按鈕開始掃碼</p>
-            <center>
-                <img id = 'bar_odf' src="./pic/no.png" width="30" background-color: transparent/>
-                
-                <button onclick="check_bt('barcode')" >掃 barcode</button> 
-                <!-- dan.push('patient_barcode',[true]) -->
-            </center>
-            <br>
-
-            <p align="center">確認掃碼結果</p>
-            <center>
-                <legend class='ODF_value' display:inline;>_____________</legend>
-                
-               
-                <br>
-                <div class="inputWithin">
-                    <img id = 'bar' src="./pic/no.png" width="30" background-color: transparent/>
-                    <!-- <input id = 'IDF_ID' value=""> -->
-                    <input type="radio" name = 'barcode' value="1">病人資料正確
-                    <input type="radio" name = 'barcode' value="2">病人資料錯誤
-                    <p class="bar_no"></p>
-                </div>
-            </center>
-            <br>
-            <br>
-
-            <center>
-                <button onclick="check_page(3)">確認及下一頁</button>
-            </center>
-            <br>
-            <br>
-        </div>
-    </div>
 
     <!-- mar pill -->
     <div class="mySlides fade">
@@ -1364,7 +1361,7 @@
             <br>
 
             <center>
-                <button onclick="check_page(4)">確認送出</button>
+                <button onclick="check_page(3)">確認送出</button>
             </center>
             <br>
             <br>
@@ -1379,12 +1376,12 @@
   <br>
   
   <!-- The dots/circles -->
-  <div style="text-align:center">
+  <!-- <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span> 
     <span class="dot" onclick="currentSlide(2)"></span> 
     <span class="dot" onclick="currentSlide(3)"></span> 
     <span class="dot" onclick="currentSlide(4)"></span> 
-  </div>
+  </div> -->
 
 </html>
 

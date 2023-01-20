@@ -64,7 +64,7 @@ function check_page(n){
             img.src="pic/wrong.jpeg";
         }
     }
-    else if(n === 3){
+    else if(n === 2){
         const radios = document.getElementsByName('barcode');
         if (radios[0].checked || radios[1].checked)
         {
