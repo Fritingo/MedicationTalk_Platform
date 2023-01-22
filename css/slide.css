@@ -140,6 +140,8 @@
 .inputWithin {
   position: relative; 
   display: inline-block;
+  font-size:28px;
+  font-family:verdana;
 }		
 .inputWithin .img { /*左邊圖示*/
   position: absolute; 			
