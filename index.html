@@ -12,6 +12,8 @@
         <script src="js/dan.js"></script>
         <script src="js/dai.js"></script>
         <script src="js/ida.js"></script>
+        <script src="js/html5-qrcode.min.js"></script>
+        <!-- <script src="https://unpkg.com/html5-qrcode"></script> -->
     </head>
 <!-- Slideshow container -->
 
@@ -96,7 +98,16 @@
                     <br>
         
                     <p align="center"  style="font-family:verdana;font-size:28px;">掃病人條碼</p>
+                    <br>
+                    <center>
+                        <div id="qr-reader" style="width:500px"></div>
+                        <div id="qr-reader-results"></div>
+                    </center>
+                    
+
                     <p align="center"  style="font-family:verdana;font-size:28px;">點擊按鈕開始掃碼</p>
+
+
                     <center>
                         <img id = 'bar_odf' src="./pic/no.png" width="32" background-color: transparent/>
                         
@@ -1388,14 +1399,15 @@
   <br>
   
   <!-- The dots/circles -->
-  <!-- <div style="text-align:center">
+  <div style="text-align:center">
     <span class="dot" onclick="currentSlide(1)"></span> 
     <span class="dot" onclick="currentSlide(2)"></span> 
     <span class="dot" onclick="currentSlide(3)"></span> 
-    <span class="dot" onclick="currentSlide(4)"></span> 
-  </div> -->
+    <!-- <span class="dot" onclick="currentSlide(4)"></span>  -->
+  </div>
 
 </html>
 
 <script src="js/slide.js"></script>
 <script src="js/update.js"></script>
+<script src="js/barcode.js"></script>
