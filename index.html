@@ -1,6 +1,3 @@
-
-<link href="css/slide.css" rel="stylesheet">
-
 <!DOCTYPE html>
 <meta charset="utf-8">
 
@@ -8,12 +5,19 @@
 
     <head>
         <script src="js/jquery.js" type="text/javascript"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js"></script> -->
         <script src="js/csmapi.js"></script>
         <script src="js/dan.js"></script>
         <script src="js/dai.js"></script>
         <script src="js/ida.js"></script>
+        
+        <!-- import html5-qrcode required-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.0.1/html5-qrcode.min.js"></script> -->
         <script src="js/html5-qrcode.min.js"></script>
         <!-- <script src="https://unpkg.com/html5-qrcode"></script> -->
+
+        <link href="css/slide.css" rel="stylesheet">
+        <link href="css/html5-qrcode-css.css" rel="stylesheet">
     </head>
 <!-- Slideshow container -->
 
@@ -22,24 +26,26 @@
     <!-- first page user info -->
     <div class="mySlides fade">
         <div class="card">
-            <h1 align="center" style="font-family:verdana;font-size:48px;">智能安全給藥訓練平台</h2>
+            <br>
+            <br>
+            <h1 align="center" style="font-family:verdana;font-size:60px;">智能安全給藥訓練平台</h2>
             <img src="pic/nycu1.jpeg"  style="display:block; margin:auto; width: 20%;"/>
             
-            <h2 align="center" style="font-family:verdana;font-size:36px;">請輸入使用者資訊</h2>
+            <h2 align="center" style="font-family:verdana;font-size:44px;">請輸入使用者資訊</h2>
             <br>
-            <p align="center" style="font-family:verdana;font-size:28px;">學號或是 ID</p>
+            <p align="center" style="font-family:verdana;font-size:36px;">學號或是 ID</p>
             <center>
                 <div class="inputWithin">
-                    <img id = 'id' src="./pic/no.png" width="32" background-color: transparent/>
-                    <input id = 'IDF_ID' value="" style="font-family:verdana;font-size:28px;">
+                    <img id = 'id' src="./pic/no.png" width="34" background-color: transparent/>
+                    <input id = 'IDF_ID' value="" style="font-family:verdana;font-size:36px;">
                 </div>
             </center>
             <br>
-            <p align="center" style="font-family:verdana;font-size:28px;">姓名</p>
+            <p align="center" style="font-family:verdana;font-size:36px;">姓名</p>
             <center>
                 <div class="inputWithin">
-                    <img id = 'name' src="./pic/no.png" width="32" background-color: transparent/>
-                    <input id = 'IDF_name' value="" style="font-family:verdana;font-size:28px;">
+                    <img id = 'name' src="./pic/no.png" width="34" background-color: transparent/>
+                    <input id = 'IDF_name' value="" style="font-family:verdana;font-size:36px;">
                 </div>
             </center>
             <br>
@@ -47,11 +53,11 @@
             <br>
             <br>
             <br>
-            <br>
+            
 
 
             <center>
-                <button onclick="check_page(1)" style="font-family:verdana;font-size:36px;">確認及下一頁</button>
+                <button onclick="check_page(1)" style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">確認及下一頁</button>
             </center>
             <br>
             <br>
@@ -61,27 +67,32 @@
     <!-- scenario -->
     <div class="mySlides fade">     
         <div class="card">
-            <h2 align="center" style="font-family:verdana;font-size:36px;">情境</h2>
+            <br>
+            <br>
+
+            <h2 align="center" style="font-family:verdana;font-size:52px;">情境</h2>
 
             <center>
 
             
                 <div class="card_mar"> 
-                    <p align="center" style="font-family:verdana;font-size:26px;">地點 外科病房</p>
-                    <p align="center" style="font-family:verdana;font-size:26px;">病患資料 陳志明(男)、83 歲、出生年月日: 37/06/17、病歷號: 02386145、身分證字號:A120857201</p>
+                    <p align="center" style="font-family:verdana;font-size:36px;">地點 外科病房</p>
+                    <p align="center" style="font-family:verdana;font-size:36px;">病患資料 陳志明(男)、83 歲、出生年月日: 37/06/17、病歷號: 02386145、身分證字號:A120857201</p>
                     <br>
-                    <p align="center" style="font-family:verdana;font-size:36px;">病患狀況</p>
+                    <p align="center" style="font-family:verdana;font-size:44px;">病患狀況</p>
 
                     <div class="box_div">
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 1. 本次住院診斷為急性膽囊炎，行腹腔鏡膽囊切除手術後第 2 天; 尿液 念珠球菌感染。</p>
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 2. 過去病史:糖尿病、高血壓、心臟病、高血脂、巴金森氏症、後天免 疫缺乏症候群。</p>
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 3. 過敏史:盤尼西林類</p>
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 4. 目前生命徵象:GCS E4V5M6;T/P/R 36.5/ 72/ 16;BP: 165/90mmHg， SpO2:98%</p>
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 5. 指尖血糖(飯前血糖):90mg/dl</p>
-                        <p align="margin-left" style="font-family:verdana;font-size:26px;"> 6. 管路:左手 20 號輸液管路，NS run 60ml/hr 滴注中</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 1. 本次住院診斷為急性膽囊炎，行腹腔鏡膽囊切除手術後第 2 天; 尿液 念珠球菌感染。</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 2. 過去病史:糖尿病、高血壓、心臟病、高血脂、巴金森氏症、後天免 疫缺乏症候群。</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 3. 過敏史:盤尼西林類</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 4. 目前生命徵象:GCS E4V5M6;T/P/R 36.5/ 72/ 16;BP: 165/90mmHg， SpO2:98%</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 5. 指尖血糖(飯前血糖):90mg/dl</p>
+                        <p align="margin-left" style="font-family:verdana;font-size:36px;"> 6. 管路:左手 20 號輸液管路，NS run 60ml/hr 滴注中</p>
                         
                     </div>
-
+                    <br>
+                    <br>
+                    <br>
                 </div>
 
             </center>
@@ -94,40 +105,61 @@
             <!-- patient barcode -->
             
                 
-                    <h2 align="center"  style="font-family:verdana;font-size:36px;">請確認病人資訊</h2>
+                    <h2 align="center"  style="font-family:verdana;font-size:44px;">請確認病人資訊</h2>
                     <br>
-        
-                    <p align="center"  style="font-family:verdana;font-size:28px;">掃病人條碼</p>
-                    <br>
-                    <center>
-                        <div id="qr-reader" style="width:500px"></div>
-                        <div id="qr-reader-results"></div>
-                    </center>
-                    
+                    <div class="box_div">
+                        <p align="center"  style="font-family:verdana;font-size:36px;">掃病人條碼</p>
+                        <br>
+                        <center>
+                            <nobr style="font-family:verdana;font-size:36px">點擊</nobr>
+                            <nobr style="font-family:verdana;font-size:36px;color:red">”紅色按鈕“</nobr>
+                            <nobr style="font-family:verdana;font-size:36px">開始掃 Barcode</nobr>
+                            <br>
+                            <nobr style="font-family:verdana;font-size:22px;color:gray">出現</nobr>
+                            <nobr style="font-family:verdana;font-size:22px;color:green">”綠色框框“</nobr>
+                            <nobr style="font-family:verdana;font-size:22px;color:gray">表示掃描成功前往下一步</nobr>
 
-                    <p align="center"  style="font-family:verdana;font-size:28px;">點擊按鈕開始掃碼</p>
-
-
-                    <center>
-                        <img id = 'bar_odf' src="./pic/no.png" width="32" background-color: transparent/>
+                        </center>
                         
-                        <button onclick="check_bt('barcode')"  style="font-family:verdana;font-size:28px;">掃 barcode</button> 
-                        <!-- dan.push('patient_barcode',[true]) -->
-                    </center>
+                        <br>
+                        <center>
+                            <!-- <div id="qr-reader" style="width:500px;font-family:verdana;font-size:36px;"></div> -->
+                            <div id="reader" style="width:650px;font-family:verdana;font-size:36px;"></div>
+                            <div id="qr-reader-results"></div> 
+                        </center>
+                        
+                        <p class='barcode_value' display:inline; align="right">_____________</p>
+                            
+
+
+                    </div>
+                    <!-- <center>
+                        
+                        <img id = 'bar_odf' src="./pic/no.png" width="34" background-color: transparent/>
+                        
+                        <button onclick="check_bt('barcode')"  style="font-family:verdana;font-size:36px;">掃 barcode</button> 
+                        dan.push('patient_barcode',[true]) -->
+                    <!-- </center> -->
                     <br>
         
-                    <p align="center" style="font-family:verdana;font-size:36px;">確認掃碼結果</p>
+                    <p align="center" style="font-family:verdana;font-size:44px;">確認掃碼結果</p>
                     <center>
-                        <legend class='ODF_value' display:inline;>_____________</legend>
+                        
+                            <p class='ODF_value' style="font-family:verdana;font-size:36px;color: green;">_____________</p>
+
+                        
+                         
+                        <!-- <legend class='ODF_value' display:inline;>_____________</legend> -->
                         
                        
                         <br>
                         <div class="inputWithin">
-                            <img id = 'bar' src="./pic/no.png" width="32" background-color: transparent/>
+                            <img id = 'bar' src="./pic/no.png" width="34" background-color: transparent/>
                             <!-- <input id = 'IDF_ID' value=""> -->
-                            <input type="radio" name = 'barcode' value="1" style="font-size:28px;">病人資料正確
-                            <input type="radio" name = 'barcode' value="2" style="font-size:28px;">病人資料錯誤
-                            <p class="bar_no"></p>
+                            <input type="radio" name = 'barcode' value="1" style="font-size:36px;transform: scale(2);height: 25px;"> 病人資料正確
+                            <input type="radio" name = 'barcode' value="2" style="font-size:36px;transform: scale(2);height: 25px;"> 病人資料錯誤
+                            
+                            <p class="bar_no" style="color: gray"></p>
                         </div>
                     </center>
                     <br>
@@ -136,7 +168,7 @@
             
 
             <center>
-                <button onclick="check_page(2)"  style="font-family:verdana;font-size:36px;">確認及下一頁</button>
+                <button onclick="check_page(2)"  style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">確認及下一頁</button>
             </center>
             <br>
             <br>
@@ -147,15 +179,18 @@
     <!-- mar pill -->
     <div class="mySlides fade">
         <div class="card">
-            <h2 align="center">MAR</h2>
+            <br>
+            <br>
+            <h2 align="center" style="font-family:verdana;font-size:52px;">MAR</h2>
             <center>
-                <div class="card_mar">   
+                <div class="card_mar" style="font-family:verdana;font-size:16px;width: 88%;">   
                     <p>姓名: 陳志明  性別: 男  生日: 37/06/17  身分證字號: A120857201  病歷號: 02386145</p>
                     <div id="resp-table">
                         <div id="resp-table-body">
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
-                                    <input type="checkbox" name="" value="">
+                                    <nobr>是否</nobr>給予
+                                    <!-- <input type="checkbox" name="" value=""> -->
                                 </div>
                                 <div class="table-body-cell">
                                     藥品名 
@@ -248,6 +283,10 @@
     
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check1" style="transform: scale(2);">
+                                    <!-- style="transform: scale(2);height: 0px;" -->
+                                </div>
+                                <div class="table-body-cell">
                                     <a href="https://www.kingnet.com.tw/medicine/merchandise?license_id=%E8%A1%9B%E7%BD%B2%E8%97%A5%E8%BC%B8%E5%AD%97%E7%AC%AC022071%E8%99%9F" target="_blank">Dilatrend 25mg/tab </a>
                                 </div>
                                 <div class="table-body-cell">
@@ -338,6 +377,10 @@
     
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check2" style="transform: scale(2);">
+                                </div>
+                                <div class="table-body-cell">
+                                    
                                     <a href="https://www1.ndmctsgh.edu.tw/pharm/MU_seaview.aspx?CID=005REQ01" target="_blank">Requip F.C 0.25mg/tab</a> 
                                 </div>
                                 <div class="table-body-cell">
@@ -432,6 +475,9 @@
                             
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check3" style="transform: scale(2);">
+                                </div>
+                                <div class="table-body-cell">
                                     <a href="https://www1.ndmctsgh.edu.tw/pharm/MU_seaview.aspx?CID=005MIL02" target="_blank">Millisrol inj 5mg/10ml/amp </a> 
                                     
                                 </div>
@@ -522,6 +568,9 @@
                             </div>
     
                             <div class="resp-table-row"> 
+                                <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check4" style="transform: scale(2);">
+                                </div>
                                 <div class="table-body-cell">
                                     <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500250.html" target="_blank">Repaglinide 1mg/tab </a> 
                                     
@@ -615,6 +664,9 @@
     
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check5" style="transform: scale(2);">
+                                </div>
+                                <div class="table-body-cell">
                                     <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500310.html" target="_blank">Transamin 250mg/tab </a> 
                                        
                                 </div>
@@ -705,6 +757,9 @@
                             </div>
     
                             <div class="resp-table-row"> 
+                                <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check6" style="transform: scale(2);">
+                                </div>
                                 <div class="table-body-cell">
                                     <a href="https://www.cth.org.tw/?aid=606&pid=0&page_name=detail&iid=1096" target="_blank">Ampicillin 2000mg 500mg/vail </a> 
                                     
@@ -798,6 +853,9 @@
     
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check7" style="transform: scale(2);">
+                                </div>
+                                <div class="table-body-cell">
                                     <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500146.html" target="_blank">Bokey 100mg/tab </a> 
                                     
                                     
@@ -889,6 +947,9 @@
                             </div>
     
                             <div class="resp-table-row"> 
+                                <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check8" style="transform: scale(2);">
+                                </div>
                                 <div class="table-body-cell">
                                     <a href="https://www.kingnet.com.tw/medicine/merchandise?license_id=衛署藥輸字第023970號" target="_blank">Simvahexal 20 mg/tab </a> 
                                     
@@ -982,6 +1043,9 @@
     
                             <div class="resp-table-row"> 
                                 <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check9" style="transform: scale(2);">
+                                </div>
+                                <div class="table-body-cell">
                                     <a href="https://www.cth.org.tw/?aid=606&pid=0&page_name=detail&iid=1003" target="_blank">FLU-D (Fluconazole) 50mg/tab </a> 
                                     
                                     
@@ -1073,6 +1137,9 @@
                             </div>
     
                             <div class="resp-table-row"> 
+                                <div class="table-body-cell">
+                                    <input type="checkbox" name="" value="" id="check10" style="transform: scale(2);">
+                                </div>
                                 <div class="table-body-cell">
                                     Normal saline-Sodium chloride 0.9% 塑膠瓶
                                 </div>
@@ -1205,26 +1272,33 @@
                         </div>
                     </div>
     
-                    
+                    <br>
                 </div> 
             </center>
 
 
             <!-- pill -->
-            <h2 align="center">請確認口服藥丸</h2>
+            <br>
+            <br>
+            <h2 align="center" style="font-family:verdana;font-size:44px;">請確認口服藥丸</h2>
             <br>
 
-            <p align="center">請您完成下方給藥學習單的理由後，執行智能給藥判讀步驟:</p>
+            <p align="center" style="font-family:verdana;font-size:36px;">請您執行智能給藥判讀步驟:</p>
             
             
-            <p align="center">(1)要給病患的藥物，全部放入黑色方盒子內</p>
-            <p align="center">(2)再將方盒放入設備內後</p>
-            <p align="center">(3)確認小門關上後，按”辨識藥丸”</p>
-            
-            
+            <p align="center" style="font-family:verdana;font-size:36px;color: gray;">(1)要給病患的藥物，全部放入黑色方盒子內</p>
+            <p align="center" style="font-family:verdana;font-size:36px;color: gray;">(2)再將方盒放入設備內後</p>
             <center>
-                <img id = 'pill_odf' src="./pic/no.png" width="32" background-color: transparent; display:inline;/>
-                <button onclick="check_bt('pill')" >辨識藥丸</button> 
+                <nobar align="center" style="font-family:verdana;font-size:36px;color: gray;">(3)確認小門關上後，按</nobar>
+                <nobar align="center" style="font-family:verdana;font-size:36px;color: red;">”辨識藥丸”</nobar>
+            </center>
+
+            <br>
+            <br>
+
+            <center>
+                <img id = 'pill_odf' src="./pic/no.png" width="34"/>
+                <button onclick="check_bt('pill')" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">辨識藥丸</button> 
                 <p class="pill_hint"></p>
                 <br>
                 <br>
@@ -1233,7 +1307,7 @@
                 <div class="card_mar">
                     
                     
-                    <h2 align="center" display:inline;>給藥學習單</h2>
+                    <h2 align="center" style="font-family:verdana;font-size:44px;">給藥學習單</h2>
                     
                     <div id="resp-table">
                         <div id="resp-table-body">
@@ -1408,6 +1482,9 @@
 
 </html>
 
+
+
 <script src="js/slide.js"></script>
 <script src="js/update.js"></script>
 <script src="js/barcode.js"></script>
+<script src="js/html5-qrcode-css.js"></script>

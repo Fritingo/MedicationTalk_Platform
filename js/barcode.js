@@ -18,11 +18,18 @@ docReady(function () {
             lastResult = decodedText;
             // Handle on success condition with the decoded message.
             console.log(`Scan result ${decodedText}`, decodedResult);
-            $('.ODF_value')[0].innerText= decodedText;
+            $('.barcode_value')[0].innerText= decodedText;
+            if (decodedText == '1234567890ABC'){
+                $('.ODF_value')[0].innerText='陳志明(男) 出生年月日：52/9/27 病例號：11481701 身分證字號：A125152001';
+            }else{
+                $('.ODF_value')[0].innerText='查無此病人資訊'
+            }
+
         }
     }
 
     var html5QrcodeScanner = new Html5QrcodeScanner(
-        "qr-reader", { fps: 10, qrbox: {width: 250, height: 100} });
+        "reader", { fps: 10, qrbox: {width: 350, height: 150} });
     html5QrcodeScanner.render(onScanSuccess);
 });
+

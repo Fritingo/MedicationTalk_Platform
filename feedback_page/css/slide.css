@@ -155,3 +155,8 @@
   margin-left: auto;
   margin-right: auto;
 }
+
+button.html5-qrcode-element {
+  color: 'red';
+  border: '1px solid red';
+}
