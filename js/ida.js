@@ -25,17 +25,17 @@ var output_pill_bt = 0;
 
         
         function output_patient_barcode(data){
-            if (output_patient_barcode_bt > 0){
-                var img = document.getElementById('bar_odf');
-                img.src="pic/ok1.jpeg";
-                if (data[0] == '1234567890ABC')
-                {
-                    $('.ODF_value')[0].innerText='陳志明(男) 出生年月日：52/9/27 病例號：11481701 身分證字號：A125152001';
-                }else{
+            // if (output_patient_barcode_bt > 0){
+            //     var img = document.getElementById('bar_odf');
+            //     img.src="pic/ok1.jpeg";
+            //     if (data[0] == '1234567890ABC')
+            //     {
+            //         $('.ODF_value')[0].innerText='陳志明(男) 出生年月日：52/9/27 病例號：11481701 身分證字號：A125152001';
+            //     }else{
 
-                    $('.ODF_value')[0].innerText=data[0];
-                }
-            }
+            //         $('.ODF_value')[0].innerText=data[0];
+            //     }
+            // }
             
         }
 

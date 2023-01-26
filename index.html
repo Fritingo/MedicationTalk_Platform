@@ -81,7 +81,7 @@
                     <br>
                     <p align="center" style="font-family:verdana;font-size:44px;">病患狀況</p>
 
-                    <div class="box_div">
+                    <div class="box_div" >
                         <p align="margin-left" style="font-family:verdana;font-size:36px;"> 1. 本次住院診斷為急性膽囊炎，行腹腔鏡膽囊切除手術後第 2 天; 尿液 念珠球菌感染。</p>
                         <p align="margin-left" style="font-family:verdana;font-size:36px;"> 2. 過去病史:糖尿病、高血壓、心臟病、高血脂、巴金森氏症、後天免 疫缺乏症候群。</p>
                         <p align="margin-left" style="font-family:verdana;font-size:36px;"> 3. 過敏史:盤尼西林類</p>
@@ -183,7 +183,7 @@
             <br>
             <h2 align="center" style="font-family:verdana;font-size:52px;">MAR</h2>
             <center>
-                <div class="card_mar" style="font-family:verdana;font-size:16px;width: 88%;">   
+                <div class="card_mar" style="font-family:verdana;font-size:15px;width: 90%;">   
                     <p>姓名: 陳志明  性別: 男  生日: 37/06/17  身分證字號: A120857201  病歷號: 02386145</p>
                     <div id="resp-table">
                         <div id="resp-table-body">
@@ -1304,152 +1304,314 @@
                 <br>
                 <br>
                 
-                <div class="card_mar">
-                    
-                    
+                <div  class="box_div">
+
                     <h2 align="center" style="font-family:verdana;font-size:44px;">給藥學習單</h2>
                     
-                    <div id="resp-table">
-                        <div id="resp-table-body">
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    口服藥品項 
-                                </div>
-                                <div class="table-body-cell">
-                                    給予藥物的理由
-                                </div>
-                                <div class="table-body-cell">
-                                    不給予藥物的理由
-                                </div>
+                
+                    <div class="card_mar" style="width: 70%;">
+                        
+                        <h2 align="center" style="font-family:verdana;font-size:36px;">您給藥💊的原因是？</h2>
+                    
+                        <div id="resp-table" style="font-family:verdana;font-size:24px;">
+                            <div id="resp-table-body">
+                                <!-- <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        口服藥品項 
+                                    </div>
+                                   
+                                    
+                                </div> -->
+
                                 
-                            </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Dilatrend 25mg/tab 
-                                </div>
-                                <div class="table-body-cell" id = 'Dilatrend 25mg/tab' data-item="x">
-                                    <input id = 'Dilatrend 25mg/tab r' value=""> 
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Dilatrend 25mg/tab r no' value="">
-                                </div>
-
-                            </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Requip F.C 0.25mg/tab 
-                                </div>
-                                <div class="table-body-cell" id = 'Requip F.C 0.25mg/tab'>
-                                    <input id = 'Requip F.C 0.25mg/tab r' value=""> 
-                                </div>
-                                <div class="table-body-cell" >
-                                    <input id = 'Requip F.C 0.25mg/tab r no' value=""> 
-                                </div>
-
-                            </div>
         
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Repaglinide 1mg/tab
-                                </div>
-                                <div class="table-body-cell" id = 'Repaglinide 1mg/tab'>
-                                    <input id = 'Repaglinide 1mg/tab r' value="">  
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Repaglinide 1mg/tab r no' value="">  
+                                <div class="resp-table-row" style="display: none" id="sheet-yes1"> 
+                                    <div class="table-body-cell">
+                                        Dilatrend 25mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Dilatrend 25mg/tab' data-item="x">
+                                        <textarea id = 'Dilatrend 25mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea>
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Dilatrend 25mg/tab r no' value="">
+                                    </div> -->
+
                                 </div>
 
+                                
+        
+                                <div class="resp-table-row" style="display: content" id="sheet-yes2"> 
+                                    <div class="table-body-cell">
+                                        Requip F.C 0.25mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Requip F.C 0.25mg/tab'>
+                                        <textarea id = 'Requip F.C 0.25mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea>
+                                    </div>
+                                    <!-- <div class="table-body-cell" >
+                                        <input id = 'Requip F.C 0.25mg/tab r no' value=""> 
+                                    </div> -->
 
+                                </div>
+            
+                                <div class="resp-table-row" style="display: content" id="sheet-yes4"> 
+                                    <div class="table-body-cell">
+                                        Repaglinide 1mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Repaglinide 1mg/tab'>
+                                        <textarea id = 'Repaglinide 1mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea>  
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Repaglinide 1mg/tab r no' value="">  
+                                    </div>  -->
+
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content" id="sheet-yes5"> 
+                                    <div class="table-body-cell">
+                                        Transamin 250mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Transamin 250mg/tab'>
+                                        <textarea id = 'Transamin 250mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea>  
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Transamin 250mg/tab r no' value="">   
+                                    </div> -->
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content" id="sheet-yes7"> 
+                                    <div class="table-body-cell">
+                                        Bokey 100mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Bokey 100mg/tab'>
+                                        <textarea id = 'Bokey 100mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea>
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Bokey 100mg/tab r no' value="">
+                                    </div> -->
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content" id="sheet-yes8"> 
+                                    <div class="table-body-cell">
+                                        Simvahexal 20 mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Simvahexal 20 mg/tab'>
+                                        <textarea id = 'Simvahexal 20 mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea> 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Simvahexal 20 mg/tab r no' value=""> 
+                                    </div> -->
+
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content" id="sheet-yes9"> 
+                                    <div class="table-body-cell">
+                                        FLU-D (Fluconazole) 50mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
+                                        <textarea id = 'FLU-D (Fluconazole) 50mg/tab r' value="" style="font-family:verdana;font-size:22px;" cols="27" rows="3"> </textarea> 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'FLU-D (Fluconazole) 50mg/tab r no' value=""> 
+                                    </div> -->
+
+                                </div>
+
+                                <div class="resp-table-row" style="display: none"> 
+                                    <div class="table-body-cell">
+                                        Dilantin
+                                    </div>
+                                    <div class="table-body-cell" id = 'Dilantin'>
+                                        X 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Dilantin r' value="">  
+                                    </div> -->
+
+                                </div>
+
+                                <div class="resp-table-row" style="display: none"> 
+                                    <div class="table-body-cell">
+                                        Requip F.C 1 mg
+                                    </div>
+                                    <div class="table-body-cell" id = 'Requip F.C 1 mg'>
+                                        X
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Requip F.C 1 mg r' value="">   
+                                    </div> -->
+
+                                </div>
+        
+
+        
+                                
+        
+        
                             </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Transamin 250mg/tab
-                                </div>
-                                <div class="table-body-cell" id = 'Transamin 250mg/tab'>
-                                    <input id = 'Transamin 250mg/tab r' value="">  
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Transamin 250mg/tab r no' value="">   
-                                </div>
-
-                            </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Bokey 100mg/tab 
-                                </div>
-                                <div class="table-body-cell" id = 'Bokey 100mg/tab'>
-                                    <input id = 'Bokey 100mg/tab r' value=""> 
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Bokey 100mg/tab r no' value="">
-                                </div>
-
-                            </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    Simvahexal 20 mg/tab
-                                </div>
-                                <div class="table-body-cell" id = 'Simvahexal 20 mg/tab'>
-                                    <input id = 'Simvahexal 20 mg/tab r' value="">  
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Simvahexal 20 mg/tab r no' value=""> 
-                                </div>
-
-
-                            </div>
-    
-                            <div class="resp-table-row"> 
-                                <div class="table-body-cell">
-                                    FLU-D (Fluconazole) 50mg/tab 
-                                </div>
-                                <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
-                                    <input id = 'FLU-D (Fluconazole) 50mg/tab r' value=""> 
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'FLU-D (Fluconazole) 50mg/tab r no' value=""> 
-                                </div>
-
-                            </div>
-
-                            <div class="resp-table-row" style="display: none"> 
-                                <div class="table-body-cell">
-                                    Dilantin
-                                </div>
-                                <div class="table-body-cell" id = 'Dilantin'>
-                                    X 
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Dilantin r' value="">  
-                                </div>
-
-                            </div>
-
-                            <div class="resp-table-row" style="display: none"> 
-                                <div class="table-body-cell">
-                                    Requip F.C 1 mg
-                                </div>
-                                <div class="table-body-cell" id = 'Requip F.C 1 mg'>
-                                    X
-                                </div>
-                                <div class="table-body-cell">
-                                    <input id = 'Requip F.C 1 mg r' value="">   
-                                </div>
-
-                            </div>
-    
-
-    
-                            
-    
-    
                         </div>
+                        <br>
+                        <br>
                     </div>
+
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+
+                    <div class="card_mar">
+                        
+                        <h2 align="center" style="font-family:verdana;font-size:32px;">您不給藥💊的原因是？</h2>
+                    
+                        <div id="resp-table" style="font-family:verdana;font-size:20px;">
+                            <div id="resp-table-body">
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        口服藥品項 
+                                    </div>
+                                    <div class="table-body-cell">
+                                        您不給予藥物的理由
+                                    </div>
+                                    
+                                    
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Dilatrend 25mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Dilatrend 25mg/tab' data-item="x">
+                                        <input id = 'Dilatrend 25mg/tab r no' value="" style="font-family:verdana;font-size:20px;"> 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Dilatrend 25mg/tab r no' value="">
+                                    </div> -->
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Requip F.C 0.25mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Requip F.C 0.25mg/tab'>
+                                        <input id = 'Requip F.C 0.25mg/tab r no' value="" style="font-family:verdana;font-size:20px;"> 
+                                    </div>
+                                    <!-- <div class="table-body-cell" >
+                                        <input id = 'Requip F.C 0.25mg/tab r no' value=""> 
+                                    </div> -->
+
+                                </div>
+            
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Repaglinide 1mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Repaglinide 1mg/tab'>
+                                        <input id = 'Repaglinide 1mg/tab r no' value="" style="font-family:verdana;font-size:20px;">  
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Repaglinide 1mg/tab r no' value="">  
+                                    </div>  -->
+
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Transamin 250mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Transamin 250mg/tab'>
+                                        <input id = 'Transamin 250mg/tab r no' value="" style="font-family:verdana;font-size:20px;">  
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Transamin 250mg/tab r no' value="">   
+                                    </div> -->
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Bokey 100mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'Bokey 100mg/tab'>
+                                        <input id = 'Bokey 100mg/tab r no' value="" style="font-family:verdana;font-size:20px;"> 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Bokey 100mg/tab r no' value="">
+                                    </div> -->
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content"> 
+                                    <div class="table-body-cell">
+                                        Simvahexal 20 mg/tab
+                                    </div>
+                                    <div class="table-body-cell" id = 'Simvahexal 20 mg/tab'>
+                                        <input id = 'Simvahexal 20 mg/tab r no' value="" style="font-family:verdana;font-size:20px;">  
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Simvahexal 20 mg/tab r no' value=""> 
+                                    </div> -->
+
+
+                                </div>
+        
+                                <div class="resp-table-row" style="display: content" > 
+                                    <div class="table-body-cell">
+                                        FLU-D (Fluconazole) 50mg/tab 
+                                    </div>
+                                    <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
+                                        <input id = 'FLU-D (Fluconazole) 50mg/tab r no' value="" style="font-family:verdana;font-size:20px;"> 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'FLU-D (Fluconazole) 50mg/tab r no' value=""> 
+                                    </div> -->
+
+                                </div>
+
+                                <div class="resp-table-row" style="display: none"> 
+                                    <div class="table-body-cell">
+                                        Dilantin
+                                    </div>
+                                    <div class="table-body-cell" id = 'Dilantin'>
+                                        X 
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Dilantin r' value="">  
+                                    </div> -->
+
+                                </div>
+
+                                <div class="resp-table-row" style="display: none"> 
+                                    <div class="table-body-cell">
+                                        Requip F.C 1 mg
+                                    </div>
+                                    <div class="table-body-cell" id = 'Requip F.C 1 mg'>
+                                        X
+                                    </div>
+                                    <!-- <div class="table-body-cell">
+                                        <input id = 'Requip F.C 1 mg r' value="">   
+                                    </div> -->
+
+                                </div>
+        
+
+        
+                                
+        
+        
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+                    </div>
+
+                    <br>
+                    <br>
+
                 </div>
             </center>
             

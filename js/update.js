@@ -38,6 +38,31 @@ async function getvalue()
         {
             $('.bar_no')[0].innerText = '';
         }
+
+        // check pill
+        for (var i=1;i<10;i++){
+            var pill_id = 'check' + i
+            console.log(pill_id)
+            var check_pill = document.getElementById('check' + i);
+            
+            if (i != '3' && i != '6'){
+                if(check_pill.checked){
+                    console.log('yes');
+                    var sheet = document.getElementById('sheet-yes' + i);
+                    
+                    sheet.style.display = 'block';
+                    
+                
+                    
+                }else{
+                    var sheet = document.getElementById('sheet-yes' + i);
+                    sheet.style.display = 'none';
+                }
+
+            }
+            
+        }
+        
     }
 
 setInterval(getvalue, 1000);
