@@ -1,0 +1,7 @@
+{
+  "enable": true, 
+  "cert": "//Users/zhuangdongsheng/Documents/plan/ssl/localhost.pem", 
+  "key": "//Users/zhuangdongsheng/Documents/plan/ssl/localhost-key.pem", 
+  "passphrase": "12345"
+}
+
