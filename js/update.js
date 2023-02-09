@@ -45,6 +45,58 @@ radio2.addEventListener('change', function (e) {
     $('.bar_no')[0].innerText = '已更換病人資訊為:陳志明(男) 出生年月日: 37/06/17 病歷號: 02386145 身分證字號：A120857201';
 }, false);
 
+//page3
+
+// check pill
+var check_list = [];
+
+for (let i=1; i<10; i++){
+    check_list.push(document.getElementById('check' + i));
+}
+
+var listener_list = [];
+for (let i=0; i<9; i++){
+    if (i != '2' && i != '5'){
+        listener_list.push(check_list[i].addEventListener('change', function(e){
+            let sheet = document.getElementById('sheet-yes' + (i+1));
+            let sheet_no = document.getElementById('sheet-no' + (i+1));
+            if(check_list[i].checked){
+                sheet.style.display = 'block';
+                sheet_no.style.display = 'none';
+            }else{
+                sheet.style.display = 'none';
+                sheet_no.style.display = 'block';
+            }
+        }))
+    
+    }
+}
+
+// for (var i=1;i<10;i++){
+//     var pill_id = 'check' + i
+//     console.log(pill_id)
+//     var check_pill = document.getElementById('check' + i);
+    
+//     if (i != '3' && i != '6'){
+//         if(check_pill.checked){
+//             console.log('yes');
+//             var sheet = document.getElementById('sheet-yes' + i);
+            
+//             sheet.style.display = 'block';
+            
+        
+            
+//         }else{
+//             var sheet = document.getElementById('sheet-yes' + i);
+//             sheet.style.display = 'none';
+//         }
+
+//     }
+    
+// }
+
+
+
 
 // async function getvalue()
 //     {
@@ -153,7 +205,7 @@ function check_page(n){
         }
         
     }
-    else if(n === 4){
+    else if(n === 3){
         const radios = document.getElementsByName('barcode');
         var radios_ans;
         if (radios[0].checked)
