@@ -1,9 +1,8 @@
-async function getvalue()
-    {
-        const idf_id = document.getElementById('IDF_ID');
-        const idf_name = document.getElementById('IDF_name');
-        const radios = document.getElementsByName('barcode');
-        if (idf_id.value != "")
+// page1
+
+const idf_id = document.getElementById('IDF_ID');
+idf_id.addEventListener('change', function (e) {
+    if (idf_id.value != "")
         {
             var img = document.getElementById('id');
             img.src="pic/ok1.jpeg";
@@ -12,7 +11,11 @@ async function getvalue()
             var img = document.getElementById('id');
             img.src="./pic/no.png";
         }
-        if (idf_name.value != "")
+}, false);
+
+const i_name = document.getElementById('IDF_name');
+i_name.addEventListener('change', function (e) {
+    if (idf_id.value != "")
         {
             var img = document.getElementById('name');
             img.src="pic/ok1.jpeg";
@@ -21,51 +24,96 @@ async function getvalue()
             var img = document.getElementById('name');
             img.src="./pic/no.png";
         }
-        if (radios[0].checked || radios[1].checked)
-        {
+}, false);
 
-            var img = document.getElementById('bar');
-            img.src="pic/ok1.jpeg";
-        }else
-        {
-            var img = document.getElementById('bar');
-            img.src="./pic/no.png";
-        }
-        if (radios[1].checked)
-        {
-            $('.bar_no')[0].innerText = '已更換病人資訊為:陳志明(男) 出生年月日: 37/06/17 病歷號: 02386145 身分證字號：A120857201';
-        }else
-        {
-            $('.bar_no')[0].innerText = '';
-        }
+// page2
+const radio1 = document.getElementById('radio1');
+radio1.addEventListener('change', function (e) {
+    var img = document.getElementById('bar');
+    img.src="pic/ok1.jpeg";
 
-        // check pill
-        for (var i=1;i<10;i++){
-            var pill_id = 'check' + i
-            console.log(pill_id)
-            var check_pill = document.getElementById('check' + i);
+    $('.bar_no')[0].innerText = '';
+    
+}, false);
+
+const radio2 = document.getElementById('radio2');
+radio2.addEventListener('change', function (e) {
+
+    var img = document.getElementById('bar');
+    img.src="pic/ok1.jpeg";
+
+    $('.bar_no')[0].innerText = '已更換病人資訊為:陳志明(男) 出生年月日: 37/06/17 病歷號: 02386145 身分證字號：A120857201';
+}, false);
+
+
+// async function getvalue()
+//     {
+//         const idf_id = document.getElementById('IDF_ID');
+//         const idf_name = document.getElementById('IDF_name');
+//         const radios = document.getElementsByName('barcode');
+//         if (idf_id.value != "")
+//         {
+//             var img = document.getElementById('id');
+//             img.src="pic/ok1.jpeg";
+//         }else
+//         {
+//             var img = document.getElementById('id');
+//             img.src="./pic/no.png";
+//         }
+//         if (idf_name.value != "")
+//         {
+//             var img = document.getElementById('name');
+//             img.src="pic/ok1.jpeg";
+//         }else
+//         {
+//             var img = document.getElementById('name');
+//             img.src="./pic/no.png";
+//         }
+//         if (radios[0].checked || radios[1].checked)
+//         {
+
+//             var img = document.getElementById('bar');
+//             img.src="pic/ok1.jpeg";
+//         }else
+//         {
+//             var img = document.getElementById('bar');
+//             img.src="./pic/no.png";
+//         }
+//         if (radios[1].checked)
+//         {
+//             $('.bar_no')[0].innerText = '已更換病人資訊為:陳志明(男) 出生年月日: 37/06/17 病歷號: 02386145 身分證字號：A120857201';
+//         }else
+//         {
+//             $('.bar_no')[0].innerText = '';
+//         }
+
+//         // check pill
+//         for (var i=1;i<10;i++){
+//             var pill_id = 'check' + i
+//             console.log(pill_id)
+//             var check_pill = document.getElementById('check' + i);
             
-            if (i != '3' && i != '6'){
-                if(check_pill.checked){
-                    console.log('yes');
-                    var sheet = document.getElementById('sheet-yes' + i);
+//             if (i != '3' && i != '6'){
+//                 if(check_pill.checked){
+//                     console.log('yes');
+//                     var sheet = document.getElementById('sheet-yes' + i);
                     
-                    sheet.style.display = 'block';
+//                     sheet.style.display = 'block';
                     
                 
                     
-                }else{
-                    var sheet = document.getElementById('sheet-yes' + i);
-                    sheet.style.display = 'none';
-                }
+//                 }else{
+//                     var sheet = document.getElementById('sheet-yes' + i);
+//                     sheet.style.display = 'none';
+//                 }
 
-            }
+//             }
             
-        }
+//         }
         
-    }
+//     }
 
-setInterval(getvalue, 1000);
+// setInterval(getvalue, 1000);
 
 function check_page(n){
     if (n === 1){
@@ -99,6 +147,11 @@ function check_page(n){
             var img = document.getElementById('bar');
             img.src="pic/wrong.jpeg";
         }
+        if ($('.barcode_value')[0].innerText == "_____________"){
+            var img = document.getElementById('barcode_scanner');
+            img.src="pic/wrong.jpeg";
+        }
+        
     }
     else if(n === 4){
         const radios = document.getElementsByName('barcode');

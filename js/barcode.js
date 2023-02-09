@@ -19,6 +19,8 @@ docReady(function () {
             // Handle on success condition with the decoded message.
             console.log(`Scan result ${decodedText}`, decodedResult);
             $('.barcode_value')[0].innerText= decodedText;
+            var img = document.getElementById('barcode_scanner');
+            img.src="pic/ok1.jpeg";
             if (decodedText == '1234567890ABC'){
                 $('.ODF_value')[0].innerText='陳志明(男) 出生年月日：52/9/27 病例號：11481701 身分證字號：A125152001';
             }else{
