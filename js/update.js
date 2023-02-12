@@ -206,54 +206,56 @@ function check_page(n){
         
     }
     else if(n === 3){
-        const radios = document.getElementsByName('barcode');
-        var radios_ans;
-        if (radios[0].checked)
-        {
-            radios_ans = 'yes';
-        }else if (radios[1].checked)
-        {
-            radios_ans = 'no';
-        }else
-        {
-            radios_ans = 'null';
-        }
+        // const radios = document.getElementsByName('barcode');
+        // var radios_ans;
+        // if (radios[0].checked)
+        // {
+        //     radios_ans = 'yes';
+        // }else if (radios[1].checked)
+        // {
+        //     radios_ans = 'no';
+        // }else
+        // {
+        //     radios_ans = 'null';
+        // }
 
-        const all_info = JSON.stringify({ id: document.getElementById('IDF_ID').value,
-                                            name: document.getElementById('IDF_name').value,
-                                            barcode: $('.ODF_value')[0].innerText,
-                                            barcode_r: radios_ans,
-                                            Dilatrend25: document.getElementById('Dilatrend 25mg/tab').item,
-                                            Dilatrend25_r: document.getElementById('Dilatrend 25mg/tab r').value,
-                                            Dilatrend25_r_no: document.getElementById('Dilatrend 25mg/tab r no').value,
-                                            Dilantin: document.getElementById('Dilantin').item,
-                                            Dilantin_r: document.getElementById('Dilantin r').value,
-                                            // Dilantin_r_no: document.getElementById('Dilantin r no').value,
-                                            Requip: document.getElementById('Requip F.C 0.25mg/tab').item,
-                                            Requip_r: document.getElementById('Requip F.C 0.25mg/tab r').value,
-                                            Requip_r_no: document.getElementById('Requip F.C 0.25mg/tab r no').value,
-                                            Requip1: document.getElementById('Requip F.C 1 mg').item,
-                                            Requip1_r: document.getElementById('Requip F.C 1 mg r').value,
+        // const all_info = JSON.stringify({ id: document.getElementById('IDF_ID').value,
+        //                                     name: document.getElementById('IDF_name').value,
+        //                                     barcode: $('.ODF_value')[0].innerText,
+        //                                     barcode_r: radios_ans,
+        //                                     Dilatrend25: document.getElementById('Dilatrend 25mg/tab').item,
+        //                                     Dilatrend25_r: document.getElementById('Dilatrend 25mg/tab r').value,
+        //                                     Dilatrend25_r_no: document.getElementById('Dilatrend 25mg/tab r no').value,
+        //                                     Dilantin: document.getElementById('Dilantin').item,
+        //                                     Dilantin_r: document.getElementById('Dilantin r').value,
+        //                                     // Dilantin_r_no: document.getElementById('Dilantin r no').value,
+        //                                     Requip: document.getElementById('Requip F.C 0.25mg/tab').item,
+        //                                     Requip_r: document.getElementById('Requip F.C 0.25mg/tab r').value,
+        //                                     Requip_r_no: document.getElementById('Requip F.C 0.25mg/tab r no').value,
+        //                                     Requip1: document.getElementById('Requip F.C 1 mg').item,
+        //                                     Requip1_r: document.getElementById('Requip F.C 1 mg r').value,
 
-                                            Repaglinide: document.getElementById('Repaglinide 1mg/tab').item,
-                                            Repaglinide_r: document.getElementById('Repaglinide 1mg/tab r').value,
-                                            Repaglinide_r_no: document.getElementById('Repaglinide 1mg/tab r no').value,
-                                            Transamin: document.getElementById('Transamin 250mg/tab').item,
-                                            Transamin_r: document.getElementById('Transamin 250mg/tab r').value,
-                                            Transamin_r_no: document.getElementById('Transamin 250mg/tab r no').value,
-                                            Bokey: document.getElementById('Bokey 100mg/tab').item,
-                                            Bokey_r: document.getElementById('Bokey 100mg/tab r').value,
-                                            Bokey_r_no: document.getElementById('Bokey 100mg/tab r no').value,
-                                            Simvahexal: document.getElementById('Simvahexal 20 mg/tab').item,
-                                            Simvahexal_r: document.getElementById('Simvahexal 20 mg/tab r').value,
-                                            Simvahexal_r_no: document.getElementById('Simvahexal 20 mg/tab r no').value,
-                                            FLU: document.getElementById('FLU-D (Fluconazole) 50mg/tab').item,
-                                            FLU_r: document.getElementById('FLU-D (Fluconazole) 50mg/tab r').value,
-                                            FLU_r_no: document.getElementById('FLU-D (Fluconazole) 50mg/tab r no').value,
+        //                                     Repaglinide: document.getElementById('Repaglinide 1mg/tab').item,
+        //                                     Repaglinide_r: document.getElementById('Repaglinide 1mg/tab r').value,
+        //                                     Repaglinide_r_no: document.getElementById('Repaglinide 1mg/tab r no').value,
+        //                                     Transamin: document.getElementById('Transamin 250mg/tab').item,
+        //                                     Transamin_r: document.getElementById('Transamin 250mg/tab r').value,
+        //                                     Transamin_r_no: document.getElementById('Transamin 250mg/tab r no').value,
+        //                                     Bokey: document.getElementById('Bokey 100mg/tab').item,
+        //                                     Bokey_r: document.getElementById('Bokey 100mg/tab r').value,
+        //                                     Bokey_r_no: document.getElementById('Bokey 100mg/tab r no').value,
+        //                                     Simvahexal: document.getElementById('Simvahexal 20 mg/tab').item,
+        //                                     Simvahexal_r: document.getElementById('Simvahexal 20 mg/tab r').value,
+        //                                     Simvahexal_r_no: document.getElementById('Simvahexal 20 mg/tab r no').value,
+        //                                     FLU: document.getElementById('FLU-D (Fluconazole) 50mg/tab').item,
+        //                                     FLU_r: document.getElementById('FLU-D (Fluconazole) 50mg/tab r').value,
+        //                                     FLU_r_no: document.getElementById('FLU-D (Fluconazole) 50mg/tab r no').value,
                                             
-                                             });
-        dan.push('confirm', all_info);
-        setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
+        //                                      });
+        // dan.push('confirm', all_info);
+        feedback();
+        plusSlides(1);
+        // setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
         // 
       
     }
