@@ -147,4 +147,18 @@ function feedback(){
     
     }
 
+    
+    // score
+    document.getElementById('score').innerHTML = score;
+    if (score >= 7)
+    {
+        document.getElementById('review').innerHTML = '高等';
+    }else if(score >= 4)
+    {
+        document.getElementById('review').innerHTML = '中等';
+    }else
+    {
+        document.getElementById('review').innerHTML = '低等';
+    }
+
 }   
