@@ -1,8 +1,8 @@
-# IoTtalk_github_page_running
-IoTtalk_github_page_running
+# MedicationTalk Platform
+
 
 link:
-https://fritingo.github.io/IoTtalk_github_page_running/
+https://fritingo.github.io/MedicationTalk_Platform/
 
 
 
