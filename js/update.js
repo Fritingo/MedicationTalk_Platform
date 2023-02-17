@@ -266,12 +266,12 @@ function check_page(n){
 
 function check_bt(f){
     if (f === 'barcode'){
-        dan.push('patient_barcode',[true]);
+        // dan.push('Barcode_I',[true]);
         // sleep(3000);
         output_patient_barcode_bt = output_patient_barcode_bt + 1;
     }
     else if(f === 'pill'){
-        dan.push('pill_detect',[true]);
+        dan.push('Pill_Detect-I', [document.getElementById('IDF_ID').value, true]);
         output_pill_bt = output_pill_bt + 1;
         $('.pill_hint')[0].innerText = 'waiting...';
     }
