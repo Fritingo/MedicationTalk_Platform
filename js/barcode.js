@@ -21,6 +21,7 @@ docReady(function () {
             $('.barcode_value')[0].innerText= decodedText;
             var img = document.getElementById('barcode_scanner');
             img.src="pic/ok1.jpeg";
+            output_patient_barcode_bt = output_patient_barcode_bt+1;
             dan.push('Barcode-I',[document.getElementById('IDF_ID').value, decodedText]);
             // dan.push('Pill_Detect-I', [document.getElementById('IDF_ID').value, true]);
             // if (decodedText == '1234567890ABC'){

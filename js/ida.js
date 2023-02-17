@@ -30,7 +30,12 @@ var output_pill_bt = 0;
         // odf
         function Patient_O(data){
             console.log('Patient_O', data);
-            $('.ODF_value')[0].innerText = data[1];
+            if (output_patient_barcode_bt != 0){
+                if (data[0] == document.getElementById('IDF_ID').value){
+                    $('.ODF_value')[0].innerText = data[1];
+                }
+                
+            }
         }
 
         function Pill_Detect_Result_O(data){

@@ -43,7 +43,7 @@ var csmapi = (function () {
     }
 
     function pull (mac_addr, password, odf_name, callback) {
-        console.log('here',mac_addr,password,odf_name,callback)
+        // console.log('here',mac_addr,password,odf_name,callback)
         $.ajax({
             type: 'GET',
             url: ENDPOINT +'/'+ mac_addr +'/'+ odf_name,
