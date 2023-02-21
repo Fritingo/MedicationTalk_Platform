@@ -50,19 +50,19 @@ var pill_detect = { 'Dilatrend':'none',
 
         function Pill_Detect_Result_O(data){
             console.log('Patient_O', data);
-            if (output_pill_bt > 0){
+            if (output_pill_bt > 0 && data[0] == document.getElementById('IDF_ID').value){
                     var img = document.getElementById('pill_odf');
                     img.src="pic/ok1.jpeg";
 
-                    pill_detect['Dilatrend'] = data[0];
-                    pill_detect['Dilantin'] = data[7];
-                    pill_detect['Requip'] = data[1];
-                    pill_detect['Requip1'] = data[8];
-                    pill_detect['Repaglinide'] = data[2];
-                    pill_detect['Transamin'] = data[3];
-                    pill_detect['Bokey'] = data[4];
-                    pill_detect['Zocor'] = data[5];
-                    pill_detect['FLU'] = data[6];
+                    pill_detect['Dilatrend'] = data[1];
+                    pill_detect['Dilantin'] = data[8];
+                    pill_detect['Requip'] = data[2];
+                    pill_detect['Requip1'] = data[9];
+                    pill_detect['Repaglinide'] = data[3];
+                    pill_detect['Transamin'] = data[4];
+                    pill_detect['Bokey'] = data[5];
+                    pill_detect['Zocor'] = data[6];
+                    pill_detect['FLU'] = data[7];
                     // document.getElementById('Dilatrend 25mg/tab').item = data[0];
                     // document.getElementById('Requip F.C 0.25mg/tab').item = data[1];
                     // document.getElementById('Repaglinide 1mg/tab').item = data[2];

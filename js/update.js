@@ -231,7 +231,7 @@ function check_page(n){
         const all_info = JSON.stringify({   class: 4,
                                             id: document.getElementById('IDF_ID').value,
                                             name: document.getElementById('IDF_name').value,
-                                            barcode1: $('.ODF_value')[0].innerText,
+                                            barcode1: $('.barcode_value')[0].innerText,
                                             select1: radios_ans,
                                             correctness1: correctness[0],
                                             check2: document.getElementById('check1').checked,
