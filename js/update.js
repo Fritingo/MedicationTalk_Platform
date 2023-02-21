@@ -166,6 +166,9 @@ for (let i=0; i<9; i++){
 //     }
 
 // setInterval(getvalue, 1000);
+var correctness = [];
+var reason = [];
+
 
 function check_page(n){
     if (n === 1){
@@ -206,54 +209,68 @@ function check_page(n){
         
     }
     else if(n === 3){
-        // const radios = document.getElementsByName('barcode');
-        // var radios_ans;
-        // if (radios[0].checked)
-        // {
-        //     radios_ans = 'yes';
-        // }else if (radios[1].checked)
-        // {
-        //     radios_ans = 'no';
-        // }else
-        // {
-        //     radios_ans = 'null';
-        // }
-
-        // const all_info = JSON.stringify({ id: document.getElementById('IDF_ID').value,
-        //                                     name: document.getElementById('IDF_name').value,
-        //                                     barcode: $('.ODF_value')[0].innerText,
-        //                                     barcode_r: radios_ans,
-        //                                     Dilatrend25: document.getElementById('Dilatrend 25mg/tab').item,
-        //                                     Dilatrend25_r: document.getElementById('Dilatrend 25mg/tab r').value,
-        //                                     Dilatrend25_r_no: document.getElementById('Dilatrend 25mg/tab r no').value,
-        //                                     Dilantin: document.getElementById('Dilantin').item,
-        //                                     Dilantin_r: document.getElementById('Dilantin r').value,
-        //                                     // Dilantin_r_no: document.getElementById('Dilantin r no').value,
-        //                                     Requip: document.getElementById('Requip F.C 0.25mg/tab').item,
-        //                                     Requip_r: document.getElementById('Requip F.C 0.25mg/tab r').value,
-        //                                     Requip_r_no: document.getElementById('Requip F.C 0.25mg/tab r no').value,
-        //                                     Requip1: document.getElementById('Requip F.C 1 mg').item,
-        //                                     Requip1_r: document.getElementById('Requip F.C 1 mg r').value,
-
-        //                                     Repaglinide: document.getElementById('Repaglinide 1mg/tab').item,
-        //                                     Repaglinide_r: document.getElementById('Repaglinide 1mg/tab r').value,
-        //                                     Repaglinide_r_no: document.getElementById('Repaglinide 1mg/tab r no').value,
-        //                                     Transamin: document.getElementById('Transamin 250mg/tab').item,
-        //                                     Transamin_r: document.getElementById('Transamin 250mg/tab r').value,
-        //                                     Transamin_r_no: document.getElementById('Transamin 250mg/tab r no').value,
-        //                                     Bokey: document.getElementById('Bokey 100mg/tab').item,
-        //                                     Bokey_r: document.getElementById('Bokey 100mg/tab r').value,
-        //                                     Bokey_r_no: document.getElementById('Bokey 100mg/tab r no').value,
-        //                                     Simvahexal: document.getElementById('Simvahexal 20 mg/tab').item,
-        //                                     Simvahexal_r: document.getElementById('Simvahexal 20 mg/tab r').value,
-        //                                     Simvahexal_r_no: document.getElementById('Simvahexal 20 mg/tab r no').value,
-        //                                     FLU: document.getElementById('FLU-D (Fluconazole) 50mg/tab').item,
-        //                                     FLU_r: document.getElementById('FLU-D (Fluconazole) 50mg/tab r').value,
-        //                                     FLU_r_no: document.getElementById('FLU-D (Fluconazole) 50mg/tab r no').value,
-                                            
-        //                                      });
-        // dan.push('confirm', all_info);
         feedback();
+        console.log(correctness);
+        const radios = document.getElementsByName('barcode');
+        
+        
+    
+        var radios_ans;
+        if (radios[0].checked)
+        {
+            radios_ans = 'yes';
+        }else if (radios[1].checked)
+        {
+            radios_ans = 'no';
+        }else
+        {
+            radios_ans = 'null';
+        }
+        
+        console.log(pill_detect);
+        const all_info = JSON.stringify({   class: 4,
+                                            id: document.getElementById('IDF_ID').value,
+                                            name: document.getElementById('IDF_name').value,
+                                            barcode1: $('.ODF_value')[0].innerText,
+                                            select1: radios_ans,
+                                            correctness1: correctness[0],
+                                            check2: document.getElementById('check1').checked,
+                                            Dilatrend: pill_detect['Dilatrend'],
+                                            Dilantin: pill_detect['Dilantin'],
+                                            correctness2: correctness[1],
+                                            reason2: reason[0],
+                                            check3:  document.getElementById('check2').checked,
+                                            Requip: pill_detect['Requip'],
+                                            Requip1: pill_detect['Requip1'],
+                                            correctness3: correctness[2],
+                                            reason3: reason[1],
+                                            check4: document.getElementById('check3').checked,
+                                            correctness4: correctness[3],
+                                            check5: document.getElementById('check4').checked,
+                                            Repaglinide: pill_detect['Repaglinide'],
+                                            correctness5: correctness[4],
+                                            reason5: reason[2],
+                                            check6: document.getElementById('check5').checked,
+                                            Transamin: pill_detect['Transamin'],
+                                            correctness6: correctness[5],
+                                            reason6: reason[3],
+                                            check7: document.getElementById('check6').checked,
+                                            correctness7: correctness[6],
+                                            check8: document.getElementById('check7').checked,
+                                            Bokey: pill_detect['Bokey'],
+                                            correctness8: correctness[7],
+                                            reason8: reason[4],
+                                            check9: document.getElementById('check8').checked,
+                                            Simvahexal: pill_detect['Zocor'],
+                                            correctness9: correctness[8],
+                                            reason9: reason[5],
+                                            check10: document.getElementById('check9').checked,
+                                            FLU: pill_detect['FLU'],
+                                            correctness10: correctness[9],
+                                            reason10: reason[6],
+                                             });
+        dan.push('Sheet-I', all_info);
+        
         plusSlides(1);
         // setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
         // 

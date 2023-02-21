@@ -17,9 +17,11 @@ function feedback(){
         score = score + 1;
         img1.src="pic/ok_w.png";
         paitent_r = '掃描結果：' + $('.ODF_value')[0].innerText + ',   您判斷是否正確： Yes';
+        correctness.push(1);
     }else{
         img1.src="pic/wrong_w.png";
         paitent_r = '掃描結果：' + $('.ODF_value')[0].innerText + ',   您判斷是否正確： No';
+        correctness.push(0);
     }
     
     document.getElementById('paitent r').innerHTML = paitent_r;
@@ -33,10 +35,14 @@ function feedback(){
         img2.src="pic/ok_w.png";
         r2r = '您不給 Dilatrend 25mg/tab 的理由：' + document.getElementById('Dilatrend 25mg/tab r no').value;
         document.getElementById('2 r 2').innerHTML = r2r;
+        correctness.push(1);
+        reason.push(document.getElementById('Dilatrend 25mg/tab r no').value);
     }else{
         img2.src="pic/wrong_w.png";
         r2 = '您給 Dilatrend 25mg/tab 的理由：' + document.getElementById('Dilatrend 25mg/tab r').value;
         document.getElementById('2 r').innerHTML = r2;
+        correctness.push(0);
+        reason.push(document.getElementById('Dilatrend 25mg/tab r').value);
     }
 
     
@@ -48,17 +54,21 @@ function feedback(){
         img3.src="pic/ok_w.png";
         r3r = '您不給 Requip F.C 0.25mg/tab 的理由：' + document.getElementById('Requip F.C 0.25mg/tab r no').value;
         document.getElementById('3 r 3').innerHTML = r3r;
-
+        correctness.push(1);
+        reason.push(document.getElementById('Requip F.C 0.25mg/tab r no').value);
     }else{
         img3.src="pic/wrong_w.png";
         r3 = '您給 Requip F.C 0.25mg/tab 的理由：' + document.getElementById('Requip F.C 0.25mg/tab r').value;
         document.getElementById('3 r').innerHTML = r3;
+        correctness.push(0);
+        reason.push(document.getElementById('Requip F.C 0.25mg/tab r').value);
     }
 
 
     // 4
     var img4 = document.getElementById('4 img');
     img4.src="pic/undone.png";
+    correctness.push(2);
 
 
     // 5
@@ -69,11 +79,14 @@ function feedback(){
         img5.src="pic/ok_w.png";
         r5r = '您不給 Repaglinide 1mg/tab 的理由：' + document.getElementById('Repaglinide 1mg/tab r no').value;
         document.getElementById('5 r 5').innerHTML = r5r;
-
+        correctness.push(1);
+        reason.push(document.getElementById('Repaglinide 1mg/tab r no').value);
     }else{
         img5.src="pic/wrong_w.png";
         r5 = '您給 Repaglinide 1mg/tab 的理由：' + document.getElementById('Repaglinide 1mg/tab r').value;
         document.getElementById('5 r').innerHTML = r5;
+        correctness.push(0);
+        reason.push(document.getElementById('Repaglinide 1mg/tab r').value);
     }
 
 
@@ -85,17 +98,21 @@ function feedback(){
         img6.src="pic/ok_w.png";
         r6r = '您不給 Transamin 250mg/tab 的理由：' + document.getElementById('Transamin 250mg/tab r no').value;
         document.getElementById('6 r 6').innerHTML = r6r;
-
+        correctness.push(1);
+        reason.push(document.getElementById('Transamin 250mg/tab r no').value);
     }else{
         img6.src="pic/wrong_w.png";
         r6 = '您給 Transamin 250mg/tab 的理由：' + document.getElementById('Transamin 250mg/tab r').value;
         document.getElementById('6 r').innerHTML = r6;
+        correctness.push(0);
+        reason.push(document.getElementById('Transamin 250mg/tab r').value);
     }
 
 
     // 7 
     var img7 = document.getElementById('7 img');
     img7.src="pic/undone.png";
+    correctness.push(2);
 
 
     // 8
@@ -106,12 +123,14 @@ function feedback(){
         img8.src="pic/ok_w.png";
         r8 = '您給 Bokey 100mg/tab 的理由：' + document.getElementById('Bokey 100mg/tab r').value;
         document.getElementById('8 r').innerHTML = r8;
-        
+        correctness.push(1);
+        reason.push(document.getElementById('Bokey 100mg/tab r').value);
     }else{
         img8.src="pic/wrong_w.png";
         r8r = '您不給 Bokey 100mg/tab 的理由：' + document.getElementById('Bokey 100mg/tab r no').value;
         document.getElementById('8 r 8').innerHTML = r8r;
-
+        correctness.push(0);
+        reason.push(document.getElementById('Bokey 100mg/tab r no').value);
     }
 
 
@@ -123,12 +142,14 @@ function feedback(){
         img9.src="pic/ok_w.png";
         r9 = '您給 Simvahexal 20 mg/tab 的理由：' + document.getElementById('Simvahexal 20 mg/tab r').value;
         document.getElementById('9 r').innerHTML = r9;
-        
+        correctness.push(1);
+        reason.push(document.getElementById('Simvahexal 20 mg/tab r').value);
     }else{
         img9.src="pic/wrong_w.png";
         r9r = '您不給 Simvahexal 20 mg/tab 的理由：' + document.getElementById('Simvahexal 20 mg/tab r no').value;
         document.getElementById('9 r 9').innerHTML = r9r;
-
+        correctness.push(0);
+        reason.push(document.getElementById('Simvahexal 20 mg/tab r no').value);
     }
 
 
@@ -140,11 +161,14 @@ function feedback(){
         img10.src="pic/ok_w.png";
         r10r = '您不給 FLU-D (Fluconazole) 50mg/tab 的理由：' + document.getElementById('FLU-D (Fluconazole) 50mg/tab r no').value;
         document.getElementById('10 r 10').innerHTML = r10r;
+        correctness.push(1);
+        reason.push(document.getElementById('FLU-D (Fluconazole) 50mg/tab r no').value);
     }else{
         img10.src="pic/wrong_w.png";
         r10 = '您給 FLU-D (Fluconazole) 50mg/tab 的理由：' + document.getElementById('FLU-D (Fluconazole) 50mg/tab r').value;
         document.getElementById('10 r').innerHTML = r10;
-    
+        correctness.push(1);
+        reason.push(document.getElementById('FLU-D (Fluconazole) 50mg/tab r').value);
     }
 
     

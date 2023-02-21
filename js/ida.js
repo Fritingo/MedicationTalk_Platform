@@ -1,5 +1,15 @@
 var output_patient_barcode_bt = 0;
 var output_pill_bt = 0;
+var pill_detect = { 'Dilatrend':'none',
+                    'Dilantin':'none',
+                    'Requip':'none',
+                    'Requip1':'none',
+                    'Repaglinide':'none',
+                    'Transamin':'none',
+                    'Bokey':'none',
+                    'Zocor':'none',
+                    'FLU':'none',};
+
 
  $(function(){
         csmapi.set_endpoint ('https://1.iottalk.tw');
@@ -40,6 +50,31 @@ var output_pill_bt = 0;
 
         function Pill_Detect_Result_O(data){
             console.log('Patient_O', data);
+            if (output_pill_bt > 0){
+                    var img = document.getElementById('pill_odf');
+                    img.src="pic/ok1.jpeg";
+
+                    pill_detect['Dilatrend'] = data[0];
+                    pill_detect['Dilantin'] = data[7];
+                    pill_detect['Requip'] = data[1];
+                    pill_detect['Requip1'] = data[8];
+                    pill_detect['Repaglinide'] = data[2];
+                    pill_detect['Transamin'] = data[3];
+                    pill_detect['Bokey'] = data[4];
+                    pill_detect['Zocor'] = data[5];
+                    pill_detect['FLU'] = data[6];
+                    // document.getElementById('Dilatrend 25mg/tab').item = data[0];
+                    // document.getElementById('Requip F.C 0.25mg/tab').item = data[1];
+                    // document.getElementById('Repaglinide 1mg/tab').item = data[2];
+                    // document.getElementById('Transamin 250mg/tab').item = data[3];
+                    // document.getElementById('Bokey 100mg/tab').item = data[4];
+                    // document.getElementById('Simvahexal 20 mg/tab').item = data[5];
+                    // document.getElementById('FLU-D (Fluconazole) 50mg/tab').item = data[6];
+                    // document.getElementById('Dilantin').item = data[7];
+                    // document.getElementById('Requip F.C 1 mg').item = data[8];
+                    $('.pill_hint')[0].innerText = '★ 請將你有放入的藥丸填入放的原因，反之填入沒放的原因';
+                    
+                }
             
         }
 
@@ -48,24 +83,7 @@ var output_pill_bt = 0;
             
         }
 
-        // function output_pill(data){
-            
-            // if (output_pill_bt > 0){
-            //     var img = document.getElementById('pill_odf');
-            //     img.src="pic/ok1.jpeg";
-            //     document.getElementById('Dilatrend 25mg/tab').item = data[0];
-            //     document.getElementById('Requip F.C 0.25mg/tab').item = data[1];
-            //     document.getElementById('Repaglinide 1mg/tab').item = data[2];
-            //     document.getElementById('Transamin 250mg/tab').item = data[3];
-            //     document.getElementById('Bokey 100mg/tab').item = data[4];
-            //     document.getElementById('Simvahexal 20 mg/tab').item = data[5];
-            //     document.getElementById('FLU-D (Fluconazole) 50mg/tab').item = data[6];
-            //     document.getElementById('Dilantin').item = data[7];
-            //     document.getElementById('Requip F.C 1 mg').item = data[8];
-            //     $('.pill_hint')[0].innerText = '★ 請將你有放入的藥丸填入放的原因，反之填入沒放的原因';
-            //     // document.getElementById('Requip F.C 1 mg').textContent = data[8];
-            // }
-        // }
+
 
         
       
