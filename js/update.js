@@ -175,7 +175,14 @@ function check_page(n){
         const idf_id = document.getElementById('IDF_ID');
         const idf_name = document.getElementById('IDF_name');
         if (idf_id.value != "" && idf_name.value != ""){
+
             plusSlides(1);
+            $("html, body").animate(
+                {
+                  scrollTop: 0
+                },
+                500 // 回頂部時間為 500 毫秒
+              );
         }
         else if(idf_id.value == "" && idf_name.value == ""){
             var img1 = document.getElementById('id');
@@ -197,6 +204,12 @@ function check_page(n){
         if (radios[0].checked || radios[1].checked)
         {
             plusSlides(1);
+            $("html, body").animate(
+                {
+                  scrollTop: 0
+                },
+                500 // 回頂部時間為 500 毫秒
+              );
         }else
         {
             var img = document.getElementById('bar');
@@ -272,12 +285,22 @@ function check_page(n){
         dan.push('Sheet-I', all_info);
         
         plusSlides(1);
+        $("html, body").animate(
+            {
+              scrollTop: 0
+            },
+            500 // 回頂部時間為 500 毫秒
+          );
         // setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
         // 
       
     }
+    else if(n === 4){
+        console.log('analysis');
+        currentSlide(5);
+    }
     else{
-        plusSlides(1);
+        location.reload()
     }
 }
 
