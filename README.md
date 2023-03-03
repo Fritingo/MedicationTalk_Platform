@@ -17,3 +17,6 @@ https://github.com/Qiming-Liu/html5-qrcode-css
 
 figma line:
 https://www.figma.com/file/Ua0LHVgthFqV7xOVd26cYh/Untitled?node-id=0%3A1&t=l2iPfPaBR7ZO7L27-1
+
+
+https://www.figma.com/file/z2KoydxEtaShO0bS8k6aes/MedicationTalk_home?node-id=0%3A1&t=NIHL5DaImUAGaDul-1
