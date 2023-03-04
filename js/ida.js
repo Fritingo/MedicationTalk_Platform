@@ -10,6 +10,9 @@ var pill_detect = { 'Dilatrend':'none',
                     'Zocor':'none',
                     'FLU':'none',};
 
+var client_uid = (Math.random() + 1).toString(36).substring(7) + (Math.random() + Math.random()).toString(36).substring(8);
+console.log(client_uid);
+
 
  $(function(){
         csmapi.set_endpoint ('https://1.iottalk.tw');
@@ -41,7 +44,7 @@ var pill_detect = { 'Dilatrend':'none',
         function Patient_O(data){
             console.log('Patient_O', data);
             if (output_patient_barcode_bt != 0){
-                if (data[0] == document.getElementById('IDF_ID').value){
+                if (data[0] == client_uid){
                     $('.ODF_value')[0].innerText = data[1];
                 }
                 
@@ -50,7 +53,7 @@ var pill_detect = { 'Dilatrend':'none',
 
         function Pill_Detect_Result_O(data){
             console.log('Patient_O', data);
-            if (output_pill_bt > 0 && data[0] == document.getElementById('IDF_ID').value){
+            if (output_pill_bt > 0 && data[0] == client_uid){
                     var img = document.getElementById('pill_odf');
                     img.src="pic/ok1.jpeg";
 

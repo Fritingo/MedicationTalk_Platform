@@ -281,6 +281,7 @@ function check_page(n){
                                             FLU: pill_detect['FLU'],
                                             correctness10: correctness[9],
                                             reason10: reason[6],
+                                            uid: client_uid,
                                              });
         dan.push('Sheet-I', all_info);
         
@@ -311,7 +312,7 @@ function check_bt(f){
         output_patient_barcode_bt = output_patient_barcode_bt + 1;
     }
     else if(f === 'pill'){
-        dan.push('Pill_Detect-I', [document.getElementById('IDF_ID').value, true]);
+        dan.push('Pill_Detect-I', [client_uid, true]);
         output_pill_bt = output_pill_bt + 1;
         $('.pill_hint')[0].innerText = 'waiting...';
     }
