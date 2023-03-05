@@ -1,48 +1,17 @@
 <input value="" id="v">
 <button onclick="changeValue()" >change</button>
-<div>
-    <canvas id="myChart"></canvas>
+<div style="display: block;width:90%;">
+    <canvas id="pieChart"></canvas>
+</div>
+<div style="display: block;width:80%;height:500px">
+    <canvas id="lineChart"></canvas>
+</div>
+<div style="display: block;width:80%;">
+    <canvas id="barChart" ></canvas>
 </div>
   
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  
-  <script>
-    const ctx = document.getElementById('myChart');
-    chart_data = [12, 11, 3, 5, 2, 3];
-    var myChart = new Chart(ctx, {
-      type: 'line',
-      data: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '總得分',
-          data: chart_data,
-        //   backgroundColor: [ // 背景色
-  		// 			"#FF0000",
-  		// 			"#00FF00",
-  		// 			"#0000FF",
-  		// 			],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        },
-        onClick: (e, activeEls) => {
-            let datasetIndex = activeEls[0].datasetIndex;
-            let dataIndex = activeEls[0].index;
-            let datasetLabel = e.chart.data.datasets[datasetIndex].label;
-            let value = e.chart.data.datasets[datasetIndex].data[dataIndex];
-            let label = e.chart.data.labels[dataIndex];
-            console.log("In click", datasetLabel, label, value);
-        }
-      }
-    });
-    function changeValue(){
-        chart_data[0] = parseInt(document.getElementById('v').value);
-        console.log(chart_data);
-        myChart.update();
-    }
-  </script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="chart-utils.min.js"></script>
+ 
+
+<script src="chart.js"></script>

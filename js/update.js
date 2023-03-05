@@ -72,6 +72,8 @@ for (let i=0; i<9; i++){
     }
 }
 
+// page 4
+
 // for (var i=1;i<10;i++){
 //     var pill_id = 'check' + i
 //     console.log(pill_id)
@@ -175,14 +177,7 @@ function check_page(n){
         const idf_id = document.getElementById('IDF_ID');
         const idf_name = document.getElementById('IDF_name');
         if (idf_id.value != "" && idf_name.value != ""){
-
             plusSlides(1);
-            $("html, body").animate(
-                {
-                  scrollTop: 0
-                },
-                500 // 回頂部時間為 500 毫秒
-              );
         }
         else if(idf_id.value == "" && idf_name.value == ""){
             var img1 = document.getElementById('id');
@@ -204,12 +199,6 @@ function check_page(n){
         if (radios[0].checked || radios[1].checked)
         {
             plusSlides(1);
-            $("html, body").animate(
-                {
-                  scrollTop: 0
-                },
-                500 // 回頂部時間為 500 毫秒
-              );
         }else
         {
             var img = document.getElementById('bar');
@@ -286,23 +275,28 @@ function check_page(n){
         dan.push('Sheet-I', all_info);
         
         plusSlides(1);
-        $("html, body").animate(
-            {
-              scrollTop: 0
-            },
-            500 // 回頂部時間為 500 毫秒
-          );
+        
         // setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
         // 
       
     }
     else if(n === 4){
         console.log('analysis');
+        var search_info = JSON.stringify({   operation: 'level'});
+        dan.push('Search-I', [client_uid, search_info]);
+        console.log(client_uid);
+        
         currentSlide(5);
     }
     else{
         location.reload()
     }
+    $("html, body").animate(
+        {
+          scrollTop: 0
+        },
+        500 // 回頂部時間為 500 毫秒
+      );
 }
 
 function check_bt(f){
@@ -315,5 +309,12 @@ function check_bt(f){
         dan.push('Pill_Detect-I', [client_uid, true]);
         output_pill_bt = output_pill_bt + 1;
         $('.pill_hint')[0].innerText = 'waiting...';
+    }
+    else if(f === 'history'){
+        var search_info = JSON.stringify({  operation: 'history',
+                                            id: document.getElementById('history_v').value    });
+        dan.push('Search-I', [client_uid, search_info]);
+        loading_text = document.getElementById('history_loading')
+        loading_text.style.display = "block";
     }
 }

@@ -1,14 +1,14 @@
 var output_patient_barcode_bt = 0;
 var output_pill_bt = 0;
-var pill_detect = { 'Dilatrend':'none',
-                    'Dilantin':'none',
-                    'Requip':'none',
-                    'Requip1':'none',
-                    'Repaglinide':'none',
-                    'Transamin':'none',
-                    'Bokey':'none',
-                    'Zocor':'none',
-                    'FLU':'none',};
+var pill_detect = { 'Dilatrend': -1,
+                    'Dilantin': -1,
+                    'Requip': -1,
+                    'Requip1': -1,
+                    'Repaglinide': -1,
+                    'Transamin': -1,
+                    'Bokey': -1,
+                    'Zocor': -1,
+                    'FLU': -1,};
 
 var client_uid = (Math.random() + 1).toString(36).substring(7) + (Math.random() + Math.random()).toString(36).substring(8);
 console.log(client_uid);
@@ -75,14 +75,44 @@ console.log(client_uid);
                     // document.getElementById('FLU-D (Fluconazole) 50mg/tab').item = data[6];
                     // document.getElementById('Dilantin').item = data[7];
                     // document.getElementById('Requip F.C 1 mg').item = data[8];
-                    $('.pill_hint')[0].innerText = '★ 請將你有放入的藥丸填入放的原因，反之填入沒放的原因';
+                    $('.pill_hint')[0].innerText = '★ 辨識完成請繼續執行下一步＾＿＾';
                     
                 }
             
         }
 
         function Search_Result_O(data){
-            console.log('Patient_O', data);
+            console.log('Search_O', data, client_uid);
+            
+            if (data[0] == client_uid){
+                var data_value = JSON.parse(data[1]);;
+                if ( data_value['operation'] == 'level'){
+                    console.log('search level');
+                    
+                    loading_text = document.getElementById('analysis_loading')
+                    loading_text.style.display = "none";
+                    pieChart_view = document.getElementById('PieChart')
+                    pieChart_view.style.display = "block";
+                    
+                    pieChart.data.datasets[0].data = data_value['level'];
+                    
+                    pieChart.update();
+                    
+                }
+                else if(data_value['operation'] == 'history'){
+                    console.log('search history');
+                    loading_text = document.getElementById('history_loading')
+                    loading_text.style.display = "none";
+                    lineChart_view = document.getElementById('LineChart')
+                    lineChart_view.style.display = "block";
+                    
+                    lineChart.data.datasets[0].data = data_value['history_data'];
+                    history_label = data_value['history_label'].map(x => x.substring(5, 13))
+                    lineChart.data.labels = history_label;
+                    lineChart.update();
+                    
+                }
+            }
             
         }
 
