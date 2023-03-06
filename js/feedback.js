@@ -118,7 +118,7 @@ function feedback(){
     // 8
     var img8 = document.getElementById('8 img');
     
-    if (document.getElementById('check7').checked){
+    if (document.getElementById('check7').checked ){
         score = score + 1;
         img8.src="pic/ok_w.png";
         r8 = '您給 Bokey 100mg/tab 的理由：' + document.getElementById('Bokey 100mg/tab r').value;

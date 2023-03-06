@@ -178,6 +178,7 @@ function check_page(n){
         const idf_name = document.getElementById('IDF_name');
         if (idf_id.value != "" && idf_name.value != ""){
             plusSlides(1);
+            window.confirm("待會請依照下列指示操作：\n 1. 閱讀情境說明 \n 2. 確認病患(掃條碼) \n 3. 確認病患(資訊確認) \n 4. (確認及下一頁)");
         }
         else if(idf_id.value == "" && idf_name.value == ""){
             var img1 = document.getElementById('id');
@@ -199,6 +200,7 @@ function check_page(n){
         if (radios[0].checked || radios[1].checked)
         {
             plusSlides(1);
+            window.confirm("待會請依照下列指示操作：\n 1. 確認 MAR 並於左側勾選給予藥物 \n 2. 給藥學習單(填寫給藥理由'每項皆須填寫！！') \n 3. 確認口服藥物(抓取要給的藥物至設備辨識) \n 4. 確認施打藥物 \n 5. (送出)");
         }else
         {
             var img = document.getElementById('bar');

@@ -11,7 +11,7 @@ var pieChart = new Chart(chart_ctx1, {
   data: {
     labels: piechart_label,
     datasets: [{
-      label: '總得分',
+      label: '人數',
       data: piechart_data,
     //   backgroundColor: [ // 背景色
       // 			"#FF0000",
@@ -27,7 +27,7 @@ var pieChart = new Chart(chart_ctx1, {
     plugins: {
       title: {
           display: true,
-          text: '歷史等級分佈'
+          text: '所有考生歷史等級分佈'
       }
     },
     scales: {
@@ -72,7 +72,7 @@ var lineChart = new Chart(chart_ctx2, {
     plugins: {
         title: {
             display: true,
-            text: '個人成績紀錄'
+            text: '成績紀錄'
         }
     },
     scales: {

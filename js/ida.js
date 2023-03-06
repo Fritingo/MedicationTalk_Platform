@@ -109,6 +109,9 @@ console.log(client_uid);
                     lineChart.data.datasets[0].data = data_value['history_data'];
                     history_label = data_value['history_label'].map(x => x.substring(5, 13))
                     lineChart.data.labels = history_label;
+
+                    lineChart.options.plugins.title.text = document.getElementById('history_v').value + "的歷史成績紀錄"
+                    console.log(lineChart.options.plugins.title.text);
                     lineChart.update();
                     
                 }
