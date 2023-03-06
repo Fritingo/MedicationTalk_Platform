@@ -1,8 +1,33 @@
 # MedicationTalk Platform
 
+執行在: https://fritingo.github.io/MedicationTalk_Platform/
 
-link:
-https://fritingo.github.io/MedicationTalk_Platform/
+# 操作說明
+### Homepage
+![](https://i.imgur.com/NYm1xY9.png)
+
+### Scenario
+
+![](https://i.imgur.com/CGA2SCG.png)
+![](https://i.imgur.com/WVvBOXn.png)
+![](https://i.imgur.com/sWUaG5d.png)
+
+### Medication
+
+![](https://i.imgur.com/P28nT5y.png)
+![](https://i.imgur.com/BeguZsb.png)
+![](https://i.imgur.com/Eed7PU6.png)
+
+
+### Feedback
+
+![](https://i.imgur.com/fwhefWn.png)
+
+### analysis
+
+![](https://i.imgur.com/MmzjQ9g.png)
+
+
 
 syringe testing:
 https://fritingo.github.io/MedicationTalk_Platform/syringe_testing
