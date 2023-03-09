@@ -115,6 +115,22 @@ console.log(client_uid);
                     lineChart.update();
                     
                 }
+                else if(data_value['operation'] == 'time'){
+                    console.log('search time');
+                    loading_text = document.getElementById('time_loading')
+                    loading_text.style.display = "none";
+                    barChart_view = document.getElementById('BarChart')
+                    barChart_view.style.display = "block";
+                    
+                    // barChart.data.datasets[0].data = data_value['history_data'];
+                    // history_label = data_value['history_label'].map(x => x.substring(5, 13))
+                    // barChart.data.labels = history_label;
+
+                    // barChart.options.plugins.title.text = document.getElementById('history_v').value + "的歷史成績紀錄"
+                    // console.log(barChart.options.plugins.title.text);
+                    // barChart.update();
+                    
+                }
             }
             
         }

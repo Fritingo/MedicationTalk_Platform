@@ -2119,17 +2119,30 @@
                             </div>
 
                             <br>
+
+                            <p align="center" style="font-family:verdana;font-size:48px;">時段成績分佈查詢</p>
+
+                            <p align="center" style="font-family:verdana;font-size:36px;">請輸入時間區間</p>
+                            <nobar style="font-family:verdana;font-size:36px;">由</nobar>
+                            <input type="date" id="start_date" value="" style="font-family:verdana;font-size:36px;">
+                            <nobar style="font-family:verdana;font-size:36px;">到</nobar>
+                            <input type="date" id="end_date" value="" style="font-family:verdana;font-size:36px;">
+
+                            <br> 
+                            <br>
+
+                            <button onclick="check_bt('time')" style="font-family:verdana;font-size:36px;">查詢分佈</button>
+
+                            <h1 id="time_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
+                            
+                            <div id="BarChart" style="display: none;width:80%;">
+                                <canvas id="barChart" ></canvas>
+                            </div>
+
                         </center>
 
-                        
-
-    
-                        
-    
-                        <div id="BarChart" style="display: none;width:80%;">
-                            <canvas id="barChart" ></canvas>
-                        </div>
-
+                        <br>
+                        <br>
 
                     </div>
                 </center>
