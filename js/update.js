@@ -320,7 +320,7 @@ function check_bt(f){
         loading_text.style.display = "block";
     }
     else if(f === 'time'){
-        var search_info = JSON.stringify({  operation: 'history',
+        var search_info = JSON.stringify({  operation: 'time_total',
                                             start_date: document.getElementById('start_date').value,
                                             end_date: document.getElementById('end_date').value    });
         dan.push('Search-I', [client_uid, search_info]);

@@ -115,15 +115,15 @@ var lineChart = new Chart(chart_ctx2, {
 
 // time chart
 const chart_ctx3 = document.getElementById('barChart');
-barchart_data = [12, 11, 3, 5, 2, 3];
-barchart_label = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+barchart_data = [12, 11, 3, 5, 2, 3, 3, 5, 2, 3];
+barchart_label = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 var barChart = new Chart(chart_ctx3, {
   type: 'bar',
   data: {
-    labels: linechart_label,
+    labels: barchart_label,
     datasets: [{
-      label: '總得分',
-      data: linechart_data,
+      label: '正確數',
+      data: barchart_data,
     //   backgroundColor: [ // 背景色
       // 			"#FF0000",
       // 			"#00FF00",
@@ -135,6 +135,12 @@ var barChart = new Chart(chart_ctx3, {
   options: {
     responsive: true,
     maintainAspectRatio: false,
+    plugins: {
+      title: {
+          display: true,
+          text: '期間內考生正確題目分佈'
+      }
+    },
     scales: {
       y: {
         beginAtZero: true
