@@ -4,11 +4,12 @@
 <html>
 
     <head>
+        <title>智能安全給藥訓練平台</title>
+        <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="js/chart-utils.min.js"></script>
  
-        
-
         <script src="js/jquery.js" type="text/javascript"></script>
         <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js"></script> -->
         <script src="js/csmapi.js"></script>
@@ -21,18 +22,11 @@
         <script src="js/html5-qrcode.min.js"></script>
         <!-- <script src="https://unpkg.com/html5-qrcode"></script> -->
         
-
-
-
-
-
-
         <!-- css -->
         <link href="css/slide.css" rel="stylesheet">
         <link href="css/html5-qrcode-css.css" rel="stylesheet">
         <link href="css/figma.css" rel="stylesheet">
 
-        
     </head>
 
     <!-- Slideshow container -->
@@ -2044,58 +2038,67 @@
 
                     <div class="card_mar"> 
                         <br><br>
+
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>所有受試人員等級比例圖</nobar> <br>
+                        </div>
                         
-                        <center>
-                            <h1 id="analysis_loading" style="font-family:verdana;font-size:36px;color: grey;display: block;">loading.....</h2>
-                        </center>
+                        <h1 id="analysis_loading" style="font-family:verdana;font-size:36px;color: grey;display: block;">loading.....</h2>
+                        
                         <div id="PieChart" style="display: none;height: 500px ;max-width:500px;max-height:500px">
                             <canvas id="pieChart"></canvas>
                         </div>
 
                         <br><br>
+
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>個人歷史檢定成長折線國</nobar> <br>
+                        </div>
                       
                         <p align="center" style="font-family:verdana;font-size:48px;">個人成績查詢</p>
 
                         <p align="center" style="font-family:verdana;font-size:36px;">請輸入學號或是 ID</p>
-                        <center>
-                            <div class="inputWithin">
-                                <input id = 'history_v' value="" style="font-family:verdana;font-size:36px;">
-                                <button onclick="check_bt('history')" style="font-family:verdana;font-size:36px;">查詢歷史紀錄</button>
-                            </div>
+                        
+                        <div class="inputWithin">
+                            <input id = 'history_v' value="" style="font-family:verdana;font-size:36px;">
+                            <button onclick="check_bt('history')" style="font-family:verdana;font-size:36px;">查詢歷史紀錄</button>
+                        </div>
 
-                            <br><br>
-                            
-                            <h1 id="history_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
-                            
-                            <br><br>
-                           
-                            <div id="LineChart" style="display: none;height: 500px ;">
-                                <canvas id="lineChart"></canvas>
-                            </div>
+                        <br><br>
+                        
+                        <h1 id="history_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
+                        
+                        <br><br>
+                        
+                        <div id="LineChart" style="display: none;height: 500px ;">
+                            <canvas id="lineChart"></canvas>
+                        </div>
 
-                            <br>
+                        <br>
 
-                            <p align="center" style="font-family:verdana;font-size:48px;">時段成績分佈查詢</p>
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>期間受試人員正確題目分佈國</nobar> <br>
+                        </div>
 
-                            <p align="center" style="font-family:verdana;font-size:36px;">請輸入時間區間</p>
-                            <nobar style="font-family:verdana;font-size:36px;">由</nobar>
-                            <input type="date" id="start_date" value="" style="font-family:verdana;font-size:36px;">
-                            <nobar style="font-family:verdana;font-size:36px;">到</nobar>
-                            <input type="date" id="end_date" value="" style="font-family:verdana;font-size:36px;">
+                        <p align="center" style="font-family:verdana;font-size:48px;">時段成績分佈查詢</p>
 
-                            <br><br>
-                           
-                            <button onclick="check_bt('time')" style="font-family:verdana;font-size:36px;">查詢分佈</button>
+                        <p align="center" style="font-family:verdana;font-size:36px;">請輸入時間區間</p>
+                        <nobar style="font-family:verdana;font-size:36px;">由</nobar>
+                        <input type="date" id="start_date" value="" style="font-family:verdana;font-size:36px;">
+                        <nobar style="font-family:verdana;font-size:36px;">到</nobar>
+                        <input type="date" id="end_date" value="" style="font-family:verdana;font-size:36px;">
 
-                            <h1 id="time_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
-                            
-                            <br><br> 
-                          
-                            <div id="BarChart" style="display: none;height: 500px ;">
-                                <canvas id="barChart" ></canvas>
-                            </div>
+                        <br><br>
+                        
+                        <button onclick="check_bt('time')" style="font-family:verdana;font-size:36px;">查詢分佈</button>
 
-                        </center>
+                        <h1 id="time_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
+                        
+                        <br><br> 
+                        
+                        <div id="BarChart" style="display: none;height: 500px ;">
+                            <canvas id="barChart" ></canvas>
+                        </div>
 
                         <br><br>
                       
