@@ -4,7 +4,7 @@ var dan = (function () {
     var POLLING_INTERVAL = 2000;
     var _pull;
     var _push;
-    var _mac_addr = 'ec9cb47227ce';
+    var _mac_addr = 'Medication_Platform_0';//'ec9cb47227ce';
     var _profile = {};
     var _registered = true;
     var _idf_list;
