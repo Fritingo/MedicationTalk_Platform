@@ -6,7 +6,7 @@ var dan = (function () {
     var _push;
     var _mac_addr = 'Medication_Platform_0';//'ec9cb47227ce';
     var _profile = {};
-    var _registered = true;
+    var _registered = false;
     var _idf_list;
     var _odf_list;
     var _df_list;
@@ -18,8 +18,8 @@ var dan = (function () {
 
     function init (push, pull, endpoint, mac_addr, profile, callback) {
         _pull = pull;
-	_push = push;
-        // _mac_addr = mac_addr;
+	    _push = push;
+        
 
         function init_callback (result) {
             if (result) {
@@ -29,10 +29,54 @@ var dan = (function () {
             }
         }
         console.log('connect exist DM')
-        connect(endpoint, profile, init_callback);
+        // connect(endpoint, profile, init_callback);
+        register(endpoint, profile, init_callback);
+    }
 
+    function register (endpoint, profile, callback) {
+        //profile['d_name'] = (Math.floor(Math.random() * 99)).toString() + '.' + profile['dm_name'];
+                 
+        _profile = profile;
+        csmapi.set_endpoint(endpoint);
+
+        var retry_count = 0;
         
+        function register_callback (result, d_name, password = '') {
+            if (result) {
+                if (!_registered) {
+                    
+                    _registered = true;
+                    _password = password;
+                    profile.d_name = d_name;
+                    
+                    _idf_list = profile['idf_list'].slice();
+                    _odf_list = profile['odf_list'].slice();
+                    _df_list = profile['df_list'].slice();
+                    			
 
+                    for (var i = 0; i < _df_list.length; i++) {
+                        _df_selected[_df_list[i]] = false;
+					}
+                    for (var i = 0; i < _odf_list.length; i++) {
+                        _odf_timestamp[_odf_list[i]] = '';
+                    }
+                    _ctl_timestamp = '';
+                    _suspended = false;					
+                    setTimeout(pull_ctl, 0);
+                }
+                callback(true);
+            } else {
+                if (retry_count < 2) {
+                    retry_count += 1;
+                    setTimeout(function () {
+                        csmapi.register(_mac_addr, profile, register_callback);
+                    }, RETRY_INTERVAL);
+                } else {
+                    callback(false);
+                }
+            }
+        }
+        csmapi.register(_mac_addr, profile, register_callback);
     }
 
     function connect (endpoint, profile, callback) {

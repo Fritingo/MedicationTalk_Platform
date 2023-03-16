@@ -20,7 +20,7 @@ console.log(client_uid);
 		    'dm_name': 'Medication_Platform',          
 			'idf_list':[Barcode_I, Pill_Detect_I, Search_I, Sheet_I],
 			'odf_list':[Patient_O, Pill_Detect_Result_O, Search_Result_O],
-		        'd_name': 'medical_control_page_1',
+		        'd_name': 'Medication_Platform_0',
         };
 
 		// idf
