@@ -86,7 +86,7 @@ var csmapi = (function () {
         'set_endpoint': set_endpoint,
         'get_endpoint': get_endpoint,
         'register': register,
-        // 'deregister': deregister,
+        'deregister': deregister,
         'pull': pull,
         'push': push,
     };

@@ -1,7 +1,7 @@
 var dan = (function () {
     var RETRY_COUNT = 3;
     var RETRY_INTERVAL = 2000;
-    var POLLING_INTERVAL = 2000;
+    var POLLING_INTERVAL = 500;
     var _pull;
     var _push;
     var _mac_addr = 'Medication_Platform_0';//'ec9cb47227ce';
@@ -131,10 +131,10 @@ var dan = (function () {
             return;
         }
         
-        // if (_suspended || index >= _odf_list.length) {
-        //     setTimeout(push_idf, POLLING_INTERVAL, 0);
-        //     return;
-        // }
+        if (_suspended || index >= _odf_list.length) {
+            setTimeout(push_idf, POLLING_INTERVAL, 0);
+            return;
+        }
 
         var _odf_name = _odf_list[index % _odf_list.length];
         // console.log(_odf_name)
@@ -223,15 +223,15 @@ var dan = (function () {
         // }
     }
 
-    // function deregister (callback) {
-    //     _registered = false;
-    //     csmapi.deregister(_mac_addr, callback);
-    // }
+    function deregister (callback) {
+        _registered = false;
+        csmapi.deregister(_mac_addr, callback);
+    }
 
     return {
         'init': init,
-        // 'register': register,
+        'register': register,
         'push': push,
-        // 'deregister': deregister,
+        'deregister': deregister,
     };
 })();
