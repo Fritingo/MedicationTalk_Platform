@@ -78,10 +78,10 @@ const dai = function (profile, ida) {
         dan.deregister(deregisterCallback);
     }
 
-    window.onunload = deregister;
-    window.onbeforeunload = deregister;
-    window.onclose = deregister;
-    window.onpagehide = deregister;
+    // window.onunload = deregister;
+    // window.onbeforeunload = deregister;
+    // window.onclose = deregister;
+    // window.onpagehide = deregister;
 
     dan.init(push, pull, csmapi.get_endpoint(), mac_addr, profile, init_callback);
 };
