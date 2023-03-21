@@ -4,6 +4,7 @@
 
 
 function feedback(){
+    console.log(syringe_value);
     var score = 0;
     
     var id_name = 'ID：' + document.getElementById('IDF_ID').value + ' 姓名：' + document.getElementById('IDF_name').value;
@@ -29,14 +30,21 @@ function feedback(){
 
     // 2
     var img2 = document.getElementById('2 img');
-    // if (datas['Dilatrend25'] == 0 && datas['Dilantin'] == 0) 
-    if (!document.getElementById('check1').checked){
-        score = score + 1;
-        img2.src="pic/ok_w.png";
+    // if (pill_detect['Dilatrend25'] == 0 && pill_detect['Dilantin'] == 0) 
+    if (!document.getElementById('check1').checked ){
         r2r = '您不給 Dilatrend 25mg/tab 的理由：' + document.getElementById('Dilatrend 25mg/tab r no').value;
-        document.getElementById('2 r 2').innerHTML = r2r;
-        correctness.push(1);
         reason.push(document.getElementById('Dilatrend 25mg/tab r no').value);
+        console.log('tt',pill_detect, pill_detect['Dilatrend']);
+        if (pill_detect['Dilatrend'] == 0 && pill_detect['Dilantin'] == 0){
+            score = score + 1;
+            correctness.push(1);
+            img2.src="pic/ok_w.png";
+        }else{
+            img2.src="pic/wrong_w.png";
+            r2r = r2r + '\n 實際給藥錯誤';
+            correctness.push(0);
+        }
+        document.getElementById('2 r 2').innerHTML = r2r;
     }else{
         img2.src="pic/wrong_w.png";
         r2 = '您給 Dilatrend 25mg/tab 的理由：' + document.getElementById('Dilatrend 25mg/tab r').value;
@@ -50,11 +58,17 @@ function feedback(){
     var img3 = document.getElementById('3 img');
      
     if (!document.getElementById('check2').checked){
-        score = score + 1;
-        img3.src="pic/ok_w.png";
         r3r = '您不給 Requip F.C 0.25mg/tab 的理由：' + document.getElementById('Requip F.C 0.25mg/tab r no').value;
+        if (pill_detect['Requip'] == 0 && pill_detect['Requip1'] == 0){
+            score = score + 1;
+            img3.src="pic/ok_w.png";
+            correctness.push(1);
+        }else{
+            img3.src="pic/wrong_w.png";
+            r3r = r3r + '\n 實際給藥錯誤';
+            correctness.push(0);
+        }
         document.getElementById('3 r 3').innerHTML = r3r;
-        correctness.push(1);
         reason.push(document.getElementById('Requip F.C 0.25mg/tab r no').value);
     }else{
         img3.src="pic/wrong_w.png";

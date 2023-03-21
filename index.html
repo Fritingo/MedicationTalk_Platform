@@ -7,6 +7,7 @@
         <title>智能安全給藥訓練平台</title>
         <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
 
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.cjs.map" ></script> -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="js/chart-utils.min.js"></script>
  
@@ -1410,8 +1411,11 @@
                     <br><br>
 
                     <div  class="box_div">
-                        <h2 align="center" style="font-family:verdana;font-size:44px;">給藥學習單</h2>
+                        <img id = 'pill_text' src="./pic/no.png" width="34"/>
+                        <nobar align="center" style="font-family:verdana;font-size:44px;">給藥學習單</nobar>
       
+                        <br><br>
+
                         <div class="card_mar" style="width: 70%;">
                             <h2 align="center" style="font-family:verdana;font-size:36px;">您給藥💊的原因是？</h2>
                             <div id="resp-table" style="font-family:verdana;font-size:24px;">
@@ -1437,6 +1441,17 @@
                                         </div>
     
                                     </div>
+
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes3"> 
+                                        <div class="table-body-cell">
+                                            Millisrol inj 5mg/10ml/amp
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Millisrol inj 5mg/10ml/amp' data-item="x">
+                                            <textarea id = 'Millisrol inj 5mg/10ml/amp r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+         
+                                    </div>
                 
                                     <div class="resp-table-row" style="display: none" id="sheet-yes4"> 
                                         <div class="table-body-cell">
@@ -1460,6 +1475,17 @@
     
                                     </div>
             
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes6"> 
+                                        <div class="table-body-cell">
+                                            Ampicillin 2000mg 500mg/vail
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Ampicillin 2000mg 500mg/vail' data-item="x">
+                                            <textarea id = 'Ampicillin 2000mg 500mg/vail r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+         
+                                    </div>
+
                                     <div class="resp-table-row" style="display: none" id="sheet-yes7"> 
                                         <div class="table-body-cell">
                                             Bokey 100mg/tab 
@@ -1489,6 +1515,17 @@
     
                                         <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
                                             <textarea id = 'FLU-D (Fluconazole) 50mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes10"> 
+                                        <div class="table-body-cell">
+                                            Normal saline-Sodium chloride 0.9% 塑膠瓶
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶'>
+                                            <textarea id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶 r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
                                         </div>
     
                                     </div>
@@ -1549,6 +1586,17 @@
                                         </div>
     
                                     </div>
+
+                                    <div class="resp-table-row" style="display: block" id="sheet-no3"> 
+                                        <div class="table-body-cell">
+                                            Millisrol inj 5mg/10ml/amp
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Millisrol inj 5mg/10ml/amp' data-item="x">
+                                            <textarea id = 'Millisrol inj 5mg/10ml/amp r no' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
                 
                                     <div class="resp-table-row" style="display: block" id="sheet-no4"> 
                                         <div class="table-body-cell">
@@ -1572,6 +1620,17 @@
     
                                     </div>
             
+                                    <div class="resp-table-row" style="display: block" id="sheet-no6"> 
+                                        <div class="table-body-cell">
+                                            Ampicillin 2000mg 500mg/vail
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Ampicillin 2000mg 500mg/vail'>
+                                            <textarea id = 'Ampicillin 2000mg 500mg/vail r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+
                                     <div class="resp-table-row" style="display: block" id="sheet-no7"> 
                                         <div class="table-body-cell">
                                             Bokey 100mg/tab 
@@ -1601,6 +1660,17 @@
     
                                         <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
                                             <textarea id = 'FLU-D (Fluconazole) 50mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: block" id="sheet-no10"> 
+                                        <div class="table-body-cell">
+                                            Normal saline-Sodium chloride 0.9% 塑膠瓶
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶'>
+                                            <textarea id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶 r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
                                         </div>
     
                                     </div>
@@ -1641,16 +1711,19 @@
 
                     <br><br><br>
                     <!-- 針具  -->
-                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
-                        <nobar>指示 4</nobar> <br>
-                        <nobar>確認針劑藥物</nobar> <br>
+                    <div id="syringe block" style="display: none;">
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
+                            <nobar>指示 4</nobar> <br>
+                            <nobar>確認針劑藥物</nobar> <br>
+                        </div>
+    
+                        <br><br><br>
+    
+                        <iframe id="iframe_syringe" src="https://medical.freemyip.com/syringe/" height="1200" width="85%"></iframe>
+
+                        <br><br>
                     </div>
 
-                    <br><br><br>
-
-                    <iframe src="https://medical.freemyip.com/syringe/" height="1200" width="85%"></iframe>
-
-                    <br><br>
 
                     <button onclick="check_page(3)" style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">送出</button>
                 </center>

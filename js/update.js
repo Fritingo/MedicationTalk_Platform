@@ -53,132 +53,56 @@ radio2.addEventListener('change', function (e) {
 // check pill
 var check_list = [];
 
-for (let i=1; i<10; i++){
-    check_list.push(document.getElementById('check' + i));
+// MAR 與給藥學習單
+for (let i=0; i<10; i++){
+    check_list.push(document.getElementById('check' + (i + 1)));
 }
 
 var listener_list = [];
-for (let i=0; i<9; i++){
-    if (i != '2' && i != '5'){
-        listener_list.push(check_list[i].addEventListener('change', function(e){
-            let sheet = document.getElementById('sheet-yes' + (i+1));
-            let sheet_no = document.getElementById('sheet-no' + (i+1));
-            if(check_list[i].checked){
-                sheet.style.display = 'block';
-                sheet_no.style.display = 'none';
-            }else{
-                sheet.style.display = 'none';
-                sheet_no.style.display = 'block';
-            }
-        }))
-    
-    }
+
+for (let i=0; i<10; i++){
+
+    listener_list.push(check_list[i].addEventListener('change', function(e){
+        
+        let sheet = document.getElementById('sheet-yes' + (i+1));
+        let sheet_no = document.getElementById('sheet-no' + (i+1));
+        
+        if(check_list[i].checked){
+
+            sheet.style.display = 'block';
+            sheet_no.style.display = 'none';
+
+        }else{
+
+            sheet.style.display = 'none';
+            sheet_no.style.display = 'block';
+
+        }
+
+    }))
+ 
 }
+
+// 病人狀況顯示
 var show_patient_state = document.getElementById('patient_state')
 var patient_state_show = document.getElementById('patient_state_v');
+
 show_patient_state.addEventListener('change', function (e) {
+    
     if(show_patient_state.checked){
+
         patient_state_show.style.display = 'block';
+
     }else{
+
         patient_state_show.style.display = 'none';
+
     }
+
 }, false);
-// page 4
 
-// for (var i=1;i<10;i++){
-//     var pill_id = 'check' + i
-//     console.log(pill_id)
-//     var check_pill = document.getElementById('check' + i);
-    
-//     if (i != '3' && i != '6'){
-//         if(check_pill.checked){
-//             console.log('yes');
-//             var sheet = document.getElementById('sheet-yes' + i);
-            
-//             sheet.style.display = 'block';
-            
-        
-            
-//         }else{
-//             var sheet = document.getElementById('sheet-yes' + i);
-//             sheet.style.display = 'none';
-//         }
+// page 4 -> feedback.py
 
-//     }
-    
-// }
-
-
-
-
-// async function getvalue()
-//     {
-//         const idf_id = document.getElementById('IDF_ID');
-//         const idf_name = document.getElementById('IDF_name');
-//         const radios = document.getElementsByName('barcode');
-//         if (idf_id.value != "")
-//         {
-//             var img = document.getElementById('id');
-//             img.src="pic/ok1.jpeg";
-//         }else
-//         {
-//             var img = document.getElementById('id');
-//             img.src="./pic/no.png";
-//         }
-//         if (idf_name.value != "")
-//         {
-//             var img = document.getElementById('name');
-//             img.src="pic/ok1.jpeg";
-//         }else
-//         {
-//             var img = document.getElementById('name');
-//             img.src="./pic/no.png";
-//         }
-//         if (radios[0].checked || radios[1].checked)
-//         {
-
-//             var img = document.getElementById('bar');
-//             img.src="pic/ok1.jpeg";
-//         }else
-//         {
-//             var img = document.getElementById('bar');
-//             img.src="./pic/no.png";
-//         }
-//         if (radios[1].checked)
-//         {
-//             $('.bar_no')[0].innerText = '已更換病人資訊為:陳志明(男) 出生年月日: 37/06/17 病歷號: 02386145 身分證字號：A120857201';
-//         }else
-//         {
-//             $('.bar_no')[0].innerText = '';
-//         }
-
-//         // check pill
-//         for (var i=1;i<10;i++){
-//             var pill_id = 'check' + i
-//             console.log(pill_id)
-//             var check_pill = document.getElementById('check' + i);
-            
-//             if (i != '3' && i != '6'){
-//                 if(check_pill.checked){
-//                     console.log('yes');
-//                     var sheet = document.getElementById('sheet-yes' + i);
-                    
-//                     sheet.style.display = 'block';
-                    
-                
-                    
-//                 }else{
-//                     var sheet = document.getElementById('sheet-yes' + i);
-//                     sheet.style.display = 'none';
-//                 }
-
-//             }
-            
-//         }
-        
-//     }
-
-// setInterval(getvalue, 1000);
 var correctness = [];
 var reason = [];
 
@@ -190,6 +114,11 @@ function check_page(n){
         if (idf_id.value != "" && idf_name.value != ""){
             plusSlides(1);
             window.alert("您即將進入給藥情境\n [請依照指示操作]");
+
+            // set syringe URL 
+            subFeature = document.getElementById('iframe_syringe')
+            subFeature.src = subFeature.src + 'device_0/' + client_uid
+            console.log(subFeature.src)
         }
         else if(idf_id.value == "" && idf_name.value == ""){
             var img1 = document.getElementById('id');
@@ -212,6 +141,7 @@ function check_page(n){
         {
             plusSlides(1);
             window.alert("開始給藥\n [請依照指示操作]");
+
         }else if(!(radios[0].checked || radios[1].checked))
         {
             var img = document.getElementById('bar');
@@ -224,19 +154,31 @@ function check_page(n){
         
     }
     else if(n === 3){
+        correctness = [];
+        reason = [];
         feedback();
-        console.log(correctness);
+        // console.log(pill_detect);
 
         let empty_textbox = 0;
+        
+        if (pill_detect['Dilatrend'] == -1){ // if get value it will not be -1 -> usually nothing is 0
+            var img = document.getElementById('pill_odf');
+            img.src="pic/wrong.jpeg";
+            // console.log(pill_detect)
+        }
 
         for(let i = 0; i < reason.length; i++){
             if (reason[i] == "" || reason[i] == " "){
                 empty_textbox = 1;
+                var img = document.getElementById('pill_text');
+                img.src="pic/wrong.jpeg";
                 break;
             }
         }
-
-        if (empty_textbox == 0){
+        console.log('hh', empty_textbox, pill_detect['Dilatrend'] != -1)
+        if (empty_textbox == 0 && pill_detect['Dilatrend'] != -1){
+            var img = document.getElementById('pill_text');
+            img.src="pic/ok1.jpeg";
 
             const radios = document.getElementsByName('barcode');
             
