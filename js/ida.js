@@ -67,7 +67,7 @@ console.log(client_uid);
         }
 
         function Pill_Detect_Result_O(data){
-            console.log('Patient_O', data);
+            
             if (output_pill_bt > 0 && data[0] == client_uid){
                     var img = document.getElementById('pill_odf');
                     img.src="pic/ok1.jpeg";
@@ -146,15 +146,15 @@ console.log(client_uid);
 
         function Syringe_O(data){
             var syringe_raw = JSON.parse(data[0]);
-            console.log(syringe_raw['UID'],syringe_raw);
+            console.log('syringe', syringe_raw['UID'], syringe_raw);
             if (syringe_raw['UID'] == client_uid){
                 console.log(syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"]);
                 syringe_value["AMIKACIN INJECTION 250MG/ML 'TAI YU'"] = syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"];
                 syringe_value["AMPOLIN INJECTION 500MG"] = syringe_raw["AMPOLIN INJECTION 500MG"];
                 syringe_value["CEFAZOLIN INJECTION 1GM 'C.C.P.'"] = syringe_raw["CEFAZOLIN INJECTION 1GM 'C.C.P.'"];
                 syringe_value["CLEXANE INJECTION"] = syringe_raw["CLEXANE INJECTION"];
-                syringe_value[ "CORDARONE INJECTION"] = syringe_raw[ "CORDARONE INJECTION"];
-                syringe_value[ "Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"] = syringe_raw[ "Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"];
+                syringe_value["CORDARONE INJECTION"] = syringe_raw["CORDARONE INJECTION"];
+                syringe_value["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"] = syringe_raw["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"];
                 syringe_value["MILLISROL INJECTION"] = syringe_raw["MILLISROL INJECTION"];
                 syringe_value["Oxacillin Powder for Injection 'CYH'"] = syringe_raw["Oxacillin Powder for Injection 'CYH'"];
                 syringe_value["Progesterone Injection 'Chi Sheng'"] = syringe_raw["Progesterone Injection 'Chi Sheng'"];

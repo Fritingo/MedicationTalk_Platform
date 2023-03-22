@@ -156,16 +156,15 @@ function check_page(n){
     else if(n === 3){
         correctness = [];
         reason = [];
-        feedback();
-        // console.log(pill_detect);
-
-        let empty_textbox = 0;
-        
         if (pill_detect['Dilatrend'] == -1){ // if get value it will not be -1 -> usually nothing is 0
             var img = document.getElementById('pill_odf');
             img.src="pic/wrong.jpeg";
             // console.log(pill_detect)
         }
+
+        feedback();
+
+        let empty_textbox = 0;
 
         for(let i = 0; i < reason.length; i++){
             if (reason[i] == "" || reason[i] == " "){
@@ -175,71 +174,90 @@ function check_page(n){
                 break;
             }
         }
-        console.log('hh', empty_textbox, pill_detect['Dilatrend'] != -1)
-        if (empty_textbox == 0 && pill_detect['Dilatrend'] != -1){
-            var img = document.getElementById('pill_text');
-            img.src="pic/ok1.jpeg";
+        
+        if (window.confirm("確定送出檢定?\n 送出後會給您一些建議與檢討並與後台做數據分析～～")) {
+            feedback();
+        
+            let empty_textbox = 0;
 
-            const radios = document.getElementsByName('barcode');
-            
-            var radios_ans;
-            if (radios[0].checked)
-            {
-                radios_ans = 'yes';
-            }else if (radios[1].checked)
-            {
-                radios_ans = 'no';
-            }else
-            {
-                radios_ans = 'null';
+            for(let i = 0; i < reason.length; i++){
+                if (reason[i] == "" || reason[i] == " "){
+                    empty_textbox = 1;
+                    var img = document.getElementById('pill_text');
+                    img.src="pic/wrong.jpeg";
+                    break;
+                }
+            }   
+            // console.log(pill_detect);
+    
+            if (empty_textbox == 0 && pill_detect['Dilatrend'] != -1){
+                var img = document.getElementById('pill_text');
+                img.src="pic/ok1.jpeg";
+    
+                const radios = document.getElementsByName('barcode');
+                
+                var radios_ans;
+                if (radios[0].checked)
+                {
+                    radios_ans = 'yes';
+                }else if (radios[1].checked)
+                {
+                    radios_ans = 'no';
+                }else
+                {
+                    radios_ans = 'null';
+                }
+                
+                console.log(pill_detect);
+                const all_info = JSON.stringify({   class: 4,
+                                                    id: document.getElementById('IDF_ID').value,
+                                                    name: document.getElementById('IDF_name').value,
+                                                    barcode1: $('.barcode_value')[0].innerText,
+                                                    select1: radios_ans,
+                                                    correctness1: correctness[0],
+                                                    check2: document.getElementById('check1').checked,
+                                                    Dilatrend: pill_detect['Dilatrend'],
+                                                    Dilantin: pill_detect['Dilantin'],
+                                                    correctness2: correctness[1],
+                                                    reason2: reason[0],
+                                                    check3:  document.getElementById('check2').checked,
+                                                    Requip: pill_detect['Requip'],
+                                                    Requip1: pill_detect['Requip1'],
+                                                    correctness3: correctness[2],
+                                                    reason3: reason[1],
+                                                    check4: document.getElementById('check3').checked,
+                                                    correctness4: correctness[3],
+                                                    reason4: reason[2],
+                                                    check5: document.getElementById('check4').checked,
+                                                    Repaglinide: pill_detect['Repaglinide'],
+                                                    correctness5: correctness[4],
+                                                    reason5: reason[3],
+                                                    check6: document.getElementById('check5').checked,
+                                                    Transamin: pill_detect['Transamin'],
+                                                    correctness6: correctness[5],
+                                                    reason6: reason[4],
+                                                    check7: document.getElementById('check6').checked,
+                                                    correctness7: correctness[6],
+                                                    reason7: reason[5],
+                                                    check8: document.getElementById('check7').checked,
+                                                    Bokey: pill_detect['Bokey'],
+                                                    correctness8: correctness[7],
+                                                    reason8: reason[6],
+                                                    check9: document.getElementById('check8').checked,
+                                                    Simvahexal: pill_detect['Zocor'],
+                                                    correctness9: correctness[8],
+                                                    reason9: reason[7],
+                                                    check10: document.getElementById('check9').checked,
+                                                    FLU: pill_detect['FLU'],
+                                                    correctness10: correctness[9],
+                                                    reason10: reason[8],
+                                                    uid: client_uid,
+                                                     });
+                dan.push('Sheet-I', all_info);
+                
+                plusSlides(1);
             }
             
-            console.log(pill_detect);
-            const all_info = JSON.stringify({   class: 4,
-                                                id: document.getElementById('IDF_ID').value,
-                                                name: document.getElementById('IDF_name').value,
-                                                barcode1: $('.barcode_value')[0].innerText,
-                                                select1: radios_ans,
-                                                correctness1: correctness[0],
-                                                check2: document.getElementById('check1').checked,
-                                                Dilatrend: pill_detect['Dilatrend'],
-                                                Dilantin: pill_detect['Dilantin'],
-                                                correctness2: correctness[1],
-                                                reason2: reason[0],
-                                                check3:  document.getElementById('check2').checked,
-                                                Requip: pill_detect['Requip'],
-                                                Requip1: pill_detect['Requip1'],
-                                                correctness3: correctness[2],
-                                                reason3: reason[1],
-                                                check4: document.getElementById('check3').checked,
-                                                correctness4: correctness[3],
-                                                check5: document.getElementById('check4').checked,
-                                                Repaglinide: pill_detect['Repaglinide'],
-                                                correctness5: correctness[4],
-                                                reason5: reason[2],
-                                                check6: document.getElementById('check5').checked,
-                                                Transamin: pill_detect['Transamin'],
-                                                correctness6: correctness[5],
-                                                reason6: reason[3],
-                                                check7: document.getElementById('check6').checked,
-                                                correctness7: correctness[6],
-                                                check8: document.getElementById('check7').checked,
-                                                Bokey: pill_detect['Bokey'],
-                                                correctness8: correctness[7],
-                                                reason8: reason[4],
-                                                check9: document.getElementById('check8').checked,
-                                                Simvahexal: pill_detect['Zocor'],
-                                                correctness9: correctness[8],
-                                                reason9: reason[5],
-                                                check10: document.getElementById('check9').checked,
-                                                FLU: pill_detect['FLU'],
-                                                correctness10: correctness[9],
-                                                reason10: reason[6],
-                                                uid: client_uid,
-                                                 });
-            dan.push('Sheet-I', all_info);
-            
-            plusSlides(1);
         }
         
         // setTimeout(() => { window.location.href = 'http://140.113.110.21:1526/show/index.html'; }, 1000);
