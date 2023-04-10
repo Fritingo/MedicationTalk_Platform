@@ -1,7 +1,4 @@
-// $(function(){
-
-// })
-
+// 制定回饋規則 打分機制
 
 function feedback(){
     console.log(syringe_value);

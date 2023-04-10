@@ -1,3 +1,5 @@
+// 初始化圖表介面
+
 const Utils = ChartUtils.init()
 Chart.defaults.font.size = 36;
 

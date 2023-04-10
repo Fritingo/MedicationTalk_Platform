@@ -1,5 +1,23 @@
+<!-- MedicationTalk Platform 
+     Deployment: Github Page    
+     說明：使用者檢定介面與分析平台介面與 IoTtalk 交互  
+     Features： 
+        檢定： 
+            1. Barcode 掃描： 連線至 MedicationTalk Edge Device Barcode 掃描
+            2. 藥丸給藥： 連線至 MedicationTalk Edge Device 做藥丸辨識
+            3. 針劑給藥： 連線至 MedicationTalk Edge Device 做針劑辨識
+            4. 判定回饋資訊： 計算檢定正確性
+            5. 紀錄檢定： 傳送至 MedicationTalk DataBase 儲存
+        分析平台：
+            1. 所有檢定歷史紀錄分佈圓餅圖：連線至 MedicationTalk DataBase 分析
+            2. 個人歷史紀錄分析折線圖：連線至 MedicationTalk DataBase 分析
+            3. 時間區間題目正確性分佈直方圖：連線至 MedicationTalk DataBase 分析
+-->
 <!DOCTYPE html>
-<meta charset="utf-8">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 <html>
 
@@ -2205,7 +2223,7 @@
     </div>
     
     <!-- The dots/circles -->
-    <div style="text-align:center; display: none;">
+    <div style="text-align:center; display: block;">
         <span class="dot" onclick="currentSlide(1)"></span> 
         <span class="dot" onclick="currentSlide(2)"></span> 
         <span class="dot" onclick="currentSlide(3)"></span> 

@@ -1,3 +1,5 @@
+// 接收 IoTtalk 資訊處理
+
 var output_patient_barcode_bt = 0;
 var output_pill_bt = 0;
 var pill_detect = { 'Dilatrend': -1,
@@ -29,13 +31,13 @@ console.log(client_uid);
 
 
 
- $(function(){
+$(function(){
         csmapi.set_endpoint ('https://1.iottalk.tw');
         var profile = {
-		    'dm_name': 'Medication_Platform',          
-			'idf_list':[Barcode_I, Pill_Detect_I, Search_I, Sheet_I],
-			'odf_list':[Patient_O, Pill_Detect_Result_O, Search_Result_O, Syringe_O],
-		        'd_name': 'Medication_Platform_0',
+		    'dm_name': 'MedicationTalk_Platform',          
+			'idf_list':[Barcode_I, Pill_Detect_I, Syringe_I, Search_I, Sheet_I],
+			'odf_list':[Barcode_Result_O, Pill_Detect_Result_O, Syringe_Result_O, Search_Result_O, Connect_O],
+		    'd_name': 'Platform_Demo',
         };
 
 		// idf
@@ -47,6 +49,10 @@ console.log(client_uid);
             // $('.ODF_value')[0].innerText=data[0];
          }
 
+        function Syringe_I(data){
+        // $('.ODF_value')[0].innerText=data[0];
+        }
+
         function Search_I(data){
             // $('.ODF_value')[0].innerText=data[0];
         }
@@ -56,8 +62,8 @@ console.log(client_uid);
         }
 
         // odf
-        function Patient_O(data){
-            console.log('Patient_O', data);
+        function Barcode_Result_O(data){
+            console.log('Barcode_Result_O', data);
             if (output_patient_barcode_bt != 0){
                 if (data[0] == client_uid){
                     $('.ODF_value')[0].innerText = data[1];
@@ -88,6 +94,10 @@ console.log(client_uid);
 
                 }
             
+        }
+
+        function Syringe_Result_O(data){
+            console.log('Syringe_Result_O', data);
         }
 
         function Search_Result_O(data){
@@ -144,24 +154,28 @@ console.log(client_uid);
             
         }   
 
-        function Syringe_O(data){
-            var syringe_raw = JSON.parse(data[0]);
-            console.log('syringe', syringe_raw['UID'], syringe_raw);
-            if (syringe_raw['UID'] == client_uid){
-                console.log(syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"]);
-                syringe_value["AMIKACIN INJECTION 250MG/ML 'TAI YU'"] = syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"];
-                syringe_value["AMPOLIN INJECTION 500MG"] = syringe_raw["AMPOLIN INJECTION 500MG"];
-                syringe_value["CEFAZOLIN INJECTION 1GM 'C.C.P.'"] = syringe_raw["CEFAZOLIN INJECTION 1GM 'C.C.P.'"];
-                syringe_value["CLEXANE INJECTION"] = syringe_raw["CLEXANE INJECTION"];
-                syringe_value["CORDARONE INJECTION"] = syringe_raw["CORDARONE INJECTION"];
-                syringe_value["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"] = syringe_raw["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"];
-                syringe_value["MILLISROL INJECTION"] = syringe_raw["MILLISROL INJECTION"];
-                syringe_value["Oxacillin Powder for Injection 'CYH'"] = syringe_raw["Oxacillin Powder for Injection 'CYH'"];
-                syringe_value["Progesterone Injection 'Chi Sheng'"] = syringe_raw["Progesterone Injection 'Chi Sheng'"];
-                syringe_value["ROLIKAN INJECTION (SODIUM BICARBONATE)"] = syringe_raw["ROLIKAN INJECTION (SODIUM BICARBONATE)"];
-                syringe_value["SODIUM BICARBONATE INJECTION 'CHI SHENG'"] = syringe_raw["SODIUM BICARBONATE INJECTION 'CHI SHENG'"];
-                syringe_value["Sirolac IV Injection 30 mg/ml 'ASTAR'"] = syringe_raw["Sirolac IV Injection 30 mg/ml 'ASTAR'"];
-            }
+        // function Syringe_O(data){
+        //     var syringe_raw = JSON.parse(data[0]);
+        //     console.log('syringe', syringe_raw['UID'], syringe_raw);
+        //     if (syringe_raw['UID'] == client_uid){
+        //         console.log(syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"]);
+        //         syringe_value["AMIKACIN INJECTION 250MG/ML 'TAI YU'"] = syringe_raw["AMIKACIN INJECTION 250MG/ML 'TAI YU'"];
+        //         syringe_value["AMPOLIN INJECTION 500MG"] = syringe_raw["AMPOLIN INJECTION 500MG"];
+        //         syringe_value["CEFAZOLIN INJECTION 1GM 'C.C.P.'"] = syringe_raw["CEFAZOLIN INJECTION 1GM 'C.C.P.'"];
+        //         syringe_value["CLEXANE INJECTION"] = syringe_raw["CLEXANE INJECTION"];
+        //         syringe_value["CORDARONE INJECTION"] = syringe_raw["CORDARONE INJECTION"];
+        //         syringe_value["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"] = syringe_raw["Heparin Sodium Injection 5000 IU/ml 'Tai Yu'"];
+        //         syringe_value["MILLISROL INJECTION"] = syringe_raw["MILLISROL INJECTION"];
+        //         syringe_value["Oxacillin Powder for Injection 'CYH'"] = syringe_raw["Oxacillin Powder for Injection 'CYH'"];
+        //         syringe_value["Progesterone Injection 'Chi Sheng'"] = syringe_raw["Progesterone Injection 'Chi Sheng'"];
+        //         syringe_value["ROLIKAN INJECTION (SODIUM BICARBONATE)"] = syringe_raw["ROLIKAN INJECTION (SODIUM BICARBONATE)"];
+        //         syringe_value["SODIUM BICARBONATE INJECTION 'CHI SHENG'"] = syringe_raw["SODIUM BICARBONATE INJECTION 'CHI SHENG'"];
+        //         syringe_value["Sirolac IV Injection 30 mg/ml 'ASTAR'"] = syringe_raw["Sirolac IV Injection 30 mg/ml 'ASTAR'"];
+        //     }
+        // }
+
+        function Connect_O(data){
+            console.log('Connect_O', data);
         }
 
 

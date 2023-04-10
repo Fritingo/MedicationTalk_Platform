@@ -1,3 +1,5 @@
+// 控制畫面翻頁
+
 let slideIndex = 1;
 showSlides(slideIndex);
 

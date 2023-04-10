@@ -4,7 +4,7 @@ var dan = (function () {
     var POLLING_INTERVAL = 500;
     var _pull;
     var _push;
-    var _mac_addr = 'Medication_Platform_0';//'ec9cb47227ce';
+    var _mac_addr = 'Platform_Demo';
     var _profile = {};
     var _registered = false;
     var _idf_list;
@@ -135,10 +135,11 @@ var dan = (function () {
             setTimeout(push_idf, POLLING_INTERVAL, 0);
             return;
         }
-
+        
         var _odf_name = _odf_list[index % _odf_list.length];
         // console.log(_odf_name)
-        
+
+        // var _odf_name = _odf_list[index];
         // if (!_df_selected[_odf_name]) {
         //     pull_odf(index + 1);
         //     return;
@@ -211,16 +212,14 @@ var dan = (function () {
     }
 
     function push(idf_name, data, callback) {
-        // console.log('push',idf_name,data,callback)
+        
 		if(!Array.isArray(data))
 			data = [data];
         if (idf_name == 'Control') {
             idf_name = '__Ctl_I__';
         }
-        //_df_is_odf[idf_name] = false;
-        // if (idf_name == '__Ctl_I__' || _df_selected[idf_name]) {
+        
         csmapi.push(_mac_addr, _password, idf_name, data, callback);
-        // }
     }
 
     function deregister (callback) {

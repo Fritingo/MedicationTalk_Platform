@@ -1,3 +1,5 @@
+// 手機鏡頭 Barcode 設定
+
 function docReady(fn) {
     // see if DOM is already available
     if (document.readyState === "complete"

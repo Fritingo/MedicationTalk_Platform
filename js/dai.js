@@ -59,7 +59,7 @@ const dai = function (profile, ida) {
                 break;
             }
         } else {
-            console.log('pull ', odf_func, odf_name, data)
+            // console.log('pull ', odf_func, odf_name, data)
             odf_func[odf_name](data);
         }
     }
@@ -75,13 +75,13 @@ const dai = function (profile, ida) {
     }
 
     function deregister () {
-        dan.deregister(deregisterCallback);
+        // dan.deregister(deregisterCallback);
     }
 
-    // window.onunload = deregister;
-    // window.onbeforeunload = deregister;
-    // window.onclose = deregister;
-    // window.onpagehide = deregister;
+    window.onunload = deregister;
+    window.onbeforeunload = deregister;
+    window.onclose = deregister;
+    window.onpagehide = deregister;
 
     dan.init(push, pull, csmapi.get_endpoint(), mac_addr, profile, init_callback);
 };

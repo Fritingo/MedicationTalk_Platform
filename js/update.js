@@ -1,3 +1,5 @@
+// 各項事件處理
+
 // start
 window.alert("介面介紹\n ‘檢定：填完學號、姓名並按下開始檢定’ \n ‘左上角🔍：分析學習紀錄’ \n ’右上角圖示：操作說明‘");
 
@@ -50,6 +52,24 @@ radio2.addEventListener('change', function (e) {
 
 //page3
 
+// 病人狀況顯示
+var show_patient_state = document.getElementById('patient_state')
+var patient_state_show = document.getElementById('patient_state_v');
+
+show_patient_state.addEventListener('change', function (e) {
+    
+    if(show_patient_state.checked){
+
+        patient_state_show.style.display = 'block';
+
+    }else{
+
+        patient_state_show.style.display = 'none';
+
+    }
+
+}, false);
+
 // check pill
 var check_list = [];
 
@@ -83,23 +103,6 @@ for (let i=0; i<10; i++){
  
 }
 
-// 病人狀況顯示
-var show_patient_state = document.getElementById('patient_state')
-var patient_state_show = document.getElementById('patient_state_v');
-
-show_patient_state.addEventListener('change', function (e) {
-    
-    if(show_patient_state.checked){
-
-        patient_state_show.style.display = 'block';
-
-    }else{
-
-        patient_state_show.style.display = 'none';
-
-    }
-
-}, false);
 
 // page 4 -> feedback.py
 
@@ -290,7 +293,7 @@ function check_bt(f){
         output_patient_barcode_bt = output_patient_barcode_bt + 1;
     }
     else if(f === 'pill'){
-        dan.push('Pill_Detect-I', [client_uid, true]);
+        dan.push('Pill_Detect-I', [client_uid, 'Device_Demo', true]);
         output_pill_bt = output_pill_bt + 1;
         $('.pill_hint')[0].innerText = 'waiting...';
     }
