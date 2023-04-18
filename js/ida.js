@@ -37,7 +37,7 @@ $(function(){
 		    'dm_name': 'MedicationTalk_Platform',          
 			'idf_list':[Barcode_I, Pill_Detect_I, Syringe_I, Search_I, Sheet_I],
 			'odf_list':[Barcode_Result_O, Pill_Detect_Result_O, Syringe_Result_O, Search_Result_O, Connect_O],
-		    'd_name': 'Platform_Demo',
+		    'd_name': 'Platform_Demo_anna',
         };
 
 		// idf
@@ -66,9 +66,12 @@ $(function(){
             console.log('Barcode_Result_O', data);
             if (output_patient_barcode_bt != 0){
                 if (data[0] == client_uid){
-                    $('.ODF_value')[0].innerText = data[1];
+                    var data_value = JSON.parse(data[1]);
+                    $('.ODF_value')[0].innerText = data_value['patient_info'];
+                    var img = document.getElementById('barcode_scanner');
+                    img.src="pic/ok1.jpeg";
+                    $('.patient_barcode_hint')[0].innerText = '★ 辨識完成請繼續執行下一步＾＿＾';
                 }
-                
             }
         }
 
@@ -104,7 +107,7 @@ $(function(){
             console.log('Search_O', data, client_uid);
             
             if (data[0] == client_uid){
-                var data_value = JSON.parse(data[1]);;
+                var data_value = JSON.parse(data[1]);
                 if ( data_value['operation'] == 'level'){
                     console.log('search level');
                     

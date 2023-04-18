@@ -288,7 +288,8 @@ function check_page(n){
 
 function check_bt(f){
     if (f === 'barcode'){
-        // dan.push('Barcode_I',[true]);
+        $('.patient_barcode_hint')[0].innerText = '請到Barcode機的螢幕上操作';
+        dan.push('Barcode-I', [client_uid, 'Device_Demo', 'patient', true]);
         // sleep(3000);
         output_patient_barcode_bt = output_patient_barcode_bt + 1;
     }

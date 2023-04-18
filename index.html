@@ -1,4 +1,4 @@
-<!-- MedicationTalk Platform 
+<!-- MedicationTalk Platform hidden
      Deployment: Github Page    
      說明：使用者檢定介面與分析平台介面與 IoTtalk 交互  
      Features： 
@@ -180,26 +180,19 @@
                         <br><br>
 
                         <img id = 'barcode_scanner' src="./pic/no.png" width="34"/>
-                        <nobr style="font-family:verdana;font-size:36px;"> 掃病人條碼</nobr>
+                        <nobr style="font-family:verdana;font-size:36px;">掃病人條碼</nobr>
                                     
                         <br><br><br>
 
                         <nobr style="font-family:verdana;font-size:36px">點擊</nobr>
                         <nobr style="font-family:verdana;font-size:36px;color:red">”紅色按鈕“</nobr>
                         <nobr style="font-family:verdana;font-size:36px">開始掃 Barcode</nobr>
-
                         <br>
-
-                        <nobr style="font-family:verdana;font-size:22px;color:gray">出現</nobr>
-                        <nobr style="font-family:verdana;font-size:22px;color:green">”綠色框框“</nobr>
-                        <nobr style="font-family:verdana;font-size:22px;color:gray">表示掃描成功前往下一步</nobr>
-                        
                         <br>
-
-                        <div id="reader" style="width:85%;font-family:verdana;font-size:36px;position: absolute;"></div>
-                        <div id="qr-reader-results"></div> 
-                        
-                        <p class='barcode_value' display:inline; align="right">_____________</p>
+                        <br>
+                        <button name="patient_barcode" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" display:align="center" onclick="check_bt('barcode')">請掃描病人手圈</button>
+                        <br>
+                        <p class="patient_barcode_hint" align="center" style="font-size: 24;"></p>
                                     
                     </div>
                         
