@@ -140,7 +140,7 @@ function check_page(n){
     }
     else if(n === 2){
         const radios = document.getElementsByName('barcode');
-        if ((radios[0].checked || radios[1].checked) && $('.barcode_value')[0].innerText != "_____________")
+        if ((radios[0].checked || radios[1].checked) && $('.patient_barcode_hint')[0].innerText == '★ 辨識完成請繼續執行下一步＾＿＾')
         {
             plusSlides(1);
             window.alert("開始給藥\n [請依照指示操作]");
@@ -150,7 +150,7 @@ function check_page(n){
             var img = document.getElementById('bar');
             img.src="pic/wrong.jpeg";
         }
-        if ($('.barcode_value')[0].innerText == "_____________"){
+        if ($('.patient_barcode_hint')[0].innerText == '請到Barcode機的螢幕上操作'){
             var img = document.getElementById('barcode_scanner');
             img.src="pic/wrong.jpeg";
         }

@@ -67,6 +67,7 @@ $(function(){
             if (output_patient_barcode_bt != 0){
                 if (data[0] == client_uid){
                     var data_value = JSON.parse(data[1]);
+                    console.log(data_value);
                     $('.ODF_value')[0].innerText = data_value['patient_info'];
                     var img = document.getElementById('barcode_scanner');
                     img.src="pic/ok1.jpeg";
