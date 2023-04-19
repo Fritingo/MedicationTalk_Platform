@@ -1720,10 +1720,154 @@
                     <img id = 'pill_odf' src="./pic/no.png" width="34"/>
                     <button onclick="check_bt('pill')" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">辨識藥丸</button> 
                     <p class="pill_hint"></p>
+                    
 
                     <br><br><br>
                     <!-- 針具  -->
-                    <div id="syringe block" style="display: none;">
+                    <div id="syringe block" style="display: display;">
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
+                            <nobar>指示 4</nobar> <br>
+                            <nobar>確認針劑藥物</nobar> <br>
+                        </div>
+
+                        <br>
+                        <br>
+                    <!-- <table class="syringe_check" style="width: 70%" border="1">
+
+                        <tr>
+                            <th>No.</th>
+                            <th>藥劑名稱</th>
+                            <th>稀釋總量</th>
+                            <th>施打總量</th>
+                            <th>給藥途徑</th>
+                        </tr>
+                        
+                    </table> -->
+
+
+                    <div id="page0">
+                        <div id="medtable"></div>
+                        <br>
+                        <input type="hidden" name="dilution_button_id" value="-1">
+                        <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">上傳結果</button>
+                        
+                        <br>
+                    </div>
+            
+                    <div id="page1" hidden>
+                        <img style="width:100%;" src="./images/scanning.jpg"><br>
+                        <br>
+                        <input type="hidden" name="verification_button_id" value="-1">
+                        <!-- <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: green;" onclick="JumpToPage(0)">確認</button> -->
+                        <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" onclick="JumpToPage(0);Barcode(0)">取消</button>
+                    </div>
+            
+                    <div id="page2" hidden>
+                        <div>
+                            <!-- <form method="post" onsubmit="if($('select[name=syringe_type] option').filter(':selected').val()==''){alert('請選擇注射空針樣式!');return false;}"> -->
+                                <font style="font-weight:bold;">注射空針樣式:</font>
+                                <select name="syringe_type" style="font-size:36px;">
+                                    <option value="">--請選擇您欲辨識之空針樣式--</option>
+                                    <option value="1 ml">1 ml</option>
+                                    <option value="3 ml">3 ml</option>
+                                    <option value="5 ml">5 ml</option>
+                                    <option value="10 ml">10 ml</option>
+                                    <option value="others">其他</option>
+                                </select>
+                                <input type="hidden" name="injection_button_id" value="-1">
+                                <!-- <input type="hidden" name="barcode_scan_state" value="0">
+                                <input type="hidden" name="injection_info_state" value="0">
+                                <input type="hidden" name="add_new_state" value="0">
+                                <input type="hidden" name="syringe_diluent_state" value="0"> -->
+                                <hr>
+                                *點擊<font style="background-color: #4CAF50">"下一步"</font>按鈕後開始辨識。
+                                <img style="width:100%;" src="./images/HW_V2_with_syringe.png"><br>
+                                <hr>
+                                <button style="float: right; background-color: #4CAF50;" onclick="Syringe_recognition();" >下一步</button>
+                            <!-- </form> -->
+                            <button style="float:left; color: white; background-color: #f44336;" onclick="JumpToPage(0)">取消</button>
+                        </div>
+                    </div>
+            
+                    <div id="page3" hidden>
+                        <div class="tab">
+                            <button class="tablinks" id="BT_IV_IVD_IVP" onclick="tabSW(event, 'IV_IVD_IVP'); document.getElementById('radio_injection_info_site').checked=true;">IV、IVD、IVP 選項</button>
+                            <button class="tablinks" id="BT_IM_SC_ID" onclick="tabSW(event, 'IM_SC_ID')">IM、SC、ID 選項</button>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(event) {
+                                document.getElementById("BT_IV_IVD_IVP").click();
+                            });
+                            function injection_info_onsubmit_check(){
+                                var __iinjection_info_val = $('input[name=injection_info]:checked').val()
+                                var __injection_info_site_val = $('input[name=injection_info_site]:checked').val()
+                                if(typeof(__iinjection_info_val)=='undefined'){
+                                    alert('請選擇給藥途徑!');
+                                    return false;
+                                }
+                                else if(["IM", "SC", "ID"].includes(__iinjection_info_val) && __injection_info_site_val=="-"){
+                                    alert('您的注射部位尚未選擇!');
+                                    return false;
+                                }
+                                else{
+                                    return true;
+                                }
+                            }
+                        </script>
+                        <!-- <form method="post"  onsubmit="return injection_info_onsubmit_check();"> -->
+                            <div style="position:relative; width:100%;">
+                                <div id="IV_IVD_IVP" class="tabcontent">
+                                    <img style="width:100%;" src="./images/IV_IVD_IVP.png">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:40.7%; left:15.7%;" name="injection_info" value="加點滴袋內">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:60.1%; left:14.1%;" name="injection_info" value="IVD">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:38.3%; left:87.5%;" name="injection_info" value="IVP">
+                                    <input type="radio" style="display:none;" id="radio_injection_info_site" name="injection_info_site" value="-"> 
+                                </div>
+                                <div id="IM_SC_ID" class="tabcontent">
+                                    <img style="width:100%;" src="./images/IM_SC_ID.png">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:68.25%; left:21.50%;" name="injection_info" value="肌肉注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:79.95%; left:21.25%;" name="injection_info" value="皮下注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:92.20%; left:21.15%;" name="injection_info" value="皮內注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:15.93%; left:26.60%;" name="injection_info_site" value="肩峰下三橫指"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.31%; left:25.69%;" name="injection_info_site" value="手肘"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:26.97%; left:26.15%;" name="injection_info_site" value="手背"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.30%; left:33.35%;" name="injection_info_site" value="右上腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.42%; left:33.28%;" name="injection_info_site" value="右下腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.30%; left:38.50%;" name="injection_info_site" value="左上腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.42%; left:38.50%;" name="injection_info_site" value="左下腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.60%; left:39.90%;" name="injection_info_site" value="左前腿"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.95%; left:61.50%;" name="injection_info_site" value="左上臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.15%; left:61.50%;" name="injection_info_site" value="左下臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.95%; left:64.85%;" name="injection_info_site" value="右上臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.10%; left:64.71%;" name="injection_info_site" value="右下臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:22.95%; left:69.60%;" name="injection_info_site" value="右前臂"> 
+                                </div>
+            
+                            </div><br><hr>
+                            <input type="hidden" name="way_button_id" value="-1">
+                            <!-- <input type="hidden" name="barcode_scan_state" value="0">
+                            <input type="hidden" name="syringe_scan_state" value="0">
+                            <input type="hidden" name="add_new_state" value="0">
+                            <input type="hidden" name="syringe_diluent_state" value="0">  -->
+                            <button name="injection_info_state" style="float: right; background-color: #4CAF50;" onclick="GetOption(3);JumpToPage(0)">下一步</button>
+                        <!-- </form> -->
+                        <button style="float:left; color: white; background-color: #f44336;" onclick="JumpToPage(0)">取  消</button>
+                        </div>
+                            
+                    </div>
+                    <br>      
+                    </div>
+                    <br><br>
+                    
+                    </div>
+
+                
+
+                <br><br><br>
+            <!-- 針劑到這裡 -->
+
+                    <!-- 針具  -->
+                    <!-- <div id="syringe block" style="display: none;">
                         <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
                             <nobar>指示 4</nobar> <br>
                             <nobar>確認針劑藥物</nobar> <br>
@@ -1731,7 +1875,7 @@
     
                         <br><br><br>
     
-                        <iframe id="iframe_syringe" src="https://medical.freemyip.com/syringe/" height="1200" width="85%"></iframe>
+                        <iframe id="iframe_syringe" src="https://medical.freemyip.com/syringe/" height="1200" width="85%"></iframe> -->
 
                         <br><br>
                     </div>
@@ -2233,4 +2377,6 @@
 <script src="js/barcode.js"></script>
 <script src="js/html5-qrcode-css.js"></script>
 <script src="js/feedback.js"></script>
+<script src="js/syringe.js"></script>
+<script src="js/ida.js"></script>
 

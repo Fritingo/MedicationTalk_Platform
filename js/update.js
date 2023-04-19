@@ -98,6 +98,12 @@ for (let i=0; i<10; i++){
             sheet_no.style.display = 'block';
 
         }
+        if (i==2){ // "Millisrol inj 5mg/10ml/amp"
+            create_json('Millisrol inj 5mg/10ml/amp', check_list[i].checked);
+        }
+        else if(i == 5){ // "Ampicillin 2000mg 500mg/vail"
+            create_json('Ampicillin 2000mg 500mg/vail', check_list[i].checked);
+        };
 
     }))
  
