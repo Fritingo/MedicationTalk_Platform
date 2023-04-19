@@ -37,7 +37,7 @@ $(function(){
 		    'dm_name': 'MedicationTalk_Platform',          
 			'idf_list':[Barcode_I, Pill_Detect_I, Syringe_I, Search_I, Sheet_I],
 			'odf_list':[Barcode_Result_O, Pill_Detect_Result_O, Syringe_Result_O, Search_Result_O, Connect_O],
-		    'd_name': 'Platform_Demo1',
+		    'd_name': 'Platform_Demo',
 		    // 'd_name': 'Platform_Demo_anna',
         };
 
