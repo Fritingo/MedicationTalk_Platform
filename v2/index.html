@@ -1,0 +1,2359 @@
+<!-- MedicationTalk Platform hidden
+     Deployment: Github Page    
+     說明：使用者檢定介面與分析平台介面與 IoTtalk 交互  
+     Features： 
+        檢定： 
+            1. Barcode 掃描： 連線至 MedicationTalk Edge Device Barcode 掃描
+            2. 藥丸給藥： 連線至 MedicationTalk Edge Device 做藥丸辨識
+            3. 針劑給藥： 連線至 MedicationTalk Edge Device 做針劑辨識
+            4. 判定回饋資訊： 計算檢定正確性
+            5. 紀錄檢定： 傳送至 MedicationTalk DataBase 儲存
+        分析平台：
+            1. 所有檢定歷史紀錄分佈圓餅圖：連線至 MedicationTalk DataBase 分析
+            2. 個人歷史紀錄分析折線圖：連線至 MedicationTalk DataBase 分析
+            3. 時間區間題目正確性分佈直方圖：連線至 MedicationTalk DataBase 分析
+-->
+<!DOCTYPE html>
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-tw" lang="zh-tw">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<html>
+
+    <head>
+        <title>智能安全給藥訓練平台</title>
+        <link rel="icon" href="pic/favicon.ico" type="image/x-icon" />
+
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.2.1/chart.cjs.map" ></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="js/chart-utils.min.js"></script>
+        
+
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.slim.js"></script> -->
+        <script src="js/csmapi.js"></script>
+        <script src="js/dan.js"></script>
+        <script src="js/dai.js"></script>
+        <script src="js/ida.js"></script>
+        
+        <!-- import html5-qrcode required-->
+        <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.0.1/html5-qrcode.min.js"></script> -->
+        <!-- <script src="js/html5-qrcode.min.js"></script> -->
+        <!-- <script src="https://unpkg.com/html5-qrcode"></script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.js"></script>
+        <!-- css -->
+        <link href="css/slide.css" rel="stylesheet">
+        <!-- <link href="css/html5-qrcode-css.css" rel="stylesheet"> -->
+        <link href="css/figma.css" rel="stylesheet">
+
+    </head>
+
+    <!-- Slideshow container -->
+    <div class="slideshow-container">
+        <!-- first page user info -->
+        
+        <div class="mySlides fade">
+            <div class="card">
+                <!-- 左上角 -->
+                <div id="group_3" onclick="check_page(4)">
+                    <img src="./pic/vector_2.png" id="vector_2" />
+    
+                    <div id="group_1"  >
+                        <div id="ellipse_3"  ></div>
+                        <div id="ellipse_4"  ></div>
+                        <div id="rectangle_1"  ></div>
+                    </div>
+
+                    <div id="ellipse_3_ek1"  ></div>
+                    <div id="ellipse_4_ek1"  ></div>
+                    <div id="rectangle_1_ek1"  ></div>
+                    <div id="ellipse_1"  ></div>
+                    <img src="./pic/ellipse_2.png" id="ellipse_2" />
+                    <div id="ellipse_5"  ></div>
+                    <div id="ellipse_7"  ></div>
+                    <div id="ellipse_6"  ></div>
+                    <div id="ellipse_8"  ></div>
+                    <div id="ellipse_9"  ></div>
+                    <div id="line_1"  ></div>
+                    <div id="line_4"  ></div>
+                    <div id="line_3"  ></div>
+                    <div id="line_2"  ></div>
+    
+                </div>
+                <!-- 右上角 -->
+                <a target="_blank" rel="noreferrer noopener" href="https://github.com/Fritingo/MedicationTalk_Platform" class="github-corner" aria-label="View source on GitHub"><svg viewBox="0 0 250 250" style="fill:#151513; color:rgba(229,242,241,1); position: absolute; top: 0; border: 0; right: 0; height: 224px;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a>
+                <style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+                
+                <br><br><br><br><br>
+
+                <h1 align="center" style="font-family:verdana;font-size:60px;">智能安全給藥訓練平台</h2>
+                <img src="pic/nycu1.jpeg"  style="display:block; margin:auto; width: 40%;"/>
+                <h2 align="center" style="font-family:verdana;font-size:44px;">請輸入使用者資訊</h2>
+
+                <br>
+
+                <p align="center" style="font-family:verdana;font-size:36px;">學號或是 ID</p>
+                
+                <center>
+                    <div class="inputWithin">
+                        <img id = 'id' src="./pic/no.png" width="34" background-color: transparent/>
+                        <input id = 'IDF_ID' value="" style="font-family:verdana;font-size:36px;">
+                    </div>
+                
+                    <br>
+
+                    <p align="center" style="font-family:verdana;font-size:36px;">姓名</p>
+    
+                    <div class="inputWithin">
+                        <img id = 'name' src="./pic/no.png" width="34" background-color: transparent/>
+                        <input id = 'IDF_name' value="" style="font-family:verdana;font-size:36px;">
+                    </div>
+                
+                    <br><br><br><br>
+                
+                    <button onclick="check_page(1)" style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">開始檢定</button> 
+                </center>
+                
+                <br><br>
+
+            </div>
+
+        </div>
+        
+        <!-- scenario -->
+        <div class="mySlides fade">   
+         
+            <div class="card">
+                <br><br>
+            
+                <center>
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
+                        <nobar>指示 1</nobar> <br>
+                        <nobar>閱讀情境說明</nobar>
+                    </div>
+                
+                    <br><br>
+
+                    <div class="card_mar" style="font-family:verdana;font-size:38px;"> 
+                        <p>地點 外科病房</p>
+                        <p>病患資料:  陳志明 (男) 、 83 歲</p>
+                        <p>出生年月日: 37/06/17</p>
+                        <p>病歷號: 02386145</p>
+                        <p>身分證字號: A120857201</p>
+        
+                        <br> 
+
+                        <p>病患狀況</p>
+                        
+                        <div class="box_div" style="font-family:verdana;font-size:36px;text-align:left;">
+                            <ol>
+                                <li>本次住院診斷為急性膽囊炎，行腹腔鏡膽囊切除手術後第 2 天; 尿液念珠球菌感染。</li>
+                                <li>過去病史: 糖尿病、高血壓、心臟病、高血脂、巴金森氏症、後天免疫缺乏症候群。</li>
+                                <li>過敏史: 盤尼西林類</li>
+                                <li>目前生命徵象: GCS E4V5M6; T/P/R 36.5/ 72/ 16; BP: 165/90 mmHg， SpO2 : 98%</li>
+                                <li>指尖血糖(飯前血糖): 90 mg/dl</li>
+                                <li>管路: 左手 20 號輸液管路， NS run 60 ml/hr 滴注中</li>
+                            </ol>
+                        </div>
+
+                        <br>
+
+                    </div>
+                
+
+                    <h2 align="center" style="font-family:verdana;font-size:42px;color:red" > 「學生任務：給予早上九點藥物」</p>
+                    
+                    <br>
+ 
+                    <!-- patient barcode -->
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;color: black;font-weight:lighter">
+                        <nobar>指示 2</nobar> <br>
+                        <nobar>掃描病人手圈條碼</nobar>
+                    </div>
+                
+                    <h2></h2>
+                    
+                    <br>
+                        
+                    <div class="box_div">
+                        <br><br>
+
+                        <img id = 'barcode_scanner' src="./pic/no.png" width="34"/>
+                        <nobr style="font-family:verdana;font-size:36px;">掃病人條碼</nobr>
+                                    
+                        <br><br><br>
+
+                        <nobr style="font-family:verdana;font-size:36px">點擊</nobr>
+                        <nobr style="font-family:verdana;font-size:36px;color:red">”紅色按鈕“</nobr>
+                        <nobr style="font-family:verdana;font-size:36px">開始掃 Barcode</nobr>
+                        <br>
+                        <br>
+                        <br>
+                        <button name="patient_barcode" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" display:align="center" onclick="check_bt('barcode')">請掃描病人手圈</button>
+                        <br>
+                        <p class="patient_barcode_hint" align="center" style="font-size: 24;"></p>
+                                    
+                    </div>
+                        
+                    <br>
+            
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;color: black;font-weight:lighter">
+                        <nobar>指示 3</nobar> <br>
+                        <nobar>確認病人資訊</nobar>
+                    </div>  
+
+                    <p class='ODF_value' style="font-family:verdana;font-size:36px;color: green;">_____________</p>
+
+                    <br>
+
+                    <div class="inputWithin">
+                        <img id = 'bar' src="./pic/no.png" width="34" background-color: transparent/>
+                        <input type="radio" id='radio1' name = 'barcode' value="1" style="font-size:36px;transform: scale(2);height: 25px;"> 病人資料正確
+                        <input type="radio" id='radio2' name = 'barcode' value="2" style="font-size:36px;transform: scale(2);height: 25px;"> 病人資料錯誤
+                        <p class="bar_no" style="color: gray"></p>
+                    </div>
+                    
+                    <br><br><br>
+                
+                    <button onclick="check_page(2)"  style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">確認及下一頁</button>
+                </center>
+
+                <br><br>
+
+            </div>
+
+        </div>
+    
+        <!-- mar pill -->
+        <div class="mySlides fade">
+            <div class="card">
+                <br><br>
+                
+                <center>
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 70%;">
+                        <nobar>指示 1</nobar> <br>
+                        <nobar>依照 MAR 單給藥</nobar> <br>
+                        <nobar>左框勾選，給予的藥物</nobar> <br>
+                        <nobar>[先給口服藥，再給針劑]</nobar>
+                    </div>
+                    
+                    <br><br>
+
+                    <input type="checkbox" value="" id="patient_state" style="transform: scale(2)">
+                    <nobar align="center" style="font-family:verdana;font-size:36px;">病人狀況</nobar>
+                    
+                    <div class="box_div" style="font-family:verdana;font-size:36px;text-align:left;display: none;" id="patient_state_v">
+                        <ol>
+                            <li>本次住院診斷為急性膽囊炎，行腹腔鏡膽囊切除手術後第 2 天; 尿液念珠球菌感染。</li>
+                            <li>過去病史: 糖尿病、高血壓、心臟病、高血脂、巴金森氏症、後天免疫缺乏症候群。</li>
+                            <li>過敏史: 盤尼西林類</li>
+                            <li>目前生命徵象: GCS E4V5M6; T/P/R 36.5/ 72/ 16; BP: 165/90 mmHg， SpO2 : 98%</li>
+                            <li>指尖血糖(飯前血糖): 90 mg/dl</li>
+                            <li>管路: 左手 20 號輸液管路， NS run 60 ml/hr 滴注中</li>
+                        </ol>
+                    </div>
+                    
+                    <h2 align="center" style="font-family:verdana;font-size:52px;">MAR</h2>
+                    
+                    
+                    <div class="card_mar" style="font-family:verdana;font-size:15px;width: 90%;">   
+                        <p>姓名: 陳志明  性別: 男  生日: 37/06/17  身分證字號: A120857201  病歷號: 02386145</p>
+                        
+                        <div id="resp-table">
+                            <div id="resp-table-body">
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <nobr>是否</nobr>給予
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        藥品名 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        劑量
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        頻率 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        途徑 
+                                    </div>
+
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            01 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            02
+                                        </div>
+                                        <div class="table-body-cell">
+                                            03 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            04 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            05
+                                        </div>
+                                        <div class="table-body-cell">
+                                            06
+                                        </div>
+                                        <div class="table-body-cell">
+                                            07 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            08 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            10
+                                        </div>
+                                        <div class="table-body-cell">
+                                            11 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            12 
+                                        </div>
+                                    </div>
+
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            13 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            14
+                                        </div>
+                                        <div class="table-body-cell">
+                                            15 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            16 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            17 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            18
+                                        </div>
+                                        <div class="table-body-cell">
+                                            19 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            20 
+                                        </div><div class="table-body-cell">
+                                            21 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            22
+                                        </div>
+                                        <div class="table-body-cell">
+                                            23 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            24 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check1" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.kingnet.com.tw/medicine/merchandise?license_id=%E8%A1%9B%E7%BD%B2%E8%97%A5%E8%BC%B8%E5%AD%97%E7%AC%AC022071%E8%99%9F" target="_blank">Dilatrend 25mg/tab </a>
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        25mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        BID 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            18
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check2" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www1.ndmctsgh.edu.tw/pharm/MU_seaview.aspx?CID=005REQ01" target="_blank">Requip F.C 0.25mg/tab</a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        0.25mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        TID 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            13
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            18
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check3" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www1.ndmctsgh.edu.tw/pharm/MU_seaview.aspx?CID=005MIL02" target="_blank">Millisrol inj 5mg/10ml/amp </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        10ml 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        STAT 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        IVP
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check4" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500250.html" target="_blank">Repaglinide 1mg/tab </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        1mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        TID/AC 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            07 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            11 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            16 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check5" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500310.html" target="_blank">Transamin 250mg/tab </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        250mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        TID 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            13
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            18
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check6" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.cth.org.tw/?aid=606&pid=0&page_name=detail&iid=1096" target="_blank">Ampicillin 2000mg 500mg/vail </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        2000mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        Q4H 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        IVD 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            01   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            05
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            13
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            17 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            21 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check7" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.chimei.org.tw/main/cmh_department/59012/info/5500/A5500146.html" target="_blank">Bokey 100mg/tab </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        100mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        QD 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check8" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.kingnet.com.tw/medicine/merchandise?license_id=衛署藥輸字第023970號" target="_blank">Simvahexal 20 mg/tab </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        20mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        QD 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check9" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        <a href="https://www.cth.org.tw/?aid=606&pid=0&page_name=detail&iid=1003" target="_blank">FLU-D (Fluconazole) 50mg/tab </a> 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        25mg 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        BID 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        PO 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            09 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            18
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div>
+        
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        <input type="checkbox" name="" value="" id="check10" style="transform: scale(2);">
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        Normal saline-Sodium chloride 0.9% 塑膠瓶
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        1BOT 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        QD 
+                                    </div>
+
+                                    <div class="table-body-cell">
+                                        IVF 
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __   
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            _\ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div><div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __ 
+                                        </div>
+                                    </div>
+
+                                </div> 
+   
+                            </div>
+                        </div>
+        
+                        <div id="resp-table">
+                            <div id="resp-table-body">
+                                <div class="resp-table-row"> 
+                                    <div class="table-body-cell">
+                                        _\: 服藥 O: NPO  ◼: HOLD  X: 拒服
+                                    △: 檢查或手術 =: 時間已過 (紅筆) ∧: 請假
+                                    </div>
+                                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            小夜班護理師   
+                                        </div>
+
+                                        <div class="table-body-cell">
+                                            大夜班護理師   
+                                        </div>
+
+                                        <div class="table-body-cell">
+                                            白班護理師 
+                                        </div>
+                                    
+                                    </div>
+
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        <div class="table-body-cell">
+                                            __
+                                        </div>
+                                        
+                                    </div>
+
+                                </div> 
+                            </div>
+                        </div>
+        
+                        <br>
+
+                    </div> 
+
+                    <!-- 學習單 -->
+                    <br><br>
+
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                        <nobar>指示 2</nobar> <br>
+                        <nobar>完成給要學習單</nobar> <br>
+                        <nobar>[給藥/不給藥的原因都要填寫]</nobar> <br>
+                    </div>
+
+                    <br><br>
+
+                    <div  class="box_div">
+                        <img id = 'pill_text' src="./pic/no.png" width="34"/>
+                        <nobar align="center" style="font-family:verdana;font-size:44px;">給藥學習單</nobar>
+      
+                        <br><br>
+
+                        <div class="card_mar" style="width: 70%;">
+                            <h2 align="center" style="font-family:verdana;font-size:36px;">您給藥💊的原因是？</h2>
+                            <div id="resp-table" style="font-family:verdana;font-size:24px;">
+                                <div id="resp-table-body">
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes1"> 
+                                        <div class="table-body-cell">
+                                            Dilatrend 25mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Dilatrend 25mg/tab' data-item="x">
+                                            <textarea id = 'Dilatrend 25mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+         
+                                    </div>
+    
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes2"> 
+                                        <div class="table-body-cell">
+                                            Requip F.C 0.25mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Requip F.C 0.25mg/tab'>
+                                            <textarea id = 'Requip F.C 0.25mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes3"> 
+                                        <div class="table-body-cell">
+                                            Millisrol inj 5mg/10ml/amp
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Millisrol inj 5mg/10ml/amp' data-item="x">
+                                            <textarea id = 'Millisrol inj 5mg/10ml/amp r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+         
+                                    </div>
+                
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes4"> 
+                                        <div class="table-body-cell">
+                                            Repaglinide 1mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Repaglinide 1mg/tab'>
+                                            <textarea id = 'Repaglinide 1mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes5"> 
+                                        <div class="table-body-cell">
+                                            Transamin 250mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Transamin 250mg/tab'>
+                                            <textarea id = 'Transamin 250mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes6"> 
+                                        <div class="table-body-cell">
+                                            Ampicillin 2000mg 500mg/vail
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Ampicillin 2000mg 500mg/vail' data-item="x">
+                                            <textarea id = 'Ampicillin 2000mg 500mg/vail r' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+         
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes7"> 
+                                        <div class="table-body-cell">
+                                            Bokey 100mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Bokey 100mg/tab'>
+                                            <textarea id = 'Bokey 100mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>
+                                        </div>
+                                 
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes8"> 
+                                        <div class="table-body-cell">
+                                            Simvahexal 20 mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Simvahexal 20 mg/tab'>
+                                            <textarea id = 'Simvahexal 20 mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes9"> 
+                                        <div class="table-body-cell">
+                                            FLU-D (Fluconazole) 50mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
+                                            <textarea id = 'FLU-D (Fluconazole) 50mg/tab r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: none" id="sheet-yes10"> 
+                                        <div class="table-body-cell">
+                                            Normal saline-Sodium chloride 0.9% 塑膠瓶
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶'>
+                                            <textarea id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶 r' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="resp-table-row" style="display: none"> 
+                                        <div class="table-body-cell">
+                                            Dilantin
+                                        </div>
+                                        <div class="table-body-cell" id = 'Dilantin'>
+                                            X 
+                                        </div>
+                      
+                                    </div>
+    
+                                    <div class="resp-table-row" style="display: none"> 
+                                        <div class="table-body-cell">
+                                            Requip F.C 1 mg
+                                        </div>
+                                        <div class="table-body-cell" id = 'Requip F.C 1 mg'>
+                                            X
+                                        </div>
+                            
+                                    </div>
+    
+                                </div>
+                            </div>
+    
+                            <br><br>
+    
+                        </div>
+    
+                        <br><br><br><br>
+    
+                        <div class="card_mar" style="width: 70%;"> 
+                            <h2 align="center" style="font-family:verdana;font-size:36px;">您不給藥💊的原因是？</h2>
+                        
+                            <div id="resp-table" style="font-family:verdana;font-size:24px;">
+                                <div id="resp-table-body">
+    
+                                    <div class="resp-table-row" style="display: block" id="sheet-no1"> 
+                                        <div class="table-body-cell">
+                                            Dilatrend 25mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Dilatrend 25mg/tab' data-item="x">
+                                            <textarea id = 'Dilatrend 25mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
+    
+                                    <div class="resp-table-row" style="display: block" id="sheet-no2"> 
+                                        <div class="table-body-cell">
+                                            Requip F.C 0.25mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Requip F.C 0.25mg/tab'>
+                                            <textarea id = 'Requip F.C 0.25mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: block" id="sheet-no3"> 
+                                        <div class="table-body-cell">
+                                            Millisrol inj 5mg/10ml/amp
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Millisrol inj 5mg/10ml/amp' data-item="x">
+                                            <textarea id = 'Millisrol inj 5mg/10ml/amp r no' value="" style="font-family:verdana;font-size:22px;width:100%;" rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
+                
+                                    <div class="resp-table-row" style="display: block" id="sheet-no4"> 
+                                        <div class="table-body-cell">
+                                            Repaglinide 1mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Repaglinide 1mg/tab'>
+                                            <textarea id = 'Repaglinide 1mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: block" id="sheet-no5"> 
+                                        <div class="table-body-cell">
+                                            Transamin 250mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Transamin 250mg/tab'>
+                                            <textarea id = 'Transamin 250mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: block" id="sheet-no6"> 
+                                        <div class="table-body-cell">
+                                            Ampicillin 2000mg 500mg/vail
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Ampicillin 2000mg 500mg/vail'>
+                                            <textarea id = 'Ampicillin 2000mg 500mg/vail r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>  
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: block" id="sheet-no7"> 
+                                        <div class="table-body-cell">
+                                            Bokey 100mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Bokey 100mg/tab'>
+                                            <textarea id = 'Bokey 100mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea>
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: block" id="sheet-no8"> 
+                                        <div class="table-body-cell">
+                                            Simvahexal 20 mg/tab
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Simvahexal 20 mg/tab'>
+                                            <textarea id = 'Simvahexal 20 mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+            
+                                    <div class="resp-table-row" style="display: block" id="sheet-no9"> 
+                                        <div class="table-body-cell">
+                                            FLU-D (Fluconazole) 50mg/tab 
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'FLU-D (Fluconazole) 50mg/tab'>
+                                            <textarea id = 'FLU-D (Fluconazole) 50mg/tab r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+
+                                    <div class="resp-table-row" style="display: block" id="sheet-no10"> 
+                                        <div class="table-body-cell">
+                                            Normal saline-Sodium chloride 0.9% 塑膠瓶
+                                        </div>
+    
+                                        <div class="table-body-cell" id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶'>
+                                            <textarea id = 'Normal saline-Sodium chloride 0.9% 塑膠瓶 r no' value="" style="font-family:verdana;font-size:22px;width:100%;"  rows="3"> </textarea> 
+                                        </div>
+    
+                                    </div>
+    
+                                </div>
+                            </div>
+    
+                            <br><br>
+    
+                        </div>
+                        
+                        <br><br>
+                        
+                    </div> 
+                    
+                    <br><br><br>
+
+                    <!-- pill -->
+                    <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
+                        <nobar>指示 3</nobar> <br>
+                        <nobar>確認口服藥物</nobar> <br>
+                    </div>
+
+                    <br>
+
+                    <p align="center" style="font-family:verdana;font-size:36px;">請您執行智能給藥判讀步驟:</p>
+                    <p align="center" style="font-family:verdana;font-size:36px;color: gray;">(1)要給病患的藥物，全部放入黑色方盒子內</p>
+                    <p align="center" style="font-family:verdana;font-size:36px;color: gray;">(2)再將方盒放入設備內後</p>
+                
+                
+                    <nobar align="center" style="font-family:verdana;font-size:36px;color: gray;">(3)確認小門關上後，按</nobar>
+                    <nobar align="center" style="font-family:verdana;font-size:36px;color: red;">”辨識藥丸”</nobar>
+
+                    <br><br>
+
+                    <img id = 'pill_odf' src="./pic/no.png" width="34"/>
+                    <button onclick="check_bt('pill')" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">辨識藥丸</button> 
+                    <p class="pill_hint"></p>
+                    
+                    <br><br><br>
+                    <!-- 針具  -->
+                    <div id="syringe block" style="display: display;">
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 50%;">
+                            <nobar>指示 4</nobar> <br>
+                            <nobar>確認針劑藥物</nobar> <br>
+                        </div>
+
+                        <br>
+                        <br>
+                    <!-- <table class="syringe_check" style="width: 70%" border="1">
+
+                        <tr>
+                            <th>No.</th>
+                            <th>藥劑名稱</th>
+                            <th>稀釋總量</th>
+                            <th>施打總量</th>
+                            <th>給藥途徑</th>
+                        </tr>
+                        
+                    </table> -->
+
+
+                    <div id="page0">
+                        <div id="medtable"></div>
+                        <br>
+                        <input type="hidden" name="dilution_button_id" value="-1">
+                        <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">上傳結果</button>
+                        
+                        <br>
+                    </div>
+            
+                    <div id="page1" hidden>
+                        <img style="width:100%;" src="./images/scanning.jpg"><br>
+                        <br>
+                        <input type="hidden" name="verification_button_id" value="-1">
+                        <!-- <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: green;" onclick="JumpToPage(0)">確認</button> -->
+                        <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" onclick="JumpToPage(0);Barcode(0)">取消</button>
+                    </div>
+            
+                    <div id="page2" hidden>
+                        <div>
+                            <!-- <form method="post" onsubmit="if($('select[name=syringe_type] option').filter(':selected').val()==''){alert('請選擇注射空針樣式!');return false;}"> -->
+                                <font style="font-weight:bold;">注射空針樣式:</font>
+                                <select name="syringe_type" style="font-size:36px;">
+                                    <option value="">--請選擇您欲辨識之空針樣式--</option>
+                                    <option value="1 ml">1 ml</option>
+                                    <option value="3 ml">3 ml</option>
+                                    <option value="5 ml">5 ml</option>
+                                    <option value="10 ml">10 ml</option>
+                                    <option value="others">其他</option>
+                                </select>
+                                <input type="hidden" name="injection_button_id" value="-1">
+                                <!-- <input type="hidden" name="barcode_scan_state" value="0">
+                                <input type="hidden" name="injection_info_state" value="0">
+                                <input type="hidden" name="add_new_state" value="0">
+                                <input type="hidden" name="syringe_diluent_state" value="0"> -->
+                                <hr>
+                                *點擊<font style="background-color: #4CAF50">"下一步"</font>按鈕後開始辨識。
+                                <img style="width:100%;" src="./images/HW_V2_with_syringe.png"><br>
+                                <hr>
+                                <button style="float: right; background-color: #4CAF50;" onclick="Syringe_recognition();" >下一步</button>
+                            <!-- </form> -->
+                            <button style="float:left; color: white; background-color: #f44336;" onclick="JumpToPage(0)">取消</button>
+                        </div>
+                    </div>
+            
+                    <div id="page3" hidden>
+                        <div class="tab">
+                            <button class="tablinks" id="BT_IV_IVD_IVP" onclick="tabSW(event, 'IV_IVD_IVP'); document.getElementById('radio_injection_info_site').checked=true;">IV、IVD、IVP 選項</button>
+                            <button class="tablinks" id="BT_IM_SC_ID" onclick="tabSW(event, 'IM_SC_ID')">IM、SC、ID 選項</button>
+                        </div>
+                        <script>
+                            document.addEventListener("DOMContentLoaded", function(event) {
+                                document.getElementById("BT_IV_IVD_IVP").click();
+                            });
+                            function injection_info_onsubmit_check(){
+                                var __iinjection_info_val = $('input[name=injection_info]:checked').val()
+                                var __injection_info_site_val = $('input[name=injection_info_site]:checked').val()
+                                if(typeof(__iinjection_info_val)=='undefined'){
+                                    alert('請選擇給藥途徑!');
+                                    return false;
+                                }
+                                else if(["IM", "SC", "ID"].includes(__iinjection_info_val) && __injection_info_site_val=="-"){
+                                    alert('您的注射部位尚未選擇!');
+                                    return false;
+                                }
+                                else{
+                                    return true;
+                                }
+                            }
+                        </script>
+                        <!-- <form method="post"  onsubmit="return injection_info_onsubmit_check();"> -->
+                            <div style="position:relative; width:100%;">
+                                <div id="IV_IVD_IVP" class="tabcontent">
+                                    <img style="width:100%;" src="./images/IV_IVD_IVP.png">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:40.7%; left:15.7%;" name="injection_info" value="加點滴袋內">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:60.1%; left:14.1%;" name="injection_info" value="IVD">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:38.3%; left:87.5%;" name="injection_info" value="IVP">
+                                    <input type="radio" style="display:none;" id="radio_injection_info_site" name="injection_info_site" value="-"> 
+                                </div>
+                                <div id="IM_SC_ID" class="tabcontent">
+                                    <img style="width:100%;" src="./images/IM_SC_ID.png">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:68.25%; left:21.50%;" name="injection_info" value="肌肉注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:79.95%; left:21.25%;" name="injection_info" value="皮下注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:92.20%; left:21.15%;" name="injection_info" value="皮內注射">
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:15.93%; left:26.60%;" name="injection_info_site" value="肩峰下三橫指"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.31%; left:25.69%;" name="injection_info_site" value="手肘"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:26.97%; left:26.15%;" name="injection_info_site" value="手背"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.30%; left:33.35%;" name="injection_info_site" value="右上腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.42%; left:33.28%;" name="injection_info_site" value="右下腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:21.30%; left:38.50%;" name="injection_info_site" value="左上腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.42%; left:38.50%;" name="injection_info_site" value="左下腹"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.60%; left:39.90%;" name="injection_info_site" value="左前腿"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.95%; left:61.50%;" name="injection_info_site" value="左上臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.15%; left:61.50%;" name="injection_info_site" value="左下臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:24.95%; left:64.85%;" name="injection_info_site" value="右上臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:27.10%; left:64.71%;" name="injection_info_site" value="右下臀"> 
+                                    <input type="radio" style="position: absolute; width:2.5%; height:2.5%; top:22.95%; left:69.60%;" name="injection_info_site" value="右前臂"> 
+                                </div>
+            
+                            </div><br><hr>
+                            <input type="hidden" name="way_button_id" value="-1">
+                            <!-- <input type="hidden" name="barcode_scan_state" value="0">
+                            <input type="hidden" name="syringe_scan_state" value="0">
+                            <input type="hidden" name="add_new_state" value="0">
+                            <input type="hidden" name="syringe_diluent_state" value="0">  -->
+                            <button name="injection_info_state" style="float: right; background-color: #4CAF50;" onclick="GetOption(3);JumpToPage(0)">下一步</button>
+                        <!-- </form> -->
+                        <button style="float:left; color: white; background-color: #f44336;" onclick="JumpToPage(0)">取  消</button>
+                    </div>
+                            
+                    </div>
+
+                    <br><br><br>
+                
+                    <button onclick="check_page(3)" style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">送出</button>
+                </center>
+
+                <br><br>
+
+            </div>
+      
+        </div>
+
+        <!-- feedback -->
+        <div class="mySlides fade">
+            <div class="card">
+
+                <div id="group_3" onclick="check_page(4)">
+                    <img src="./pic/vector_2.png" id="vector_2" />
+    
+                    <div id="group_1"  >
+                        <div id="ellipse_3"  ></div>
+                        <div id="ellipse_4"  ></div>
+                        <div id="rectangle_1"  ></div>
+    
+                    </div>
+                    <div id="ellipse_3_ek1"  ></div>
+                    <div id="ellipse_4_ek1"  ></div>
+                    <div id="rectangle_1_ek1"  ></div>
+                    <div id="ellipse_1"  ></div>
+                    <img src="./pic/ellipse_2.png" id="ellipse_2" />
+                    <div id="ellipse_5"  ></div>
+                    <div id="ellipse_7"  ></div>
+                    <div id="ellipse_6"  ></div>
+                    <div id="ellipse_8"  ></div>
+                    <div id="ellipse_9"  ></div>
+                    <div id="line_1"  ></div>
+                    <div id="line_4"  ></div>
+                    <div id="line_3"  ></div>
+                    <div id="line_2"  ></div>
+    
+                </div>
+
+                <img  src="./pic/home.png" width="224px" onclick="check_page(0)" background-color: transparent style="float: right;"/>
+                
+                <br><br><br><br><br><br><br><br>
+                
+                <h1 align="center" style="font-family:verdana;font-size:50px;position: absolute;left: 15%;">臨床外科用藥安全情境教案（四）</h2>
+                   
+                    <center>
+                    <div class="card_r">
+                        <br><br><br><br><br><br><br>
+                        
+                        <nobr style="font-family:verdana;font-size:36px;color: gray;">您的給藥行為分析結果為</nobr>
+                        <h2 id = 'review' style="font-family:verdana;font-size:42px;color: red;"></h2>
+                        <nobr style="font-family:verdana;font-size:36px;color: gray;">10題，您答對了</nobr>
+                        <nobr id = 'score' style="font-family:verdana;font-size:42px;color: red;">_</nobr>
+                        <nobr style="font-family:verdana;font-size:36px;color: gray;">題，您還有待加強正確的給藥行為唷~</nobr>
+                        
+                        <br><br><br>
+
+                        <div class="card_mar">
+                            <h2 align="center" style="font-family:verdana;font-size:36px;color: black;">解析您給藥行為的正確度</h2>
+                            <p class='ODF_ID' style="font-family:verdana;font-size:28px;color: black;">_____________</p>
+                            
+                            <div id="resp-table">
+                                <div id="resp-table-body" style="font-family:verdana;font-size:26px;color: black;">
+                                    <div class="resp-table-row" style="font-family:verdana;font-size:32px;color: black;"> 
+                                        <div class="table-body-cell">
+                                            回想一下剛剛的情境
+                                        </div>
+
+                                        <div class="table-body-cell">
+                                            正確的給藥行為 
+                                        </div>
+
+                                        <div class="table-body-cell">
+                                            您的給藥與不給藥的理由與學習重點
+                                        </div>
+                                        
+                                    </div>
+                    
+                                    <div class="resp-table-row" > 
+                                        <div class="table-body-cell">
+                                            1. 你記得剛剛病人的「姓名」與「出生年月日」嗎?
+
+                                            <br><br>
+
+                                            <img id = '1 img' src="./pic/no.png" width="72" background-color: transparent/> 
+                                        
+                                        </div>
+
+                                        <div class="table-body-cell">
+                                            「要辨識出」病人身份錯誤
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = 'paitent r' style="color: gray;"></p>
+                                            ■ 給藥之前，一定要先核對患者身份
+
+                                            <br>
+
+                                            ■ 正確身份辨識方式為，詢問對方的「姓名」與「出生年月日」
+
+                                            <br><br>
+
+                                            <nobar style="color: black;">【情境解析】同名陳志明，但出生年月日錯誤(52/9/17)；正確為(37/6/17)</nobar>
+                                            
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell" >
+                                            2. 你記得剛剛給病人服用的「藥名」嗎?
+
+                                            <br><br>
+
+                                            <img id = '2 img' src="./pic/no.png" width="72" background-color: transparent/> 
+                                        </div>
+
+                                        <div class="table-body-cell" >
+                                            「不能給」Dilantin 藥物
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '2 r' style="color: gray;"></p> 
+                                            <p id = '2 r 2' style="color: gray;"></p>
+                                            ■ 核對不僅僅是藥袋名稱，還要注意藥袋內的藥名， Dilatrend 和 Dilantin 乍看，前面的英文字很像，因此需要小心辨識!
+                                            
+                                            <br><br>
+                                          
+                                            <nobar style="color: black;">
+                                                【情境解析】藥袋內為錯誤的藥物 (Dilantin)，正確藥物為 (Dilatrend)
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            3. 你記得你給病人服用Requip F.C一顆的「劑量」嗎?
+
+                                            <br>
+                                            <br>
+
+                                            <img id = '3 img' src="" width="72" background-color: transparent/>  
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            「不能給」Requip F.C 藥物
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '3 r' style="color: gray;"></p>
+                                            <p id = '3 r 3' style="color: gray;"></p>
+                                            ■ 同一種藥物常會有「不同的劑量」，因此需要注意到單顆劑量的正確性!
+
+                                            <br><br>
+                                      
+                                            <nobar style="color: black;">
+                                                【情境解析】藥袋內為錯誤的劑量(1mg)，正確劑量為為(0.25mg)
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            4. 你知道Millisrol加注途徑要用IV pump or IV bag呢?
+
+                                            <br>
+                                            <br>
+
+                                            <img id = '4 img' src="" width="72" background-color: transparent/>  
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            Millisrol「不能」加注到精密輸液套 (IV bag) 給予
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '4 r' style="color: gray;"></p>
+                                            <p id = '4 r 4' style="color: gray;"></p>
+                                            ■ 藥物途徑「靜脈點滴滴入」IVD，我們要特別注意該藥物是要透過精密輸液套 (IV bag) 還是點滴幫浦儀器 (IV pump)，尤其心血管藥物和濃度高的藥物
+                                            
+                                            <br><br>
+                                         
+                                            <nobar style="color: black;">
+                                                【情境解析】Millisrol 需透過「點滴幫浦儀器」IV pump 給予，不能從「精密輸液套」IV bag
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            5. 你記得 Repaglinide 的醫囑時間嗎?
+
+                                            <br><br>
+                                            
+                                            <img id = '5 img' src="" width="72" background-color: transparent/>  
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            <nobar>「不能給」Repaglinide 藥物</nobar>
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '5 r' style="color: gray;"></p>
+                                            <p id = '5 r 5' style="color: gray;"></p>
+                                            ■ 注意醫囑給藥時間與當下時間是否吻合。血糖藥有分飯前或飯後給，該血糖藥需要確認患者是否在吃「第一口飯之前」，另外尤其老年族群給予飯前血糖藥後，要提醒與確認他有進食，以免血糖過低
+                                            
+                                            <br><br>
+                                          
+                                            <nobar style="color: black;">
+                                                【情境解析】 Repaglinide 醫囑時間為 TID/AC (7AM-11AM-16PM)。 AC 指飯前給予，情境給藥時間是早上九點，故此藥目前不給予。
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            6. 你知道 Transamin 的作用嗎?
+                                            
+                                            <br><br>
+                                         
+                                            <img id = '6 img' src="" width="72" background-color: transparent/>  
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            「不能給」Transamin 藥物
+                                        </div>
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '6 r' style="color: gray;"></p>
+                                            <p id = '6 r 6' style="color: gray;"></p>
+                                            ■ 給予病患藥物前，都必須確認患者有服用該藥物臨床適應症的理由
+                                            
+                                            <br><br>
+                                         
+                                            <nobar style="color: black;">
+                                                【情境解析】從目前的病患資訊，病人沒有臨床證據來使用 Transamin 的適應症，所以應提醒醫師或專科護理師評估病人是否需要給此藥
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            7. 你知道 Ampicillin 是盤尼西林 Penicillin 類藥物嗎? 給藥前你知道這病人有沒有 Penicillin 類藥物過敏嗎?
+                                                
+                                            <br><br>
+                                          
+                                            <img id = '7 img' src="" width="72" background-color: transparent/>  
+
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            「不能給」Ampicillin
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '7 r' style="color: gray;"></p>
+                                            <p id = '7 r 7' style="color: gray;"></p>
+                                            ■ 藥物過敏是嚴重可致死 (過敏性休克)，因此給藥前要確認病人是否有藥物過敏，方式包括：問病人藥名、當時過敏反應情形或查詢健保卡和病歷系統記錄
+                                        
+                                            <br><br>
+                                          
+                                            <nobar style="color: black;">
+                                                【情境解析】 Ampicillin 是盤尼西林 Penicillin 類藥物。目前臨床不須常規做盤尼西林試驗 Penicillin test, PST 。但此病人對盤尼西林 Penicillin 有過敏記錄，因此如果醫師仍要給就需要做 PST ，因此不應該直接該給藥。
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            8. 你知道 Bokey 的作用嗎?
+
+                                            <br><br>
+                                         
+                                            <img id = '8 img' src="" width="72" background-color: transparent/>  
+                        
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            「有給」Bokey
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '8 r' style="color: gray;"></p>
+                                            <p id = '8 r 8' style="color: gray;"></p>
+                                            ■ 具備正確的藥物知識並且執行給藥醫囑
+
+                                            <br><br>
+                                         
+                                            <nobar style="color: black;">
+                                                【情境解析】病人有心臟病，「給予」Bokey 可預防心肌梗塞和心栓性栓塞症。
+                                            </nobar>
+                                        </div>
+                    
+                                    </div>
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            9. 你知道Simvahexal的作用嗎?
+
+                                            <br><br>
+                                         
+                                            <img id = '9 img' src="" width="72" background-color: transparent/>  
+
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                            「有給」Simvahexal   
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                            <p id = '9 r' style="color: grey;"></p>
+                                            <p id = '9 r 9' style="color: grey;"></p>
+                                            ■ 具備正確的藥物知識並且執行給藥醫囑
+
+                                            <br><br>
+                                         
+                                            <nobar style="color: black;">
+                                                【情境解析】病人有高血脂，「給予」Simvahexal/Zocor 可降低血液中的膽固醇和三酸甘油酯
+                                            </nobar>
+                                            
+                                        </div>
+                    
+                                    </div> 
+                    
+                                    <div class="resp-table-row"> 
+                                        <div class="table-body-cell">
+                                            10. 你知道甚麼是藥物-藥物交互作用 (drug-drug interaction, DDI)?
+                                            ; FLU-D (Fluconazole) Simvahexal 合用，會有藥物交互作用DDI嗎?
+
+                                            <br><br>
+                                         
+                                            <img id = '10 img' src="" width="72" background-color: transparent/>  
+                                            
+                                        </div>
+                                        
+                                        <div class="table-body-cell">
+                                        「不能給」給予 FLU-D (Fluconazole)
+                                        </div>
+
+                                        <div class="table-body-cell" style="color: red;">
+                                        <p id = '10 r' style="color: gray;"></p>
+                                        <p id = '10 r 10' style="color: gray;"></p>
+                                        ■ 藥物-藥物交互作用（drug-drug interaction, DDI），A藥物與B藥物一起使用，其相互作用後造成藥效作用延遲、減少或增強任一藥物的吸收引起不良反應
+                                        
+                                        <br><br>
+                                      
+                                        <nobar style="color: black;">
+                                            【情境解析】病人有後天免疫缺乏症候群，服用 FLU-D (Fluconazole)，但該藥不能與 Zocor 合用，會有藥物交互作用 DDI
+                                        </nobar>
+                                        </div>
+                    
+                                    </div>    
+
+                                    <br>
+                    
+                                </div>
+                            </div>
+
+                            <br><br>
+                            
+                        </div>
+                        
+                        <center>
+                            <p style="font-family:verdana;font-size:36px;color: gray;"> 恭喜您完成檢定，謝謝您的協助！！ ٩(˃̶͈̀௰˂̶͈́)و</p>
+                            <button onclick="check_page(0)" style="color: white;font-family:verdana;font-size:44px;border-radius: 10px;background-color: #034b86;">回首頁</button>
+                        </center>
+                                                    
+                        <br><br>
+                       
+                    </div>
+                
+                </center>
+            
+            </div>
+        </div>
+
+        <!-- analysis -->
+        <div class="mySlides fade">
+            
+            <div class="card">
+                <img  src="./pic/home.png" width="224px" onclick="check_page(0)" background-color: transparent style="float: right;"/>
+                
+                <br><br><br><br><br>
+              
+                <h1 align="center" style="font-family:verdana;font-size:50px;position: absolute;left: 23%;">分析智能安全給藥訓練</h2>
+                
+                <br><br><br><br><br><br>
+              
+                <center>
+
+                    <div class="card_mar"> 
+                        <br><br>
+
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>所有受試人員等級比例圖</nobar> <br>
+                        </div>
+                        
+                        <h1 id="analysis_loading" style="font-family:verdana;font-size:36px;color: grey;display: block;">loading.....</h2>
+                        
+                        <div id="PieChart" style="display: none;height: 500px ;max-width:500px;max-height:500px">
+                            <canvas id="pieChart"></canvas>
+                        </div>
+
+                        <br><br>
+
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>個人歷史檢定成長折線圖</nobar> <br>
+                        </div>
+                      
+                        <p align="center" style="font-family:verdana;font-size:48px;">個人成績查詢</p>
+
+                        <p align="center" style="font-family:verdana;font-size:36px;">請輸入學號或是 ID</p>
+                        
+                        <div class="inputWithin">
+                            <input id = 'history_v' value="" style="font-family:verdana;font-size:36px;">
+                            <button onclick="check_bt('history')" style="font-family:verdana;font-size:36px;">查詢歷史紀錄</button>
+                        </div>
+
+                        <br><br>
+                        
+                        <h1 id="history_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
+                        
+                        <br><br>
+                        
+                        <div id="LineChart" style="display: none;height: 500px ;">
+                            <canvas id="lineChart"></canvas>
+                        </div>
+
+                        <br>
+
+                        <div class="card_mar" style="font-family:verdana;font-size:52px;background-color: rgb(235, 120, 120);width: 80%;">
+                            <nobar>期間受試人員正確題目分佈圖</nobar> <br>
+                        </div>
+
+                        <p align="center" style="font-family:verdana;font-size:48px;">時段成績分佈查詢</p>
+
+                        <p align="center" style="font-family:verdana;font-size:36px;">請輸入時間區間</p>
+                        <nobar style="font-family:verdana;font-size:36px;">由</nobar>
+                        <input type="datetime-local" id="start_date" value="" style="font-family:verdana;font-size:36px;">
+                        <nobar style="font-family:verdana;font-size:36px;">到</nobar>
+                        <input type="datetime-local" id="end_date" value="" style="font-family:verdana;font-size:36px;">
+
+                        <br><br>
+                        
+                        <button onclick="check_bt('time')" style="font-family:verdana;font-size:36px;">查詢分佈</button>
+
+                        <h1 id="time_loading" style="font-family:verdana;font-size:36px;color: grey;display: none;">loading.....</h2>
+                        
+                        <br><br> 
+                        
+                        <div id="BarChart" style="display: none;height: 500px ;">
+                            <canvas id="barChart" ></canvas>
+                        </div>
+
+                        <br><br>
+                      
+                    </div>
+                </center>
+
+                <br>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Next and previous buttons -->
+    <div style="display: none;">
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    
+    <!-- The dots/circles -->
+    <div style="text-align:center; display: block;">
+        <span class="dot" onclick="currentSlide(1)"></span> 
+        <span class="dot" onclick="currentSlide(2)"></span> 
+        <span class="dot" onclick="currentSlide(3)"></span> 
+        <span class="dot" onclick="currentSlide(4)"></span> 
+        <span class="dot" onclick="currentSlide(5)"></span> 
+    </div>
+
+</html>
+
+<!-- event js -->
+<script src="js/slide.js"></script>
+<script src="js/update.js"></script>
+<script src="js/chart.js"></script>
+<!-- <script src="js/barcode.js"></script> -->
+<!-- <script src="js/html5-qrcode-css.js"></script> -->
+<script src="js/feedback.js"></script>
+<script src="js/syringe.js"></script>
+<script src="js/ida.js"></script>
+
