@@ -217,6 +217,7 @@ function check_page(n){
                                                                     pills_7: pills_num[6],
                                                                     pills_8: pills_num[7],
                                                                     pills_9: pills_num[8],
+                                                                    pic: client_uid,
                 })
 
                 $.post("https://140.113.110.21:7777/api/_sheet_feedback", {  reason_1: reason[0],
@@ -298,7 +299,7 @@ function check_bt(f){
     if (f === 'barcode'){
         $('.patient_barcode_hint')[0].innerText = '請到Barcode機的螢幕上操作';
         dan.push('Barcode-I', [client_uid, 'Device_Demo', 'patient', true]);
-        // https://140.113.110.21:7777/api/_patient?barcode=1234567890ABC
+        
         
         output_patient_barcode_bt = output_patient_barcode_bt + 1;
     }
