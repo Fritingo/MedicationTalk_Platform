@@ -62,7 +62,7 @@ $(function(){
             if (data[0] == client_uid){
                 var data_value = JSON.parse(data[1]);
                 console.log(data_value);
-                $.getJSON('https://140.113.110.21:7777/api/_patient', {
+                $.getJSON('https://fritingo.ddns.net/api/_patient', {
                 barcode: data_value['barcode']
                 }, function(data) {
                 console.log(data);
