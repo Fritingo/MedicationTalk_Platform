@@ -193,6 +193,7 @@
                         <button name="patient_barcode" style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" display:align="center" onclick="check_bt('barcode')">請掃描病人手圈</button>
                         <br>
                         <p class="patient_barcode_hint" align="center" style="font-size: 24;"></p>
+                        <p class="barcode_value" align="center" style="font-size: 24;" ></p>
                                     
                     </div>
                         
@@ -1748,8 +1749,7 @@
                     <div id="page0">
                         <div id="medtable"></div>
                         <br>
-                        <input type="hidden" name="dilution_button_id" value="-1">
-                        <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">上傳結果</button>
+                        <!-- <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;">上傳結果</button> -->
                         
                         <br>
                     </div>
@@ -1761,7 +1761,26 @@
                         <!-- <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: green;" onclick="JumpToPage(0)">確認</button> -->
                         <button style="color: white;font-family:verdana;font-size:36px;border-radius: 10px;background-color: red;" onclick="JumpToPage(0);Barcode(0)">取消</button>
                     </div>
-            
+
+                    <div id="page6" hidden>
+                        <input type="hidden" name="dilution_button_id" value="-1">
+                        <h1 style="line-height: 20%;">
+                            稀釋總量輸入
+                        </h1>
+                        <span class="tipicontext">
+                            <font style="font-weight:bold;">稀釋總量輸入流程:</font>
+                            <div style="margin-left: 1em;">
+                                <br>請在下方稀釋劑用量欄位輸入本次稀釋劑用量。<br>
+                                <br>若無需稀釋，請輸入"0"。<br>
+                                <input name = "syringe_diluent_value" size="3" style="font-size:18px"; value="0">     /ml</input>
+                                <br>將稀釋劑以輸入的量，注入藥瓶中。 <br>
+                                <br>點擊頁面右下方<font style="background-color: #4CAF50">"下一步"</font>按鈕跳至下一功能。<br>
+                                <button style="float: right; background-color: #4CAF50;" onclick="JumpToPage(2);GetOption(6)" >下一步</button>
+                            </div>
+                        </span>
+                    </div>
+
+
                     <div id="page2" hidden>
                         <div>
                             <!-- <form method="post" onsubmit="if($('select[name=syringe_type] option').filter(':selected').val()==''){alert('請選擇注射空針樣式!');return false;}"> -->
@@ -1783,7 +1802,7 @@
                                 *點擊<font style="background-color: #4CAF50">"下一步"</font>按鈕後開始辨識。
                                 <img style="width:100%;" src="./images/HW_V2_with_syringe.png"><br>
                                 <hr>
-                                <button style="float: right; background-color: #4CAF50;" onclick="Syringe_recognition();" >下一步</button>
+                                <button style="float: right; background-color: #4CAF50;" onclick="Syringe_recognition()" >下一步</button>
                             <!-- </form> -->
                             <button style="float:left; color: white; background-color: #f44336;" onclick="JumpToPage(0)">取消</button>
                         </div>

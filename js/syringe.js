@@ -1,4 +1,5 @@
 var medicines = {};
+var med_order;
 
 function create_json(med, checked){
     if(checked){
@@ -69,18 +70,29 @@ function createtbl() {
             row_2_data_3.innerHTML = "已掃描";
         }
         else{
-            row_2_data_3.innerHTML = '<button name="syringe_verification" style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;" onclick="JumpToPage(1);Getbutton_id(1,'+i+');Barcode(1)">掃描條碼</button>';
+            row_2_data_3.innerHTML = '<button name="syringe_verification" style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;" onclick="JumpToPage(1);Getbutton_id(1,'+i+');Getbutton_id(2, '+i+');Getbutton_id(6, '+i+');Getbutton_id(3, '+i+');Barcode(1)">驗證</button>';
             row_2_data_3.style.textAlign = "center";
         }
         
         let row_2_data_4 = document.createElement('td');
         row_2_data_4.style.textAlign = "center";
-        row_2_data_4.innerHTML = '<input name="syringe_diluent_value'+i+'" size="3" style="font-size:18px; min="0.00" max="100.00" step="0.01" value='+medicines[medicine_keys[i]]['dilution']+'> /ml  </input> <button name="delution confirm" style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;"; onclick="Getbutton_id(0,'+i+');GetOption(0)">確認</button>';
-
+        //下面這邊要刪
+        if (medicines[medicine_keys[i]]['dilution'] == 0){
+            row_2_data_4.innerHTML = '尚未輸入';
+            // row_2_data_4.innerHTML = '<button name="delution_amount" button style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;" onclick="JumpToPage(6);Getbutton_id(6, '+i+'); Getbutton_id(3, '+i+')">稀釋</button>';
+        }
+        else{
+            row_2_data_4.innerHTML = medicines[medicine_keys[i]]['dilution'] + "/ml";
+        }
 
         let row_2_data_5 = document.createElement('td');
         row_2_data_5.style.textAlign = "center";
-        row_2_data_5.innerHTML = medicines[medicine_keys[i]]['injection'] + " ml  " +'<button name="injection_amount" style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;" onclick="JumpToPage(2);Getbutton_id(2,'+i+');">新增</button>';
+        if (medicines[medicine_keys[i]]['injection']==0){
+            row_2_data_5.innerHTML = '尚未辨識';
+        }
+        else{
+            row_2_data_5.innerHTML = medicines[medicine_keys[i]]['injection'] + "/ml  " ;
+        }
   
         
         
@@ -92,7 +104,7 @@ function createtbl() {
             row_2_data_6.style.textAlign = "center";
         }
         else{
-            row_2_data_6.innerHTML = '<button name="injection way" button style="color: white;font-family:verdana;font-size:18px;border-radius: 10px;background-color: green;text-align:center;" onclick="JumpToPage(3);Getbutton_id(3,'+i+');">選擇途徑</button>';
+            row_2_data_6.innerHTML = '尚未選擇';
             row_2_data_6.style.textAlign = "center";
         }
 
@@ -116,24 +128,35 @@ function JumpToPage(page) {
             document.getElementById("page1").hidden = true;
             document.getElementById("page2").hidden = true;
             document.getElementById("page3").hidden = true;
+            document.getElementById("page6").hidden = true;
             break;
         case 1:
             document.getElementById("page0").hidden = true;
             document.getElementById("page1").hidden = false;
             document.getElementById("page2").hidden = true;
             document.getElementById("page3").hidden = true;
+            document.getElementById("page6").hidden = true;
             break;
         case 2:
             document.getElementById("page0").hidden = true;
             document.getElementById("page1").hidden = true;
             document.getElementById("page2").hidden = false;
             document.getElementById("page3").hidden = true;
+            document.getElementById("page6").hidden = true;
             break;
         case 3:
             document.getElementById("page0").hidden = true;
             document.getElementById("page1").hidden = true;
             document.getElementById("page2").hidden = true;
+            document.getElementById("page6").hidden = true;
             document.getElementById("page3").hidden = false;
+            break;
+        case 6:
+            document.getElementById("page0").hidden = true;
+            document.getElementById("page1").hidden = true;
+            document.getElementById("page2").hidden = true;
+            document.getElementById("page3").hidden = true;
+            document.getElementById("page6").hidden = false;
             break;
     }
     
@@ -170,15 +193,17 @@ function Getbutton_id(page_type, button_id){
     else if(page_type=='3'){  //給藥途徑
         document.getElementsByName("way_button_id").value= button_id;
     }
-    else if (page_type=='0'){ //稀釋
+    else if (page_type=='6'){ //稀釋
         document.getElementsByName("dilution_button_id").value = button_id;
     }
     else if(page_type=='1'){
         document.getElementsByName("verification_button_id").value = button_id;
     }
 
+    }
+
       
-}
+
 
 function GetOption(p){
 
@@ -193,9 +218,10 @@ function GetOption(p){
             medicines[medicine_keys[document.getElementsByName("way_button_id").value]]['way'] = [$('input[name=injection_info]:checked').val()]; 
         }       
     }
-    else if(p==0){
-        delution_order = document.getElementsByName("dilution_button_id").value
-        medicines[medicine_keys[delution_order]]['dilution'] = $("input[name='syringe_diluent_value"+delution_order+"' ]").val();
+    else if(p==6){
+        medicines[medicine_keys[document.getElementsByName("dilution_button_id").value]]['dilution'] = $('input[name="syringe_diluent_value"]').val();
+        // console.log($('input[name="syringe_diluent_value"]').val());
+
     }
     else if(p==1){
         // medicines[medicine_keys[document.getElementsByName("verification_button_id").value]]['verification'] = 'barcode';
@@ -215,8 +241,3 @@ function Barcode(on_off){
 function Syringe_recognition(){
     dan.push('Syringe-I',[client_uid,'Device_Demo', $("select[name='syringe_type']").val(), 1]);
 }
-
-
-
-
-    
