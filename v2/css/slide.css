@@ -120,7 +120,7 @@
 }
 
 #resp-table {
-  width: 100%;
+  
   display: table;
 }
 #resp-table-body{
@@ -128,6 +128,7 @@
 }
 .resp-table-row{
   display: table-row;
+  
 }
 .table-body-cell{
   display: table-cell;
@@ -135,6 +136,16 @@
   padding: 8px;
   line-height: 1.42857143;
   vertical-align: top;
+  
+}
+
+.table-body-cell200{
+  display: table-cell;
+  border: 1px solid #dddddd;
+  padding: 8px;
+  line-height: 1.42857143;
+  vertical-align: top;
+  width: 150px;
 }
 
 .inputWithin {
@@ -143,6 +154,7 @@
   font-size:28px;
   font-family:verdana;
 }		
+
 .inputWithin .img { /*左邊圖示*/
   position: absolute; 			
   left: 10px;

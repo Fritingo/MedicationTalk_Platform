@@ -4,7 +4,7 @@ var dan = (function () {
     var POLLING_INTERVAL = 500;
     var _pull;
     var _push;
-    var _mac_addr = 'Platform';
+    var _mac_addr = 'Platform_v2';
     // var _mac_addr = 'Platform_Demo_anna';
     var _profile = {};
     var _registered = false;

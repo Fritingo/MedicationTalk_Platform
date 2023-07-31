@@ -39,7 +39,7 @@ $(function(){
 		    'dm_name': 'Medication',          
 			'idf_list':[Barcode_I, Pill_Detect_I, Syringe_I],
 			'odf_list':[Barcode_Result_O, Pill_Detect_Result_O, Syringe_Result_O],
-		    'd_name': 'Platform',
+		    'd_name': 'Platform_v2',
 		    // 'd_name': 'Platform_Demo_anna',
         };
 
@@ -66,8 +66,8 @@ $(function(){
                 barcode: data_value['barcode']
                 }, function(data) {
                 console.log(data);
-                var resp = JSON.parse(data)
-                $('.ODF_value')[0].innerText = resp['info'];
+                // var resp = JSON.parse(data)
+                $('.ODF_value')[0].innerText = data['info'];
                 var img = document.getElementById('barcode_scanner');
                 img.src="pic/ok1.jpeg";
                 $('.patient_barcode_hint')[0].innerText = "★ 辨識完成請繼續執行下一步＾＿＾";
